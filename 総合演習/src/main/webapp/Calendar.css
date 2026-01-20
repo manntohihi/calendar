@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+/* ページ全体の中央寄せ */
+body {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* カレンダー全体 */
+table {
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* 見出し（曜日・日付） */
+th, td {
+  border: 1px solid #999;
+  width: 80px;      /* ← 大きく */
+  height: 80px;     /* ← 大きく */
+  text-align: center;
+  font-size: 20px;  /* ← 文字を大きく */
+}
+
+/* 曜日行 */
+th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+/* 今日 */
+.today {
+  background-color: #ffe4e1;
+  color: #d00000;
+  font-weight: bold;
+}
+td {
+  min-height: 80px;
+  position: relative;
+  vertical-align: top;
+  overflow: visible;
+}
+
+/* 予定バー共通 */
+.event {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  height: 20px;
+  border-radius: 4px;
+  z-index: 10;
+}
+
+/* 色 */
+.yellow { background: yellow; }
+.purple { background: purple; }
+.blue   { background: #4da3ff; }
+.red    { background: red; }

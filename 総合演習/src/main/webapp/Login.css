@@ -1,0 +1,80 @@
+.grid_test {
+    display: grid;  /* グリッドコンテナを作る */
+    grid-template-columns:3fr 3fr 3fr;      /* 縦向きのグリッドラインを決める */
+    grid-template-rows:1fr 1fr 1fr 1fr 1fr;         /* 横向きのグリッドラインを決める */
+}
+.grid_test-child:nth-child(1) {
+    grid-column:1/4;    /* 配置指定 */
+    grid-row:1;       /* 配置指定 */
+    place-items: center;
+}
+
+.grid_test-child:nth-child(2) {
+    grid-column:2/3;    /* 配置指定 */
+    grid-row:3;       /* 配置指定 */
+    place-items: center;
+}
+.grid_test-child:nth-child(3) {
+    grid-column:2/3;    /* 配置指定 */
+    grid-row:4;       /* 配置指定 */
+    place-items: center;
+}
+.grid_test-child:nth-child(4) {
+    grid-column:3;    /* 配置指定 */
+    grid-row:5;       /* 配置指定 */
+}
+.grid_test-child:nth-child(5) {
+    grid-column:1;    /* 配置指定 */
+    grid-row:5;       /* 配置指定 */
+}
+
+.grid_test-child:nth-child(6) {
+    grid-column:2/3;    /* 配置指定 */
+    grid-row:2;       /* 配置指定 */
+    place-items: center;
+}
+/*
+    .grid_test-child:nth-child(1) {
+        background-color:  #7b9ad0;     
+    }
+    .grid_test-child:nth-child(2) {
+        background-color:  #c8d627;     
+    }
+    .grid_test-child:nth-child(3) {
+        background-color:  #d5848b;     
+    }
+    .grid_test-child:nth-child(4) {
+        background-color:  #51a1a2;    
+    }
+    .grid_test-child:nth-child(5) {
+        background-color:  #66b7ec;    
+    }
+    .grid_test-child:nth-child(6) {
+        background-color:  #56c7ec;    
+    }
+	*/
+/*
+.line{
+    border-collapse: collapse;
+}
+.line th{
+    border: 2px solid #444444;
+}
+*/
+.error{
+    color: red;
+}
+.btn-link {
+    display: inline-block; /* 幅や高さを指定できるようにする */
+    padding: 5px 10px;    /* ボタンの内側の余白（上下10px、左右20px） */
+    background-color: rgb(217, 217, 217); /* 背景色（青） */
+    color: rgb(0, 0, 0);          /* 文字色（黒） */
+    text-decoration: none; /* リンクの下線を消す */
+    border-radius: 1px;    /* 角を丸くする */
+}
+.btn-link:hover {
+    background-color: rgb(217, 217, 217); /* ホバー時の背景色（濃い青） */
+}	
+.text{
+  width: 200px;
+}
