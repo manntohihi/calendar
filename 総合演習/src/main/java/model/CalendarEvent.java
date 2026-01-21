@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.TextArea;
 import java.sql.Date;
 
 public class CalendarEvent {
@@ -8,7 +7,7 @@ public class CalendarEvent {
 	int id; 
 	int group_id;
 	String title;
-	TextArea texdescription;
+	String texdescription;
 	Date start_datetime;
 	Date end_datetime;
 	int created_by;
@@ -18,7 +17,7 @@ public class CalendarEvent {
 		
 	}
 	
-	public CalendarEvent(int id,int group_id,String title,TextArea texdescription, Date start_datetime,Date end_datetime,int created_by) {
+	public CalendarEvent(int id,int group_id,String title,String texdescription, Date start_datetime,Date end_datetime,int created_by) {
 		this.id = id;
 		this.group_id = group_id;
 		this.title = title;
@@ -42,7 +41,7 @@ public class CalendarEvent {
 		return this.title;
 	}
 	
-	public TextArea getTexdescription() {
+	public String getTexdescription() {
 		return this.texdescription;
 	}
 	
