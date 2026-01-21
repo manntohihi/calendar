@@ -56,7 +56,10 @@ public class Login extends HttpServlet {
 		if (loginJud==true){
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser",user);
-			dispatcher = request.getRequestDispatcher("/roomSelection.html");
+			dispatcher = request.getRequestDispatcher("/roomSelection/java");
+			dispatcher.forward(request,response);
+		}else {
+			dispatcher = request.getRequestDispatcher("/LoginError.html");
 			dispatcher.forward(request,response);
 		}
 		//テスト
