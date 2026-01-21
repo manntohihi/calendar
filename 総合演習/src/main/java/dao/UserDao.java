@@ -14,7 +14,9 @@ import javax.sql.DataSource;
 import model.User;
 
 public class UserDao {
+	//SELECT文
 	public List<User> findAll(){
+		//リストを生成
 		List<User> userList = new ArrayList<User>();
 		
 		//DataSourceの取得
@@ -30,6 +32,7 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		
+		//データベース接続
 		try(Connection conn = ds.getConnection()) {
 			//SELECT文の準備
 			String sql = "SELECT userId, passwd, userName, icon FROM USER ORDER BY userId DESC;";
@@ -52,5 +55,44 @@ public class UserDao {
 			return null;
 		}
 		return userList;
+	}
+	
+	//INSERT文
+	public boolean insertUser(User user) {
+		//DataSourceの取得
+		InitialContext ic;
+		DataSource ds = null;
+		
+		try {
+			ic = new InitialContext();
+			
+			//DBの場所
+			ds = (DataSource)ic.lookup("java:comp/env/jdbc/calendar");
+		}catch(NamingException e) {
+			e.printStackTrace();
+		}
+		
+		//データベース接続
+		try(Connection con = ds.getConnection()){
+			//INSERT文の準備
+			String sql = "INSERT INTO USER(USER_ID, PASSWD, USERNAME, ICON) VALUES(?,?,?,?);";
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			//INSERT文の?の部分の値を指定
+			ps.setInt(1,user.getUserId());
+			ps.setString(2,user.getPasswd());
+			ps.setString(3,user.getUserName());
+			ps.setInt(4,user.getIcon());
+			
+			//INSERT文実行
+			int result = ps.executeUpdate();
+			if(result != 1) {
+				return false;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 }
