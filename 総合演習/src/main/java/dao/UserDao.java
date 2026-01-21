@@ -95,4 +95,75 @@ public class UserDao {
 		}
 		return true;
 	}
+	
+	//userIdとpasswdで1件検索
+	public User findIdAndPass(int userId,String passwd) {
+		//DataSourceの取得
+		InitialContext ic;
+		DataSource ds = null;
+		
+		try {
+			ic = new InitialContext();
+			
+			//DBの場所
+			ds = (DataSource)ic.lookup("java:comp/env/jdbc/calendar");
+		}catch(NamingException e) {
+			e.printStackTrace();
+		}
+		
+		try(Connection con = ds.getConnection()){
+			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userId = ? AND passwd = ?;";
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setInt(1,userId);
+			ps.setString(2,passwd);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				 return new User(
+			                rs.getInt("userId"),
+			                rs.getString("passwd"),
+			                rs.getString("userName"),
+			                rs.getInt("icon")
+			            );
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	//userIdで1件取得
+	public User findById(int userId) {
+	    InitialContext ic;
+	    DataSource ds = null;
+
+	    try {
+	        ic = new InitialContext();
+	        ds = (DataSource) ic.lookup("java:comp/env/jdbc/calendar");
+	    } catch (NamingException e) {
+	        e.printStackTrace();
+	    }
+
+	    try (Connection conn = ds.getConnection()) {
+	        String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userId = ?";
+	        PreparedStatement ps = conn.prepareStatement(sql);
+	        ps.setInt(1, userId);
+
+	        ResultSet rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            return new User(
+	                rs.getInt("userId"),
+	                rs.getString("passwd"),
+	                rs.getString("userName"),
+	                rs.getInt("icon")
+	            );
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
 }

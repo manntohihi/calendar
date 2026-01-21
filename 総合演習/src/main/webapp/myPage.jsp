@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+	User user = (User)session.getAttribute("user");
+	if(user == null){
+		response.sendRedirect("login.jsp");
+		return;
+	}
+%>
 <%@ page import="java.util.List,java.util.ArrayList,model.User" %>
 <html lang="ja">
 <head>
@@ -14,9 +21,9 @@
             <img src="default.png" alt="アイコン">
         </div>
         <div class="info">
-            <label class="username">ユーザー名</label>
+            <label class="username"><%= user.getUserName() %></label>
             <a href="#"><button class="namecgbtn">名前を変更</button></a>
-            <label class="userid">ID: 1234</label>
+            <label class="userid">ID:<%= user.getUserId() %></label>
             <a href="#"><button class="logoutbtn">ログアウト</button></a>
         </div>
     </div>
