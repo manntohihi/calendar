@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ page import="java.util.List,java.util.ArrayList,model.User" %>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -13,9 +14,9 @@
             <img src="default.png" alt="アイコン">
         </div>
         <div class="info">
-            <label class="name">ユーザー名</label>
+            <label class="username">ユーザー名</label>
             <a href="#"><button class="namecgbtn">名前を変更</button></a>
-            <label class="id">ID: 1234</label>
+            <label class="userid">ID: 1234</label>
             <a href="#"><button class="logoutbtn">ログアウト</button></a>
         </div>
     </div>
