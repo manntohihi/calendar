@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import dao.CalendarDAO;
+
 /**
  * Servlet implementation class CalendarServlet
  */
@@ -45,6 +47,8 @@ public class CalendarServlet extends HttpServlet {
 	    String staffName = request.getParameter("staffName");
 	    String memo      = request.getParameter("memo");
 	    
+	    CalendarDAO cDao = new CalendarDAO();
+	    cDao.findUser(memo);
 	    System.out.println("開始日: " + startDate);
 	    System.out.println("終了日: " + endDate);
 	    System.out.println("担当者: " + staffName);
