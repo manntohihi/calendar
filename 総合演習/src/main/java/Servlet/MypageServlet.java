@@ -8,9 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import dao.UserDao;
-import model.User;
-
 /**
  * Servlet implementation class Mypage
  */
@@ -37,15 +34,7 @@ public class MypageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		
-		User user = new User();
-		UserDao dao = new UserDao();
-		
-		String userName = request.getParameter("username");
-		String userId = request.getParameter("userid");
-		
-		request.setAttribute("user",user);
 	}
 
 }
