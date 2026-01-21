@@ -1,0 +1,49 @@
+@charset "UTF-8";.grid_test {
+    display: grid;  /* グリッドコンテナを作る */
+    grid-template-columns:1fr 1fr 1fr;      /* 縦向きのグリッドラインを決める */
+    grid-template-rows:1fr 1fr 1fr 1fr 1fr ;         /* 横向きのグリッドラインを決める */
+}
+.grid_test-child:nth-child(1) {
+    grid-column:1/4;    /* 配置指定 */
+    grid-row:1;       /* 配置指定 */
+}
+.grid_test-child:nth-child(2) {
+    grid-column:1/4;    /* 配置指定 */
+    grid-row:2/4;       /* 配置指定 */
+}
+.grid_test-child:nth-child(3) {
+    grid-column:1/4;    /* 配置指定 */
+    grid-row:4;       /* 配置指定 */
+}
+.grid_test-child:nth-child(4) {
+    grid-column:1;    /* 配置指定 */
+    grid-row:5;       /* 配置指定 */
+}
+.grid_test-child:nth-child(5) {
+    grid-column:2;    /* 配置指定 */
+    grid-row:5;       /* 配置指定 */
+}
+.grid_test-child:nth-child(6) {
+    grid-column:3;    /* 配置指定 */
+    grid-row:5;       /* 配置指定 */
+}
+/*
+.grid_test-child:nth-child(1) {
+        background-color:  #7b9ad0;     
+    }
+    .grid_test-child:nth-child(2) {
+        background-color:  #c8d627;     
+    }
+    .grid_test-child:nth-child(3) {
+        background-color:  #d5848b;     
+    }
+    .grid_test-child:nth-child(4) {
+        background-color:  #51a1a2;    
+    }
+    .grid_test-child:nth-child(5) {
+        background-color:  #66b7ec;    
+    }
+    .grid_test-child:nth-child(6) {
+        background-color:  #56c7ec;    
+    }
+*/

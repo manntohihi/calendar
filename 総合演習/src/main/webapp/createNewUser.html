@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+  <title>新規ユーザー登録</title>
+</head>
+<body>
+   <!-- HTMLのみで中央揃え（table + align / valign） -->
+  <table width="100%" height="100%" align="center" valign="middle">
+    <tr>
+      <td align="center" valign="middle">
+        <h1>新規ユーザー登録</h1>
+
+        <form method="post" action="#">
+          <p>
+            <label for="userId">ユーザーID</label><br>
+            <input type="text" id="userId" name="userId" required>
+          </p>
+
+          <p>
+            <label for="password">パスワード</label><br>
+            <input type="password" id="password" name="password" required>
+          </p>
+
+          <p>
+            <label for="confirmPassword">パスワード（確認）</label><br>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+          </p>
+
+          <p>
+            <button type="submit">登録</button>
+          </p>
+        </form>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
