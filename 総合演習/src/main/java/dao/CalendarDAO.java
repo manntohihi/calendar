@@ -5,19 +5,22 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.PostPrductLogic;
+import model.CalendarEvent;
+import model.CalendraEventList;
 import model.Product;
 
 public class CalendarDAO {
-	private final String JDBC_URL = "jdbc:mysql://localhost/ECommerceDB";	
+	private final String JDBC_URL = "jdbc:mysql://localhost/calendar";	
 	private final String JDBC_USER = "root";
 	private final String JDBC_PASS = "kcsf";
 
 
-	public User findUser(String userName){
+	public  findCalendarDate(String userName){
 		
 		User user = null;
 		
@@ -111,14 +114,11 @@ public class CalendarDAO {
 	}
 
 
-	public List<Product> findAll(){
-		PostPrductLogic PostPrductLogic = new PostPrductLogic();
-		List<Product> ProductList = new ArrayList();
+	public void setCalendarDate(int group_id,String title,String texdescription, LocalDateTime start_datetime,LocalDateTime end_datetime,int created_by){
+		CalendraEventList PostPrductLogic = null;
+		List<CalendarEvent> CalendarEventList = new ArrayList();
 		
 		
-		long start;
-		long end;
-		start = System.currentTimeMillis();
 		
 		
 		// JBDCドライバの読み込みorエラー表示
@@ -131,32 +131,27 @@ public class CalendarDAO {
 		try(Connection conn = DriverManager.getConnection(JDBC_URL,JDBC_USER,JDBC_PASS)){
 		
 		//SELCT文を準備
-		String sql = "select * from product;";
-		PreparedStatement pStmt = conn.prepareStatement(sql);
-		
-		
-		//SELECT文を実行し、結果表を取得
-		ResultSet rs = pStmt.executeQuery();
-		
-		//結果表に格納された内容を
-		//Employeeインスタンスに設定し、ArrayListインスタンスに追加
-		while(rs.next()) {
-			String Id = rs.getString("Id");
-			String name = rs.getString("name");
-			int price = rs.getInt("price");
-			int stock = rs.getInt("stock");
-			String imagePath = rs.getString("imagePath");
-			Product employee = new Product(Id, name, price, stock, imagePath);
-			PostPrductLogic.execute(employee, ProductList);
-		}
+				String sql =
+				"INSERT INTO calendar_events " +
+				"(group_id, title, description, start_datetime, end_datetime, created_by) " +
+				"VALUES (?, ?, ?, ?, ?, ?)";
 
+				PreparedStatement ps = conn.prepareStatement(sql);
+				
+				ps.setLong(1, group_id);
+				ps.setString(2, title);
+				ps.setString(3, texdescription);
+				ps.setTimestamp(4, Timestamp.valueOf(start_datetime));
+				ps.setTimestamp(5, Timestamp.valueOf(end_datetime));
+				ps.setLong(6, created_by);
+				System.out.println(ps);
+				ps.executeUpdate();
+		
 		}catch(SQLException e){
 			e.printStackTrace();
 
-			return null;
 		}
 		
-		return ProductList;
 		
 		
 		
