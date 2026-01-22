@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+	request.setAttribute("from","Calendar.jsp");
+%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -13,17 +16,28 @@
 <body>
 
 
-<div class="yellow"  style="width:100%">
-</div>
+
 <div class="calendar-container">
 
+
+
+ 
+ 
   <!-- ヘッダー -->
   <div class="calendar-header">
+  
     <div class="ym">
       <span id="year"></span>
+       <button id="prevBtn">＜</button>
       <span id="month"></span>
+      <button id="nextBtn">＞</button>
     </div>
-   	<form action="CalendarServlet" method="get">
+    
+    
+    
+    
+    
+   	<form action="CalendarServlet" method="post">
 		<input type="submit" value="予定を入力する">
 	</form>
 	
@@ -79,11 +93,11 @@
     let eventHtml = '';
 
     /* 仮の予定（あとでDBに置き換える） */
-   	if (i === 19) {
-		eventHtml = '<div class="event" id="yellow" style="width:100%"></div>';
+   	if (i === 20) {
+		eventHtml = '<div class="yellow" style="width:400%; height:20%;"></div>';
 	}
    
-    calendarHtml += '<td class="' + todayClass + '">' + eventHtml + '<div>' + i + '</div>' + '</td>';
+    calendarHtml += '<td class="' + todayClass + '">'  + '<div>' + i + '</div>'+ eventHtml + '</td>';
     
     
     if (dayOfWeek === 6) {

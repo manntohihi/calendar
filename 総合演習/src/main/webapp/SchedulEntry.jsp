@@ -2,6 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+	request.setAttribute("from","ScheduleEntry.jsp");
+%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -20,7 +23,7 @@
 
   <!-- 期間 -->
   <div class="period">
-    <input type="date" name="startDate"  id="startDate"> ～ <input type="date" name="endDate" id="endDate">
+    <input type="datetime-local" name="startDate"  id="startDate"> ～ <input type="datetime-local" name="endDate" id="endDate">
   </div>
 
   <!-- 担当者 -->
@@ -37,6 +40,7 @@
 
   <!-- 追加 -->
   <button class="submit" id="submitBtn">追加する</button>
+  <input type="hidden" name="from" value="ScheduleEntry.jsp">
 
 </div>
 </form>
