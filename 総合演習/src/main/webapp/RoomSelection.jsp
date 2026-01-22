@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+  
+<%@ page import="model.User,java.util.ArrayList,java.util.List" %>
+<% 	List<User> userList = new ArrayList<User>();
+	userList = (List<User>)session.getAttribute("loginUser"); %>
 <!doctype html>
 <html lang="ja">
   <head>
@@ -41,9 +47,10 @@
 	      </div>
 	      <div class="grid_test-child">
 	        <p>グループアイコン</p>
-			<script>
-				
-			</script>
+	        	<%	
+	        		
+	        	%>
+	        
 	      </div>
 	    </div>
 	</form>
