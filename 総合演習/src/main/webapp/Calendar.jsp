@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+	request.setAttribute("from","Calendar.jsp");
+%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -16,13 +19,25 @@
 
 <div class="calendar-container">
 
+
+
+ 
+ 
   <!-- ヘッダー -->
   <div class="calendar-header">
+  
     <div class="ym">
       <span id="year"></span>
+       <button id="prevBtn">＜</button>
       <span id="month"></span>
+      <button id="nextBtn">＞</button>
     </div>
-   	<form action="CalendarServlet" method="get">
+    
+    
+    
+    
+    
+   	<form action="CalendarServlet" method="post">
 		<input type="submit" value="予定を入力する">
 	</form>
 	

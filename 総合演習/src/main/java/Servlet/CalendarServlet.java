@@ -1,6 +1,7 @@
 package Servlet;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -31,9 +32,13 @@ public class CalendarServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("CalendarServlet;doget");
+		CalendarDAO cDao = new CalendarDAO();
+		cDao.setCalendarDate();		
 		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("SchedulEntry.jsp");
+	    		request.getRequestDispatcher("Calendar.jsp");
 		dispatcher.forward(request, response);
+
 	}
 
 	/**
@@ -41,22 +46,41 @@ public class CalendarServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("サーブレットに移動");
-	    String startDate = request.getParameter("startDate");
-	    String endDate   = request.getParameter("endDate");
-	    String staffName = request.getParameter("staffName");
-	    String memo      = request.getParameter("memo");
-	    
-	    CalendarDAO cDao = new CalendarDAO();
-	    cDao.setCalendarDate();
-	    System.out.println("開始日: " + startDate);
-	    System.out.println("終了日: " + endDate);
-	    System.out.println("担当者: " + staffName);
-	    System.out.println("メモ: " + memo);
-		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("SchedulEntry.jsp");
-		dispatcher.forward(request, response);
+		System.out.println("CalendarServlet;dopost");
+		String from =
+				 (String)request.getParameter("from");
+		System.out.println(from);
+		
+		if("ScheduleEntry.jsp".equals(from)) {
+			try {
+				System.out.println("サーブレットに移動");
 
+
+				int group_id = 1;
+				String memo      = request.getParameter("memo");
+				String staffName = request.getParameter("staffName");
+				int user_id = 1;
+	    
+				String s = request.getParameter("startDate");
+				LocalDateTime sqlStartDate = LocalDateTime.parse(s);
+				String e = request.getParameter("endDate");
+				LocalDateTime sqlEndDate = LocalDateTime.parse(e);
+	        
+				
+				CalendarDAO cDao = new CalendarDAO();
+				cDao.setCalendarDate(group_id, memo, staffName, sqlStartDate, sqlEndDate, user_id);
+	   
+				response.sendRedirect("CalendarServlet");
+			}catch (Exception e) {
+				RequestDispatcher dispatcher = 
+			    		request.getRequestDispatcher("error.jsp");
+			    	dispatcher.forward(request, response);
+			}
+		}else if("Calendar.jsp".equals(from)) {
+	    	RequestDispatcher dispatcher = 
+	    		request.getRequestDispatcher("SchedulEntry.jsp");
+	    	dispatcher.forward(request, response);
+		}
 	}
 
 }

@@ -1,11 +1,12 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class CalendarDAO {
 	private final String JDBC_PASS = "kcsf";
 
 
-	public User findUser(String userName){
+	public  findCalendarDate(String userName){
 		
 		User user = null;
 		
@@ -113,7 +114,7 @@ public class CalendarDAO {
 	}
 
 
-	public void setCalendarDate(int id,int group_id,String title,String texdescription, Date start_datetime,Date end_datetime,int created_by){
+	public void setCalendarDate(int group_id,String title,String texdescription, LocalDateTime start_datetime,LocalDateTime end_datetime,int created_by){
 		CalendraEventList PostPrductLogic = null;
 		List<CalendarEvent> CalendarEventList = new ArrayList();
 		
@@ -130,15 +131,22 @@ public class CalendarDAO {
 		try(Connection conn = DriverManager.getConnection(JDBC_URL,JDBC_USER,JDBC_PASS)){
 		
 		//SELCT文を準備
-		String sql = "INSERT INTO calendar_events VALUES ('" + id + "', , '" + group_id + "', '" + title + "', '" + texdescription + "', '" + start_datetime + "', " + end_datetime + "', '" + created_by + "');";
-		PreparedStatement pStmt = conn.prepareStatement(sql);
-		
-		
-		//SELECT文を実行し、結果表を取得
-		ResultSet rs = pStmt.executeQuery();
-		
+				String sql =
+				"INSERT INTO calendar_events " +
+				"(group_id, title, description, start_datetime, end_datetime, created_by) " +
+				"VALUES (?, ?, ?, ?, ?, ?)";
 
-
+				PreparedStatement ps = conn.prepareStatement(sql);
+				
+				ps.setLong(1, group_id);
+				ps.setString(2, title);
+				ps.setString(3, texdescription);
+				ps.setTimestamp(4, Timestamp.valueOf(start_datetime));
+				ps.setTimestamp(5, Timestamp.valueOf(end_datetime));
+				ps.setLong(6, created_by);
+				System.out.println(ps);
+				ps.executeUpdate();
+		
 		}catch(SQLException e){
 			e.printStackTrace();
 

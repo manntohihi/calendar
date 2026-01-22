@@ -1,6 +1,6 @@
 package model;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class CalendarEvent {
 
@@ -8,8 +8,8 @@ public class CalendarEvent {
 	int group_id;
 	String title;
 	String texdescription;
-	Date start_datetime;
-	Date end_datetime;
+	LocalDateTime start_datetime;
+	LocalDateTime end_datetime;
 	int created_by;
 
 	//コンストラクタ
@@ -17,7 +17,7 @@ public class CalendarEvent {
 		
 	}
 	
-	public CalendarEvent(int id,int group_id,String title,String texdescription, Date start_datetime,Date end_datetime,int created_by) {
+	public CalendarEvent(int id,int group_id,String title,String texdescription,LocalDateTime start_datetime,LocalDateTime end_datetime,int created_by) {
 		this.id = id;
 		this.group_id = group_id;
 		this.title = title;
@@ -45,11 +45,11 @@ public class CalendarEvent {
 		return this.texdescription;
 	}
 	
-	public Date getStart_datetime() {
+	public LocalDateTime getStart_datetime() {
 		return this.start_datetime;
 	}
 	
-	public Date getEnd_datetime() {
+	public LocalDateTime getEnd_datetime() {
 		return this.end_datetime;
 	}
 	
