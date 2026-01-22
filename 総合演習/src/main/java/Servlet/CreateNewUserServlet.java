@@ -1,6 +1,7 @@
 package Servlet;
 
 import java.io.IOException;
+import java.util.Random;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -33,12 +34,20 @@ public class CreateNewUserServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		Random rand = new Random();
+
 		String name = request.getParameter("userName");
 		String password = request.getParameter("password");
 		String confirmPassword = request.getParameter("confirmPassword");
 
-		if (password.equals(confirmPassword)) {
+		//userIDに6桁のランダムな数値を入力
+		int userID;
 
+		//パスワードと確認用パスワードが同じなら登録へ
+		if (password.equals(confirmPassword)) {
+		} else {
+			//違ったらユーザー登録画面へ
+			response.sendRedirect("createNewUser.html");
 		}
 	}
 
