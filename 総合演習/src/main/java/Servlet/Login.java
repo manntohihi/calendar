@@ -1,6 +1,8 @@
 package Servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -47,17 +49,17 @@ public class Login extends HttpServlet {
 		User user = new User();
 		user.setUserId(ID);
 		user.setPasswd(password);
-		boolean loginJud = false;
-		
 		UserDao ud = new UserDao();
-		//ud.login(user);
-		
+		List<User> userList = new ArrayList<User>();
+		userList= ud.login(user);
 		RequestDispatcher dispatcher;
-		if (loginJud==true){
+		String name = user.getUserName();
+		if (name.equals(null)){
 			HttpSession session = request.getSession();
-			session.setAttribute("loginUser",user);
+			session.setAttribute("loginUser",userList);
 			dispatcher = request.getRequestDispatcher("/roomSelection.html");
 			dispatcher.forward(request,response);
+			
 		}else {
 			dispatcher = request.getRequestDispatcher("/LoginError.html");
 			dispatcher.forward(request,response);
