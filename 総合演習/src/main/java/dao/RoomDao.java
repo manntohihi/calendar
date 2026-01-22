@@ -30,7 +30,7 @@ public class RoomDao {
 		
 		try (Connection conn = ds.getConnection()){
 			//SELECT文を準備
-			String sql = "SELECT ID,ROOMID,ROOMNAME,ROOMPASSWORD,MENBER,COLLAR FROM ROOM ORDER BY ID DESC";
+			String sql = "SELECT ID,ROOMNAME,ROOMPASSWORD FROM ROOM ORDER BY ID DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			//SELECT文を実行し、結果票を取得
@@ -39,12 +39,9 @@ public class RoomDao {
 			//SELECT文の結果をArrayListに格納
 			while (rs.next()) {
 				int id = rs.getInt("ID");
-				String roomid = rs.getString("ROOMID");
 				String roomname = rs.getString("ROOMNAME");
 				String roompassword = rs.getString("ROOMPASSWORD");
-				String menber = rs.getString("MENBER");
-				String collar = rs.getString("COLLAR");
-				Room room = new Room(id,roomid,roomname,roompassword,menber,collar);
+				Room room = new Room(id,roomname,roompassword);
 				roomList.add(room);
 			}
 		}catch(SQLException e) {
@@ -54,7 +51,7 @@ public class RoomDao {
 		return roomList;
  	}
 	 
-	 public List<Room> findRoomname(Room room){//部屋名
+	 public List<Room> findFromID(int ID){//部屋IDから取得
 		 List<Room> roomList = new ArrayList<Room>();
 		 
 		InitialContext initCtx;
@@ -68,22 +65,19 @@ public class RoomDao {
 		
 		try (Connection conn = ds.getConnection()){
 			//SELECT文を準備
-			String sql = "SELECT ROOMNAME FROM ROOM WHERE ROOMNAME = (?) ORDER BY ID DESC";
+			String sql = "SELECT ID,ROOMNAME,ROOMPASSWORD FROM ROOM WHERE ID = (?) ORDER BY ID DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			//INSERT文の「?」に使用する値を設定してSQL文を完成
- 			pStmt.setString(1,room.getRoomname());
+ 			pStmt.setInt(1,ID);
  			
 			//SELECT文を実行し、結果票を取得
 			ResultSet rs = pStmt.executeQuery();
 			//SELECT文の結果をArrayListに格納
 			while (rs.next()) {
 				int id = 0 ;
-				String roomid = null;
 				String roomname = rs.getString("ROOMNAME");
 				String roompassword = null;
-				String menber = null;
-				String collar = null;
-				room = new Room(id,roomid,roomname,roompassword,menber,collar);
+				Room room = new Room(id,roomname,roompassword);
 				roomList.add(room);
 			}
 		}catch(SQLException e) {
@@ -110,7 +104,7 @@ public class RoomDao {
 			String sql = "SELECT ID,ROOMNAME FROM ROOM WHERE ROOMID = (?) ORDER BY ID DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			//INSERT文の「?」に使用する値を設定してSQL文を完成
- 			pStmt.setString(1,room.getRoomid());
+ 			pStmt.setInt(1,room.getId());
  			
 			//SELECT文を実行し、結果票を取得
 			ResultSet rs = pStmt.executeQuery();
@@ -120,9 +114,7 @@ public class RoomDao {
 				String roomid = null;
 				String roomname = rs.getString("ROOMNAME");
 				String roompassword = null;
-				String menber = null;
-				String collar = null;
-				room = new Room(id,roomid,roomname,roompassword,menber,collar);
+				room = new Room(id,roomname,roompassword);
 				roomList.add(room);
 			}
 		}catch(SQLException e) {
@@ -146,10 +138,10 @@ public class RoomDao {
  		//データベース接続
  		try (Connection conn = ds.getConnection()){
  			//INSERT文の準備
- 			String sql = "INSERT INTO ROOM(ROOMID,ROOMNAME,ROOMPASSWORRD,MENBER,COLLAR) VALUES(?,?,?,null,0)";//変更
+ 			String sql = "INSERT INTO ROOM(ROOMID,ROOMNAME,ROOMPASSWORRD) VALUES(?,?,?)";//変更
  			PreparedStatement pStmt = conn.prepareStatement(sql);
  			//INSERT文の「?」に使用する値を設定してSQL文を完成
- 			pStmt.setString(1,room.getRoomid());
+ 			pStmt.setInt(1,room.getId());
  			pStmt.setString(2,room.getRoomname());
  			pStmt.setString(3,room.getRoompassword());
  			
@@ -165,37 +157,5 @@ public class RoomDao {
  		}
  		return true;
  	}
- 	
- 	public boolean createMenber(Room room) {
- 		InitialContext initCtx;
- 		DataSource ds = null;
- 		try {
- 			initCtx = new InitialContext();
- 			ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/calendar");//DBの場所へ変更
- 		}catch(NamingException e) {
- 			e.printStackTrace();
- 		}
- 		//データベース接続
- 		try (Connection conn = ds.getConnection()){
- 			//INSERT文の準備
- 			String sql = "INSERT INTO ROOM(ROOMID,ROOMNAME,ROOMPASSWORRD,MENBER,COLLAR) VALUES(null,?,null,?,?)";//変更
- 			PreparedStatement pStmt = conn.prepareStatement(sql);
- 			//INSERT文の「?」に使用する値を設定してSQL文を完成
- 			pStmt.setString(1,room.getRoomname());
- 			//pStmt.setString(2,room.get());Userから名前を持ってくる
- 			//pStmt.setString(3,room.getRoompassword());部屋ログインからcollarを持ってくる
- 			
- 			//INSERT文を実行
- 			int result = pStmt.executeUpdate();
- 			if (result != 1) {
- 				return false;
- 			}
- 		}catch(SQLException e) {
-			e.printStackTrace();
-			return false;
- 		
- 		}
- 		return true;
- 	}
- 	
+
 }

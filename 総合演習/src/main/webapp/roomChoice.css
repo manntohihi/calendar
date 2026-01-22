@@ -119,7 +119,7 @@
     width: 300px;
   resize: none; /* ユーザーによるサイズ変更を禁止 */
 }
-
+/*
     .grid_test-child:nth-child(1) {
         background-color:  #7b9ad0;     
     }
@@ -138,3 +138,4 @@
     .grid_test-child:nth-child(6) {
         background-color:  #56c7ec;    
     }
+*/

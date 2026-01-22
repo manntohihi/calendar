@@ -28,6 +28,15 @@
     grid-column:1/4;    /* 配置指定 */
     grid-row:4/5;       /* 配置指定 */
 }
+.grid_test-child:nth-child(7) {
+    grid-column:2/4;    /* 配置指定 */
+    grid-row:1;       /* 配置指定 */
+    place-items: center;
+}
+.error{
+    color: red;
+}
+
 .text{
   width: 80%;
 }
