@@ -36,7 +36,7 @@ public class MypageServlet extends HttpServlet {
         if(referer != null && referer.contains("myPage.jsp")) {
         	return;
         }
-
+        
         // JSP に渡す
         request.setAttribute("user", user);
         request.getRequestDispatcher("mypage.jsp").forward(request, response);
