@@ -24,7 +24,7 @@ public class MypageServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-
+        
         // 未ログインならログイン画面へ
         if (user == null) {
             response.sendRedirect("login.jsp");
