@@ -12,6 +12,7 @@ public class User {
 		
 	}
 	
+	//全てのコンストラクタ
 	public User(int userId,String passwd,String userName,int icon) {
 		this.userId = userId;
 		this.passwd = passwd;
