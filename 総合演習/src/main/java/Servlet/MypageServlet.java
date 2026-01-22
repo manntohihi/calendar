@@ -20,7 +20,7 @@ public class MypageServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException { 
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -29,6 +29,12 @@ public class MypageServlet extends HttpServlet {
         if (user == null) {
             response.sendRedirect("login.jsp");
             return;
+        }
+        
+        //同じ画面の画面遷移を防ぐ
+        String referer = request.getHeader("Referer");
+        if(referer != null && referer.contains("myPage.jsp")) {
+        	return;
         }
 
         // JSP に渡す
