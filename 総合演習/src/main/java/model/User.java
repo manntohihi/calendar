@@ -4,7 +4,7 @@ public class User {
 	//USERテーブル用のローカル変数
 	private int userId;
 	private String passwd;
-	private String userName;
+	private String userName = null;
 	private int icon;
 	
 	//コンストラクタ
