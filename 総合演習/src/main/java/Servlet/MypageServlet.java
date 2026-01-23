@@ -23,7 +23,7 @@ public class MypageServlet extends HttpServlet {
             throws ServletException, IOException { 
 
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute("loginuser");
         
         // 未ログインならログイン画面へ
         if (user == null) {
