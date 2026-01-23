@@ -189,4 +189,55 @@ public class UserDao {
 	    return null;
 	    
 	}
+<<<<<<< HEAD
+=======
+	public List<User> login(User user){
+		List<User> userList = new ArrayList<User>();
+		//DataSourceの取得
+		InitialContext ic;
+		DataSource ds = null;
+		
+		try {
+			ic = new InitialContext();
+			System.out.println("login.try");
+			//DBの場所
+			ds = (DataSource)ic.lookup("java:comp/env/jdbc/calendar");
+		}catch(NamingException e) {
+			System.out.println("login.catch");
+			e.printStackTrace();
+		}
+		
+		try(Connection conn = ds.getConnection()) {
+			System.out.println("try");
+			//SELECT文の準備
+			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userID = (?) AND PASSWD = (?) ;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			//文の「?」に使用する値を設定してSQL文を完成
+			ps.setInt(1,user.getUserId());
+			ps.setString(2,user.getPasswd());
+			//SELECT文を実行し、結果を取得
+			ResultSet rs = ps.executeQuery();
+			
+			//SELECT文を取得後、AllayListに格納
+			while(rs.next()) {
+				System.out.println("wright");
+				int userId = rs.getInt("userId");
+				String passwd = rs.getString("passwd");
+				String userName = rs.getString("userName");
+				int icon = rs.getInt("icon");
+				user = new User(userId,passwd,userName,icon);
+				userList.add(user);
+			}
+		}catch(SQLException e) {
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
+=======
+			System.out.println("catch");
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
+			e.printStackTrace();
+			return null;
+		}
+		return userList;
+	}
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 }

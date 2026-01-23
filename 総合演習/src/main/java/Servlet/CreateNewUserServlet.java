@@ -34,14 +34,14 @@ public class CreateNewUserServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Random rand = new Random();
+		CreateNewUserServlet CNUserv = new CreateNewUserServlet();
 
 		String name = request.getParameter("userName");
 		String password = request.getParameter("password");
 		String confirmPassword = request.getParameter("confirmPassword");
 
-		//userIDに6桁のランダムな数値を入力
-		int userID;
+		//新規ユーザーのユーザーIDを作成
+		int userID = CNUserv.CreateID();
 
 		//パスワードと確認用パスワードが同じなら登録へ
 		if (password.equals(confirmPassword)) {
@@ -49,6 +49,13 @@ public class CreateNewUserServlet extends HttpServlet {
 			//違ったらユーザー登録画面へ
 			response.sendRedirect("createNewUser.html");
 		}
+	}
+
+	public int CreateID() {
+		Random rand = new Random();
+
+		//ランダムな6桁の数値を入力
+		return rand.nextInt(100000, 999999);
 	}
 
 }
