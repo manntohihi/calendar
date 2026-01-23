@@ -35,7 +35,6 @@ public class RoomSelection extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("RoomSelection.java Get");
-		
 		RequestDispatcher dispatcher;
 		dispatcher = request.getRequestDispatcher("/RoomSelection.jsp");
 		dispatcher.forward(request,response);
@@ -59,7 +58,7 @@ public class RoomSelection extends HttpServlet {
 			String userID = request.getParameter("roompassword");
 			Room room = new Room(ID,roomID,userID); 
 			rdao.createRoom(room);//ROOMtableに保存
-			//System.out.println(room);
+			
 			roomList.add(room);
 			session.setAttribute("roomList", roomList);
 			dispatcher = request.getRequestDispatcher("/roomChoice.html");
@@ -75,16 +74,19 @@ public class RoomSelection extends HttpServlet {
 				dispatcher = request.getRequestDispatcher("/roomChoice.html");
 				dispatcher.forward(request,response);
 			}
-			/*if(ID == 1) {
+			/*
+			if(ID == 1) {
 				dispatcher = request.getRequestDispatcher("/roomChoice.html");
 				dispatcher.forward(request,response);
 			}else {
 				dispatcher = request.getRequestDispatcher("/roomSelectionError.html");
 				dispatcher.forward(request,response);
-			}*/
-			
+			}
+			*/
 		}else {
 			System.out.println("エラー");
+			dispatcher = request.getRequestDispatcher("/RoomSelection.jsp");
+			dispatcher.forward(request,response);
 		}
 	}
 
