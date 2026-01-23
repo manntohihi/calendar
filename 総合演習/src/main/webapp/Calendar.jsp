@@ -1,119 +1,157 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+
+%>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>カレンダー</title>
+
 <link rel="stylesheet" href="Calendar.css">
+
 </head>
 
 <body>
 
+
+
 <div class="calendar-container">
 
+
+
+ 
+ 
   <!-- ヘッダー -->
   <div class="calendar-header">
+  
     <div class="ym">
       <span id="year"></span>
-      <button type="button" id="prevBtn">＜</button>
+       <button id="prevBtn">＜</button>
       <span id="month"></span>
-      <button type="button" id="nextBtn">＞</button>
+      <button id="nextBtn">＞</button>
     </div>
+    
+    
+    
+    
+    
+   	<form action="CalendarServlet" method="post">
+		<input type="submit" value="予定を入力する">
+		<input type="hidden" name="from" value="Calendar.jsp">
 
-    <form action="CalendarServlet" method="post">
-      <input type="submit" value="予定を入力する">
-      <input type="hidden" name="from" value="Calendar.jsp">
-    </form>
+	</form>
+	
   </div>
-
+	
   <!-- カレンダー -->
   <div id="calendar"></div>
 
 </div>
 
 <script>
-const calendarEl = document.getElementById('calendar');
-let currentDate = new Date(); // 表示中の年月
+	const events = [
+		{
+			start: new Date(2026, 0, 28), // 2026/1/28
+	    	end:   new Date(2026, 1, 3),  // 2026/2/3（月またぎ）
+	    	color: 'yellow'
+	  	}
+	];
+	function getEventsForDay(day) {
+		return events.filter(e => e.start <= day && day <= e.end);
+	}
+	
+	const calendarEl = document.getElementById('calendar');
 
-function renderCalendar(date) {
-  const currentYear  = date.getFullYear();
-  const currentMonth = date.getMonth(); // 0始まり
-  const daysInMonth  = new Date(currentYear, currentMonth + 1, 0).getDate();
+	let currentDate = new Date(); // 表示中の日付
 
-  document.getElementById('year').textContent  = currentYear;
+	function renderCalendar(date) {
+ 		const currentYear = date.getFullYear();
+  		const currentMonth = date.getMonth(); // 0始まり
+  		const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+
+  document.getElementById('year').textContent = currentYear;
   document.getElementById('month').textContent = (currentMonth + 1) + '月';
 
   const today = new Date();
+  const todayYear = today.getFullYear();
+  const todayMonth = today.getMonth();
+  const todayDate = today.getDate();
 
-  let html = '<table><thead><tr>';
-  const weeks = ['日','月','火','水','木','金','土'];
+  let calendarHtml = '<table><thead><tr>';
+  const weeks = ['日', '月', '火', '水', '木', '金', '土'];
 
-  weeks.forEach(w => {
-    html += `<th>${w}</th>`;
-  });
+  for (let i = 0; i < 7; i++) {
+    calendarHtml += '<th>' + weeks[i] + '</th>';
+  }
 
-  html += '</tr></thead><tbody>';
+  calendarHtml += '</tr></thead><tbody>';
 
   for (let i = 1; i <= daysInMonth; i++) {
     const dayOfWeek = new Date(currentYear, currentMonth, i).getDay();
 
     if (i === 1) {
-      html += '<tr>';
+      calendarHtml += '<tr>';
       for (let j = 0; j < dayOfWeek; j++) {
-        html += '<td></td>';
+        calendarHtml += '<td></td>';
       }
     }
+	
+    let isToday =
+    currentYear === todayYear &&
+    currentMonth === todayMonth &&
+      i === todayDate;
 
-    const isToday =
-      currentYear  === today.getFullYear() &&
-      currentMonth === today.getMonth() &&
-      i            === today.getDate();
-
+    let todayClass = isToday ? 'today' : '';
     let eventHtml = '';
 
-    // 仮予定（テスト用）
-    if (i === 20) {
-      eventHtml = '<div class="event yellow"></div>';
-    }
-
-    html += `
-      <td class="${isToday ? 'today' : ''}">
-        <div class="day">${i}</div>
-        ${eventHtml}
-      </td>
-    `;
-
+    /* 仮の予定（あとでDBに置き換える） */
+   	if (i >= 20 && i <= 23) {
+   		dayEvents.forEach(e(配列名) => {
+   		  eventHtml += '<div class="event ' + e.color + '"></div>';
+   		});
+	}else{
+		eventHtml = '';
+	}
+	
+   
+    calendarHtml += '<td class="' + todayClass + '">'  + '<div>' + i + '</div>'+ eventHtml + '</td>';
+    
+    
     if (dayOfWeek === 6) {
-      html += '</tr>';
-      if (i < daysInMonth) html += '<tr>';
-    } else if (i === daysInMonth) {
-      for (let j = dayOfWeek + 1; j <= 6; j++) {
-        html += '<td></td>';
+        calendarHtml += '</tr>';
+        if (i < daysInMonth) calendarHtml += '<tr>';
+      } else if (i === daysInMonth) {
+        for (let j = dayOfWeek + 1; j <= 6; j++) {
+          calendarHtml += '<td></td>';
+        }
+        calendarHtml += '</tr>';
       }
-      html += '</tr>';
     }
+
+    calendarHtml += '</tbody></table>';
+    calendarEl.innerHTML = calendarHtml;
   }
+	  /* 初期表示 */
+	  renderCalendar(currentDate);
 
-  html += '</tbody></table>';
-  calendarEl.innerHTML = html;
-}
+	  /* 前月 */
+	  document.getElementById('prevBtn').addEventListener('click', () => {
+	    currentDate.setMonth(currentDate.getMonth() - 1);
+	    renderCalendar(currentDate);
+	  });
 
-/* 初期表示 */
-renderCalendar(currentDate);
+	  /* 次月 */
+	  document.getElementById('nextBtn').addEventListener('click', () => {
+	    currentDate.setMonth(currentDate.getMonth() + 1);
+	    renderCalendar(currentDate);
+	  });
 
-/* 前月 */
-document.getElementById('prevBtn').addEventListener('click', () => {
-  currentDate.setMonth(currentDate.getMonth() - 1);
-  renderCalendar(currentDate);
-});
 
-/* 次月 */
-document.getElementById('nextBtn').addEventListener('click', () => {
-  currentDate.setMonth(currentDate.getMonth() + 1);
-  renderCalendar(currentDate);
-});
 </script>
 
 </body>
+
 </html>

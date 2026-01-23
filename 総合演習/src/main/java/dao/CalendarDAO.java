@@ -39,7 +39,10 @@ public class CalendarDAO {
 		try(Connection conn = DriverManager.getConnection(JDBC_URL,JDBC_USER,JDBC_PASS)){
 		
 		//SELCT文を準備
-		String sql = "select * from user WHERE name = '"+ userName +"';";
+		String sql = "SELECT e."
+				+ "FROM calendar_events e"
+				+ "JOIN group_members gm ON e.group_id = gm.group_id"
+				+ "WHERE gm.user_id = :" + loginUserId + ";";
 		PreparedStatement pStmt = conn.prepareStatement(sql);
 		
 		
