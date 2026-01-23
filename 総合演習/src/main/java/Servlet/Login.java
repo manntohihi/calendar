@@ -53,23 +53,40 @@ public class Login extends HttpServlet {
 		List<User> userList = new ArrayList<User>();
 		userList= ud.login(user);
 		RequestDispatcher dispatcher;
-		String name = user.getUserName();
+		String name = null;
+		System.out.println("1");
+		for(User use : userList) {
+			System.out.println("2");
+			name = use.getUserName();
+			if (name.equals(null)){
+				dispatcher = request.getRequestDispatcher("/LoginError.html");
+				dispatcher.forward(request,response);
+			}else {
+				HttpSession session = request.getSession();
+				session.setAttribute("loginUser",userList);
+				dispatcher = request.getRequestDispatcher("/RoomSelection");
+				dispatcher.forward(request,response);
+			}
+			System.out.println("end");
+		}
+		
+		/*
 		if (name.equals(null)){
-			HttpSession session = request.getSession();
-			session.setAttribute("loginUser",userList);
-			dispatcher = request.getRequestDispatcher("/roomSelection.html");
-			dispatcher.forward(request,response);
-			
-		}else {
 			dispatcher = request.getRequestDispatcher("/LoginError.html");
 			dispatcher.forward(request,response);
+		}else {
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser",userList);
+			dispatcher = request.getRequestDispatcher("/RoomSelection");
+			dispatcher.forward(request,response);
 		}
+		*/
 		//テスト
 		/*
 		if(ID==111111) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser",user);
-			dispatcher = request.getRequestDispatcher("/roomSelection.html");
+			dispatcher = request.getRequestDispatcher("/RoomSelection");
 			dispatcher.forward(request,response);
 		}else {
 			dispatcher = request.getRequestDispatcher("/LoginError.html");
