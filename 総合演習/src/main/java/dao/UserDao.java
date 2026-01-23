@@ -74,7 +74,7 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		
-<<<<<<< HEAD
+		
 		//データベース接続
 		try(Connection con = ds.getConnection()){
 			//INSERT文の準備
@@ -82,25 +82,24 @@ public class UserDao {
 			PreparedStatement ps = con.prepareStatement(sql);
 			
 			//INSERT文の?の部分の値を指定
-=======
+			
 		try(Connection conn = ds.getConnection()) {
 			System.out.println("try");
 			//SELECT文の準備
 			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE ID = (?) AND PASSWORD = (?) ;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			//文の「?」に使用する値を設定してSQL文を完成
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
+			
 			ps.setInt(1,user.getUserId());
 			ps.setString(2,user.getPasswd());
 			ps.setString(3,user.getUserName());
 			ps.setInt(4,user.getIcon());
 			
-<<<<<<< HEAD
 			//INSERT文実行
 			int result = ps.executeUpdate();
 			if(result != 1) {
 				return false;
-=======
+				
 			//SELECT文を取得後、AllayListに格納
 			while(rs.next()) {
 				System.out.println("wright");
@@ -110,7 +109,6 @@ public class UserDao {
 				int icon = rs.getInt("icon");
 				user = new User(userId,passwd,userName,icon);
 				userList.add(user);
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 			}
 		}catch(SQLException e) {
 			System.out.println("catch");
