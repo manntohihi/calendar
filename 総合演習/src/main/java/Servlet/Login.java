@@ -67,6 +67,7 @@ public class Login extends HttpServlet {
 				dispatcher = request.getRequestDispatcher("/RoomSelection");
 				dispatcher.forward(request,response);
 			}
+			System.out.println("end");
 		}
 		
 		/*

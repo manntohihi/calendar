@@ -73,7 +73,7 @@ public class UserDao {
 		try(Connection conn = ds.getConnection()) {
 			System.out.println("try");
 			//SELECT文の準備
-			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE ID = (?) AND PASSWORD = (?) ;";
+			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userID = (?) AND PASSWD = (?) ;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			//文の「?」に使用する値を設定してSQL文を完成
 			ps.setInt(1,user.getUserId());
