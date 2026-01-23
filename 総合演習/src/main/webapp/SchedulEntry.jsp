@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-	request.setAttribute("from","ScheduleEntry.jsp");
+	
 %>
 <html>
 <head>
