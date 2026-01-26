@@ -6,6 +6,8 @@
 		response.sendRedirect("login.jsp");
 		return;
 	}
+	String current = request.getAttribute("currentPage");
+	boolean isMypage = "Mypage".equals(current);
 %>
 <%@ page import="java.util.List,java.util.ArrayList,model.User" %>
 <html lang="ja">
@@ -30,7 +32,15 @@
     <div class="bottom-nav">
         <a href="roomSelection.html" class="nav-item" img src="/image/homeChange.png"><i class="fa-solid fa-house"></i></a>
         <a href="Calendar.jsp" class="nav-item" img src="/image/calendarChange.png"><i class="fa-solid fa-calendar"></i><span>カレンダー画面へ</span></a>
-        <a href="Mypage" class="nav-item" img src="/image/mypageChange.png"><i class="fa-solid fa-user"></i></a>
+        <% if(isMypage){ %>
+        	<span class="fa-solid fa-house">
+        		<i class="fa-solid fa-user"></i>
+        	</span>
+        <% }else{ %>
+        	<a href="Mypage" class="nav-item">
+        		<i class="fa-solid fa-user"></i>
+        	</a>
+        <% %>
     </div>
 </body>
 </html>

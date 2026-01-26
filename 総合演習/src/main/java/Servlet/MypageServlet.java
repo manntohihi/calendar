@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import dao.UserDao;
 import model.User;
 
 @WebServlet("/Mypage")
@@ -22,8 +23,18 @@ public class MypageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException { 
     	
+    	//JSPからユーザーのIDと名前を取得
+    	int id = Integer.parseInt(request.getParameter("userid"));
+    	String name = request.getParameter("username");
+    	
+    	//セッションの取得
         HttpSession session = request.getSession();
+        
+        //DAOからユーザー情報を取得
         User user = (User) session.getAttribute("loginuser");
+        UserDao dao = new UserDao();
+        
+        dao.findIdAndPass(id, name);
         
         // 未ログインならログイン画面へ
         if (user == null) {
@@ -31,14 +42,13 @@ public class MypageServlet extends HttpServlet {
             return;
         }
         
-        //同じ画面の画面遷移を防ぐ
-        String referer = request.getHeader("Referer");
-        if(referer != null && referer.contains("myPage.jsp")) {
-        	return;
-        }
-        
         // JSP に渡す
         request.setAttribute("user", user);
+        
+        //現在の画面の情報をJSPに渡す
+        request.setAttribute("currentPage","Mypage");
+        
+        //フォワード
         request.getRequestDispatcher("mypage.jsp").forward(request, response);
     }
 
