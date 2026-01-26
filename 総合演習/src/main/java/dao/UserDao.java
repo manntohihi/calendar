@@ -189,8 +189,7 @@ public class UserDao {
 	    return null;
 	    
 	}
-<<<<<<< HEAD
-=======
+	
 	public List<User> login(User user){
 		List<User> userList = new ArrayList<User>();
 		//DataSourceの取得
@@ -229,15 +228,9 @@ public class UserDao {
 				userList.add(user);
 			}
 		}catch(SQLException e) {
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
-=======
-			System.out.println("catch");
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 			e.printStackTrace();
 			return null;
 		}
 		return userList;
 	}
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 }
