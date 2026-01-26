@@ -42,7 +42,7 @@ public class MypageServlet extends HttpServlet {
             return;
         }
         
-        // JSP に渡す
+        // JSPに渡す
         request.setAttribute("user", user);
         
         //現在の画面の情報をJSPに渡す
