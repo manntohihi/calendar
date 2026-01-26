@@ -42,7 +42,7 @@
         	<a href="Mypage" class="nav-item">
         		<i class="fa-solid fa-user"></i>
         	</a>
-        <% %>
+        <% } %>
     </div>
 </body>
 </html>
