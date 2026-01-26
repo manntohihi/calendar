@@ -210,14 +210,15 @@ public class UserDao {
 		try(Connection conn = ds.getConnection()) {
 			System.out.println("try");
 			//SELECT文の準備
-			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userID = (?) AND PASSWD = (?) ;";
+			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userID = ? AND PASSWD = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			//文の「?」に使用する値を設定してSQL文を完成
 			ps.setInt(1,user.getUserId());
 			ps.setString(2,user.getPasswd());
+			System.out.println(ps);
 			//SELECT文を実行し、結果を取得
 			ResultSet rs = ps.executeQuery();
-			
+			System.out.println(rs);
 			//SELECT文を取得後、AllayListに格納
 			while(rs.next()) {
 				System.out.println("wright");
@@ -235,8 +236,10 @@ public class UserDao {
 			System.out.println("catch");
 >>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 			e.printStackTrace();
+			System.out.println("ren");
 			return null;
 		}
+		System.out.println("reu");
 		return userList;
 	}
 >>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git

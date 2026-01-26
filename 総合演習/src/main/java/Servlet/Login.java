@@ -54,9 +54,9 @@ public class Login extends HttpServlet {
 		userList= ud.login(user);
 		RequestDispatcher dispatcher;
 		String name = null;
-		System.out.println("1");
+		System.out.println(userList.size()+"size");
 		for(User use : userList) {
-			System.out.println("2");
+			System.out.println("f2");
 			name = use.getUserName();
 			if (name.equals(null)){
 				dispatcher = request.getRequestDispatcher("/LoginError.html");
@@ -69,7 +69,7 @@ public class Login extends HttpServlet {
 			}
 			System.out.println("end");
 		}
-		
+		System.out.println("eroor");
 		/*
 		if (name.equals(null)){
 			dispatcher = request.getRequestDispatcher("/LoginError.html");
