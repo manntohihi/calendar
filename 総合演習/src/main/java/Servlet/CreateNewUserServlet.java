@@ -45,6 +45,10 @@ public class CreateNewUserServlet extends HttpServlet {
 
 		//パスワードと確認用パスワードが同じなら登録へ
 		if (password.equals(confirmPassword)) {
+			HttpSession session = request.getSession();
+
+			User newUser = new User(userID, password, name, 0);
+
 		} else {
 			//違ったらユーザー登録画面へ
 			response.sendRedirect("createNewUser.html");
@@ -53,9 +57,13 @@ public class CreateNewUserServlet extends HttpServlet {
 
 	public int CreateID() {
 		Random rand = new Random();
-
 		//ランダムな6桁の数値を入力
-		return rand.nextInt(100000, 999999);
+		int kari = rand.nextInt(100000, 999999);
+
+		//作ったIDが既存のIDと被りがないかのチェック
+		//ここから下に書く
+
+		return kari;
 	}
 
 }
