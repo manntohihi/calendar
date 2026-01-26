@@ -61,7 +61,7 @@ public class RoomSelection extends HttpServlet {
 			
 			roomList.add(room);
 			session.setAttribute("roomList", roomList);
-			dispatcher = request.getRequestDispatcher("/roomChoice.html");
+			dispatcher = request.getRequestDispatcher("/roomChoice.jsp");
 			dispatcher.forward(request,response);
 		}else if ("検索".equals(botton)){//検索bottonが押される
 			ID = Integer.parseInt(request.getParameter("roomSearchID"));
@@ -71,7 +71,7 @@ public class RoomSelection extends HttpServlet {
 				dispatcher.forward(request,response);
 			}else {//検索結果＝あり
 				session.setAttribute("roomList", roomList);//セッションにroomListを保存
-				dispatcher = request.getRequestDispatcher("/roomChoice.html");
+				dispatcher = request.getRequestDispatcher("/roomChoice.jsp");
 				dispatcher.forward(request,response);
 			}
 			/*
