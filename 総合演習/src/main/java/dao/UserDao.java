@@ -83,12 +83,16 @@ public class UserDao {
 			ResultSet rs = ps.executeQuery();
 			System.out.println(rs);
 			//SELECT文を取得後、AllayListに格納
-			while(rs.next()) {
+			int userId = 0;
+			String passwd = null;
+			String userName = null;
+			int icon = 0;
+			while(rs.next()) {					//ここでエラー
 				System.out.println("wright");
-				int userId = rs.getInt("userId");
-				String passwd = rs.getString("passwd");
-				String userName = rs.getString("userName");
-				int icon = rs.getInt("icon");
+				userId = rs.getInt("userId");
+				passwd = rs.getString("passwd");
+				userName = rs.getString("userName");
+				icon = rs.getInt("icon");
 				user = new User(userId,passwd,userName,icon);
 				userList.add(user);
 			}
