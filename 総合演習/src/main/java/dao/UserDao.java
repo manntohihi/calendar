@@ -92,7 +92,7 @@ public class UserDao {
 				userId = rs.getInt("userId");
 				passwd = rs.getString("passwd");
 				userName = rs.getString("userName");
-				icon = rs.getInt("icon");
+				int icon = rs.getInt("icon");
 				user = new User(userId,passwd,userName,icon);
 				userList.add(user);
 			}
