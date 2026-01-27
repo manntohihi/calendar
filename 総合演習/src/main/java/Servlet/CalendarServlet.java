@@ -2,6 +2,7 @@ package Servlet;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import dao.CalendarDAO;
+import model.CalendarEvent;
 
 /**
  * Servlet implementation class CalendarServlet
@@ -33,8 +35,12 @@ public class CalendarServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("CalendarServlet;doget");
+		List<CalendarEvent> CalendarEventList;
 		CalendarDAO cDao = new CalendarDAO();
-		cDao.setCalendarDate();		
+		int group_id = 1;
+		int user_id = 1;
+		CalendarEventList = cDao.findCalendarDate(user_id, group_id);
+		request.setAttribute("CalendarEventList", CalendarEventList);
 		RequestDispatcher dispatcher = 
 	    		request.getRequestDispatcher("Calendar.jsp");
 		dispatcher.forward(request, response);
@@ -59,7 +65,7 @@ public class CalendarServlet extends HttpServlet {
 				int group_id = 1;
 				String memo      = request.getParameter("memo");
 				String staffName = request.getParameter("staffName");
-				int user_id = 1;
+				int user_id = 2;
 	    
 				String s = request.getParameter("startDate");
 				LocalDateTime sqlStartDate = LocalDateTime.parse(s);

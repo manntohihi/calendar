@@ -20,9 +20,10 @@ public class CalendarDAO {
 	private final String JDBC_PASS = "kcsf";
 
 
-	public  findCalendarDate(String userName){
+	public  List<CalendarEvent> findCalendarDate(int loginUserId,int GroupId){
 		
-		User user = null;
+		CalendarEvent CalendarEvent = null;
+		List<CalendarEvent> CalendarEventList = new ArrayList();
 		
 		long start;
 		long end;
@@ -42,20 +43,31 @@ public class CalendarDAO {
 		String sql = "SELECT e."
 				+ "FROM calendar_events e"
 				+ "JOIN group_members gm ON e.group_id = gm.group_id"
-				+ "WHERE gm.user_id = :" + loginUserId + ";";
-		PreparedStatement pStmt = conn.prepareStatement(sql);
+				+ "WHERE gm.user_id = ? " 
+				+ "AND e.group_id =  ? ;";
+		
+		PreparedStatement ps = conn.prepareStatement(sql);
+		
+		ps.setLong(1, loginUserId);
+		ps.setLong(2, GroupId);
 		
 		
 		//SELECT文を実行し、結果表を取得
-		ResultSet rs = pStmt.executeQuery();
+		ResultSet rs = ps.executeQuery();
 		
 		//結果表に格納された内容を
 		//Employeeインスタンスに設定し、ArrayListインスタンスに追加
 		while(rs.next()) {
-			String userid = rs.getString("id");
-			String passwd = rs.getString("password");
-			String address = rs.getString("address");
-			user = new User(userid,userName, passwd, address);
+			int id = rs.getInt("id");
+			int group_id = rs.getInt("group_id");
+			String title = rs.getString("title");
+			String description = rs.getString("description");
+			LocalDateTime start_datetime = rs.getTimestamp("start_datetime").toLocalDateTime();
+			LocalDateTime end_datetime = rs.getTimestamp("start_datetime").toLocalDateTime();
+			int created_by = rs.getInt("created_by");
+			
+			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime, end_datetime, created_by);
+			CalendarEventList.add(CalendarEvent);
 		}
 		end = System.currentTimeMillis();
 
@@ -63,8 +75,7 @@ public class CalendarDAO {
 			e.printStackTrace();
 			return null;
 		}
-		System.out.println(user);
-		return user;
+		return CalendarEventList;
 		
 		
 		
