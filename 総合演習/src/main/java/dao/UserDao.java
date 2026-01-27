@@ -104,10 +104,13 @@ public class UserDao {
 		}catch(NamingException e) {
 			e.printStackTrace();
 		}
-		
 		try(Connection con = ds.getConnection()){
 			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userId = ? AND passwd = ?;";
 			PreparedStatement ps = con.prepareStatement(sql);
+		try(Connection conn = ds.getConnection()) {
+			//SELECT文の準備
+			String sql = "SELECT userID, passwd, userName, icon FROM USER ORDER BY userId DESC;";
+			PreparedStatement ps = conn.prepareStatement(sql);
 			
 			ps.setInt(1,userId);
 			ps.setString(2,passwd);
@@ -121,6 +124,14 @@ public class UserDao {
 			                rs.getString("userName"),
 			                rs.getInt("icon")
 			            );
+			//SELECT文を取得後、AllayListに格納
+			while(rs.next()) {
+				int userId = rs.getInt("userID");
+				String passwd = rs.getString("passwd");
+				String userName = rs.getString("userName");
+				int icon = rs.getInt("icon");
+				User user = new User(userId,passwd,userName,icon);
+				userList.add(user);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -181,7 +192,7 @@ public class UserDao {
 		try(Connection conn = ds.getConnection()) {
 			System.out.println("try");
 			//SELECT文の準備
-			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userID = ? AND PASSWD = ?;";
+			String sql = "SELECT userID, passwd, userName, icon FROM USER WHERE userID = ? AND PASSWD = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			//文の「?」に使用する値を設定してSQL文を完成
 			ps.setInt(1,user.getUserId());
@@ -197,7 +208,7 @@ public class UserDao {
 			int icon = 0;
 			while(rs.next()) {					//ここでエラー
 				System.out.println("wright");
-				userId = rs.getInt("userId");
+				userId = rs.getInt("userID");
 				passwd = rs.getString("passwd");
 				userName = rs.getString("userName");
 				icon = rs.getInt("icon");
