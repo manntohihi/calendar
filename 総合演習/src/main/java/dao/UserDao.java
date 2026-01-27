@@ -32,7 +32,7 @@ public class UserDao {
 		
 		try(Connection conn = ds.getConnection()) {
 			//SELECT文の準備
-			String sql = "SELECT userId, passwd, userName, icon FROM USER ORDER BY userId DESC;";
+			String sql = "SELECT userID, passwd, userName, icon FROM USER ORDER BY userId DESC;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
 			//SELECT文を実行し、結果を取得
@@ -40,7 +40,7 @@ public class UserDao {
 			
 			//SELECT文を取得後、AllayListに格納
 			while(rs.next()) {
-				int userId = rs.getInt("userId");
+				int userId = rs.getInt("userID");
 				String passwd = rs.getString("passwd");
 				String userName = rs.getString("userName");
 				int icon = rs.getInt("icon");
@@ -73,7 +73,7 @@ public class UserDao {
 		try(Connection conn = ds.getConnection()) {
 			System.out.println("try");
 			//SELECT文の準備
-			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userID = ? AND PASSWD = ?;";
+			String sql = "SELECT userID, passwd, userName, icon FROM USER WHERE userID = ? AND PASSWD = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			//文の「?」に使用する値を設定してSQL文を完成
 			ps.setInt(1,user.getUserId());
@@ -89,10 +89,10 @@ public class UserDao {
 			int icon = 0;
 			while(rs.next()) {					//ここでエラー
 				System.out.println("wright");
-				userId = rs.getInt("userId");
+				userId = rs.getInt("userID");
 				passwd = rs.getString("passwd");
 				userName = rs.getString("userName");
-				int icon = rs.getInt("icon");
+				icon = rs.getInt("icon");
 				user = new User(userId,passwd,userName,icon);
 				userList.add(user);
 			}
