@@ -62,7 +62,7 @@ public class UserDao {
 	public boolean createUser(User user) {
 	    InitialContext ic;
 	    DataSource ds = null;
-
+	    
 	    try {
 	        ic = new InitialContext();
 	        ds = (DataSource) ic.lookup("java:comp/env/jdbc/calendar");
@@ -70,20 +70,20 @@ public class UserDao {
 	        e.printStackTrace();
 	        return false;
 	    }
-
+	    
 	    String sql = "INSERT INTO USER (userId, passwd, userName, icon) VALUES (?, ?, ?, ?)";
-
+	    
 	    try (Connection conn = ds.getConnection();
 	         PreparedStatement ps = conn.prepareStatement(sql)) {
-
+	    	
 	        ps.setInt(1, user.getUserId());
 	        ps.setString(2, user.getPasswd());
 	        ps.setString(3, user.getUserName());
 	        ps.setInt(4, user.getIcon());
-
+	        
 	        int result = ps.executeUpdate();
 	        return result == 1;
-
+	        
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	        return false;
