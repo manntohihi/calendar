@@ -17,6 +17,7 @@ import model.User;
 @WebServlet("/CreateNewUserServlet")
 public class CreateNewUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	UserDao userDAO = new UserDao();
 
 	public CreateNewUserServlet() {
 		super();
@@ -32,8 +33,6 @@ public class CreateNewUserServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		CreateNewUserServlet CNUserv = new CreateNewUserServlet();
-		UserDao userDAO = new UserDao();
 		RequestDispatcher dispatcher;
 
 		String name = request.getParameter("userName");
@@ -42,7 +41,7 @@ public class CreateNewUserServlet extends HttpServlet {
 		int iconNum = 0;
 
 		//新規ユーザーのユーザーIDを作成
-		int userID = CNUserv.CreateID();
+		int userID = CreateID();
 
 		//パスワードと確認用パスワードが同じなら登録へ
 		if (password.equals(confirmPassword)) {
@@ -62,14 +61,13 @@ public class CreateNewUserServlet extends HttpServlet {
 
 	public int CreateID() {
 		Random rand = new Random();
-		UserDao userDAO = new UserDao();
 
 		//ランダムな6桁の数値を入力
 		int newID;
 
 		//作ったIDが既存のIDと被りがないかのチェック
 		while (true) {
-			newID = rand.nextInt(100000, 999999);
+			newID = 100000 + rand.nextInt(900000);
 			User user = userDAO.findById(newID);
 			if (Objects.isNull(user)) {
 				break;
