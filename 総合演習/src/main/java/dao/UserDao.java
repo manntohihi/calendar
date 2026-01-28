@@ -90,40 +90,6 @@ public class UserDao {
 	    }
 	}
 	
-<<<<<<< HEAD
-	public User findIdAndPass(int userId, String passwd) {
-
-	    try {
-	        InitialContext ic = new InitialContext();
-	        DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/calendar");
-
-	        try (Connection conn = ds.getConnection()) {
-
-	            String sql = "SELECT userId, passwd, userName, icon "
-	                       + "FROM USER WHERE userId = ? AND passwd = ?";
-
-	            PreparedStatement ps = conn.prepareStatement(sql);
-	            ps.setInt(1, userId);
-	            ps.setString(2, passwd);
-
-	            ResultSet rs = ps.executeQuery();
-
-	            if (rs.next()) {
-	                return new User(
-	                    rs.getInt("userId"),
-	                    rs.getString("passwd"),
-	                    rs.getString("userName"),
-	                    rs.getInt("icon")
-	                );
-	            }
-	        }
-
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-
-	    return null;
-=======
 	//userIdとpasswdで1件検索
 	public User findIdAndPass(int userId,String passwd) {
 		//DataSourceの取得
@@ -139,7 +105,6 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return null;
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 	}
 	
 	//userIdで1件取得
