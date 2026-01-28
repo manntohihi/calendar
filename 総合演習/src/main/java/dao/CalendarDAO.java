@@ -12,7 +12,6 @@ import java.util.List;
 
 import model.CalendarEvent;
 import model.CalendraEventList;
-import model.Product;
 
 public class CalendarDAO {
 	private final String JDBC_URL = "jdbc:mysql://localhost/calendar";	
@@ -81,51 +80,6 @@ public class CalendarDAO {
 		
 	}
 	
-	public Product findProduct(String productId){
-		
-		Product product = null;
-		
-		long start;
-		long end;
-		start = System.currentTimeMillis();
-		
-		
-		// JBDCドライバの読み込みorエラー表示
-		 try {
-			 Class.forName("com.mysql.cj.jdbc.Driver");
-		 }catch(ClassNotFoundException e) {
-			 throw new IllegalStateException("JDBSドライバを読み込めませんでした");
-		 }
-		//データベース接続、connに詰め替え
-		try(Connection conn = DriverManager.getConnection(JDBC_URL,JDBC_USER,JDBC_PASS)){
-		
-		//SELCT文を準備
-		String sql = "select * from  product WHERE id = '"+ productId +"';";
-		PreparedStatement pStmt = conn.prepareStatement(sql);
-		
-		
-		//SELECT文を実行し、結果表を取得
-		ResultSet rs = pStmt.executeQuery();
-		//結果表に格納された内容を
-		//Employeeインスタンスに設定し、ArrayListインスタンスに追加
-		while(rs.next()) {
-			String Id = rs.getString("Id");
-			String name = rs.getString("name");
-			int price = rs.getInt("price");
-			int stock = rs.getInt("stock");
-			String imagePath = rs.getString("imagePath");
-			product = new Product(Id, name, price, stock, imagePath);
-		}
-
-		}catch(SQLException e){
-			e.printStackTrace();
-			return null;
-		}
-		return product;
-		
-		
-		
-	}
 
 
 	public void setCalendarDate(int group_id,String title,String texdescription, LocalDateTime start_datetime,LocalDateTime end_datetime,int created_by){

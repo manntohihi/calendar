@@ -35,6 +35,7 @@ th {
   font-weight: bold;
 }
 td {
+	height: 80px;
   min-height: 80px;
   position: relative;
   vertical-align: top;
@@ -52,7 +53,7 @@ td {
 }
 
 /* 色 */
-.yellow { background: yellow; }
-.purple { background: purple; }
-.blue   { background: #4da3ff; }
-.red    { background: red; }
+.yellow { background: yellow; width:100%; height:20%;}
+.purple { background: purple; width:100%; height:20%;}
+.blue   { background: #4da3ff; width:100%; height:20%;}
+.red    { background: red; width:100%; height:20%;}
