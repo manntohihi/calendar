@@ -42,18 +42,19 @@ public class UserDao {
 			ResultSet rs = ps.executeQuery();
 
 			//SELECT文を取得後、AllayListに格納
-			while (rs.next()) {
-				int userId = rs.getInt("userId");
+			while(rs.next()) { 
+				int userId = rs.getInt("userID");
 				String passwd = rs.getString("passwd");
 				String userName = rs.getString("userName");
 				int icon = rs.getInt("icon");
 				User user = new User(userId, passwd, userName, icon);
 				userList.add(user);
 			}
-		} catch (SQLException e) {
+		}catch(SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
+		
 		return userList;
 	}
 

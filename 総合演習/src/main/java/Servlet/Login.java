@@ -35,7 +35,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher;
-		dispatcher = request.getRequestDispatcher("/Login.html");
+		dispatcher = request.getRequestDispatcher("/Login.jsp");
 		dispatcher.forward(request,response);
 	}
 
@@ -59,7 +59,7 @@ public class Login extends HttpServlet {
 			System.out.println("f2");
 			name = use.getUserName();
 			if (name.equals(null)){
-				dispatcher = request.getRequestDispatcher("/LoginError.html");
+				dispatcher = request.getRequestDispatcher("/LoginError.jsp");
 				dispatcher.forward(request,response);
 			}else {
 				HttpSession session = request.getSession();
@@ -69,18 +69,9 @@ public class Login extends HttpServlet {
 			}
 			System.out.println("end");
 		}
+		dispatcher = request.getRequestDispatcher("/LoginError.jsp");
 		System.out.println("eroor");
-		/*
-		if (name.equals(null)){
-			dispatcher = request.getRequestDispatcher("/LoginError.html");
-			dispatcher.forward(request,response);
-		}else {
-			HttpSession session = request.getSession();
-			session.setAttribute("loginUser",userList);
-			dispatcher = request.getRequestDispatcher("/RoomSelection");
-			dispatcher.forward(request,response);
-		}
-		*/
+		
 		//テスト
 		/*
 		if(ID==111111) {
