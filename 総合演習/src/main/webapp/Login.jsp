@@ -37,7 +37,7 @@
 	          <input type="submit" name="login" value="ログイン">
 	        </div>
 	        <div class="grid_test-child" align="right">
-	          <a href="subimt" class="btn-link">新規登録</a>
+	          <a href="CreateNewUserServlet" class="btn-link">新規登録</a>
 	        </div>
 		</div>
 	</form> 
