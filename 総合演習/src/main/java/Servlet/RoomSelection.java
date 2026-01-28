@@ -61,17 +61,17 @@ public class RoomSelection extends HttpServlet {
 			
 			roomList.add(room);
 			session.setAttribute("roomList", roomList);
-			dispatcher = request.getRequestDispatcher("/roomChoice.jsp");
+			dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");
 			dispatcher.forward(request,response);
 		}else if ("検索".equals(botton)){//検索bottonが押される
 			ID = Integer.parseInt(request.getParameter("roomSearchID"));
 			roomList = rdao.findFromID(ID);//ROOMtableにIDを送りIDに合致したデータをもらう
 			if(roomList==null) {//検索結果＝なし
-				dispatcher = request.getRequestDispatcher("/roomSelectionError.html");
+				dispatcher = request.getRequestDispatcher("/RoomSelectionError.jsp");
 				dispatcher.forward(request,response);
 			}else {//検索結果＝あり
 				session.setAttribute("roomList", roomList);//セッションにroomListを保存
-				dispatcher = request.getRequestDispatcher("/roomChoice.jsp");
+				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");
 				dispatcher.forward(request,response);
 			}
 			/*
