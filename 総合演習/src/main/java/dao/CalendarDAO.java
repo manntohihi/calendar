@@ -40,9 +40,9 @@ public class CalendarDAO {
 		try(Connection conn = DriverManager.getConnection(JDBC_URL,JDBC_USER,JDBC_PASS)){
 		
 		//SELCT文を準備
-		String sql = "SELECT e."
-				+ "FROM calendar_events e"
-				+ "JOIN group_members gm ON e.group_id = gm.group_id"
+		String sql = "SELECT e.* "
+				+ "FROM calendar_events e "
+				+ "JOIN group_members gm ON e.group_id = gm.group_id "
 				+ "WHERE gm.user_id = ? " 
 				+ "AND e.group_id =  ? ;";
 		
@@ -63,7 +63,7 @@ public class CalendarDAO {
 			String title = rs.getString("title");
 			String description = rs.getString("description");
 			LocalDateTime start_datetime = rs.getTimestamp("start_datetime").toLocalDateTime();
-			LocalDateTime end_datetime = rs.getTimestamp("start_datetime").toLocalDateTime();
+			LocalDateTime end_datetime = rs.getTimestamp("end_datetime").toLocalDateTime();
 			int created_by = rs.getInt("created_by");
 			
 			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime, end_datetime, created_by);

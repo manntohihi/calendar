@@ -58,9 +58,25 @@ if (CalendarEventList != null) {
 }
 %>
 ];
+function getEventsForDay(day) {
+	  console.log("day:", day);
 
+	  return events.filter(e => {
+	    console.log("start:", e.start, "end:", e.end);
+	    return e.start <= day && day <= e.end;
+	  });
+	}
+<%
+for (CalendarEvent e : CalendarEventList) {
+  System.out.println(
+    "start=" + e.getStart_datetime() +
+    " end=" + e.getEnd_datetime()
+  );
+}
+%>
 /* 指定日のイベント取得 */
 function getEventsForDay(day) {
+
   return events.filter(e => e.start <= day && day <= e.end);
 }
 
@@ -94,7 +110,7 @@ function renderCalendar(date) {
 
     let eventHtml = '';
     dayEvents.forEach(e => {
-    	eventHtml = '<div class="yellow" style="width:100%; height:20%;"></div>';
+    	eventHtml += '<div class="yellow" style="width:100%; height:20%;"></div>';
     });
 
     const isToday =
