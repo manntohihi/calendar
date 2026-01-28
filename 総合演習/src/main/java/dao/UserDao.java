@@ -104,67 +104,6 @@ public class UserDao {
 		}catch(NamingException e) {
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
-		try(Connection con = ds.getConnection()){
-			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userId = ? AND passwd = ?;";
-			PreparedStatement ps = con.prepareStatement(sql);
-=======
-		
-<<<<<<< HEAD
-		try(Connection con = ds.getConnection()){
-			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userId = ? AND passwd = ?;";
-			PreparedStatement ps = con.prepareStatement(sql);
-=======
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
-		try(Connection conn = ds.getConnection()) {
-			//SELECT文の準備
-			String sql = "SELECT userID, passwd, userName, icon FROM USER ORDER BY userId DESC;";
-			PreparedStatement ps = conn.prepareStatement(sql);
-<<<<<<< HEAD
-=======
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
-			
-			ps.setInt(1,userId);
-			ps.setString(2,passwd);
-			
-			ResultSet rs = ps.executeQuery();
-			
-<<<<<<< HEAD
-			if(rs.next()) {
-				 return new User(
-			                rs.getInt("userId"),
-			                rs.getString("passwd"),
-			                rs.getString("userName"),
-			                rs.getInt("icon")
-			            );
-=======
-<<<<<<< HEAD
-			if(rs.next()) {
-				 return new User(
-			                rs.getInt("userId"),
-			                rs.getString("passwd"),
-			                rs.getString("userName"),
-			                rs.getInt("icon")
-			            );
-=======
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
-			//SELECT文を取得後、AllayListに格納
-			while(rs.next()) {
-				int userId = rs.getInt("userID");
-				String passwd = rs.getString("passwd");
-				String userName = rs.getString("userName");
-				int icon = rs.getInt("icon");
-				User user = new User(userId,passwd,userName,icon);
-				userList.add(user);
-<<<<<<< HEAD
-=======
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
 		return null;
 	}
 	
