@@ -25,13 +25,13 @@ public class MypageServlet extends HttpServlet {
     	HttpSession session = request.getSession(false);
     	
     	// 未ログインならログイン画面へ
-    	if (session == null || session.getAttribute("loginuser") == null) {
+    	if (session == null || session.getAttribute("loginUser") == null) {
     	 response.sendRedirect("login.jsp");
     	 return;
      }
     	
     	//ログインユーザーを取得
-    	User user = (User)session.getAttribute("loginuser");
+    	User user = (User)session.getAttribute("loginUser");
     	
     	 // JSPに渡す
     	request.setAttribute("user", user);
