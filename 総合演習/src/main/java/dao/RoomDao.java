@@ -175,7 +175,7 @@ public class RoomDao {
  		//データベース接続
  		try (Connection conn = ds.getConnection()){
  			//INSERT文の準備
- 			String sql = "INSERT INTO ROOM(ROOMID,ROOMNAME,ROOMPASSWORRD) VALUES(?,?,?)";//変更
+ 			String sql = "INSERT INTO ROOM(ROOMID,ROOMNAME,ROOMPASSWD) VALUES(?,?,?)";//変更
  			PreparedStatement pStmt = conn.prepareStatement(sql);
  			//INSERT文の「?」に使用する値を設定してSQL文を完成
  			pStmt.setInt(1,room.getId());

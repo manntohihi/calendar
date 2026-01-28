@@ -133,15 +133,23 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		
+<<<<<<< HEAD
 		try(Connection con = ds.getConnection()){
 			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userId = ? AND passwd = ?;";
 			PreparedStatement ps = con.prepareStatement(sql);
+=======
+		try(Connection conn = ds.getConnection()) {
+			//SELECT文の準備
+			String sql = "SELECT userID, passwd, userName, icon FROM USER ORDER BY userId DESC;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 			
 			ps.setInt(1,userId);
 			ps.setString(2,passwd);
 			
 			ResultSet rs = ps.executeQuery();
 			
+<<<<<<< HEAD
 			if(rs.next()) {
 				 return new User(
 			                rs.getInt("userId"),
@@ -149,6 +157,16 @@ public class UserDao {
 			                rs.getString("userName"),
 			                rs.getInt("icon")
 			            );
+=======
+			//SELECT文を取得後、AllayListに格納
+			while(rs.next()) {
+				int userId = rs.getInt("userID");
+				String passwd = rs.getString("passwd");
+				String userName = rs.getString("userName");
+				int icon = rs.getInt("icon");
+				User user = new User(userId,passwd,userName,icon);
+				userList.add(user);
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -209,7 +227,7 @@ public class UserDao {
 		try(Connection conn = ds.getConnection()) {
 			System.out.println("try");
 			//SELECT文の準備
-			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userID = ? AND PASSWD = ?;";
+			String sql = "SELECT userID, passwd, userName, icon FROM USER WHERE userID = ? AND PASSWD = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			//文の「?」に使用する値を設定してSQL文を完成
 			ps.setInt(1,user.getUserId());
@@ -219,12 +237,16 @@ public class UserDao {
 			ResultSet rs = ps.executeQuery();
 			System.out.println(rs);
 			//SELECT文を取得後、AllayListに格納
-			while(rs.next()) {
+			int userId = 0;
+			String passwd = null;
+			String userName = null;
+			int icon = 0;
+			while(rs.next()) {					//ここでエラー
 				System.out.println("wright");
-				int userId = rs.getInt("userId");
-				String passwd = rs.getString("passwd");
-				String userName = rs.getString("userName");
-				int icon = rs.getInt("icon");
+				userId = rs.getInt("userID");
+				passwd = rs.getString("passwd");
+				userName = rs.getString("userName");
+				icon = rs.getInt("icon");
 				user = new User(userId,passwd,userName,icon);
 				userList.add(user);
 			}
