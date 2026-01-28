@@ -90,6 +90,7 @@ public class UserDao {
 	    }
 	}
 	
+<<<<<<< HEAD
 	public User findIdAndPass(int userId, String passwd) {
 
 	    try {
@@ -122,6 +123,23 @@ public class UserDao {
 	    }
 
 	    return null;
+=======
+	//userIdとpasswdで1件検索
+	public User findIdAndPass(int userId,String passwd) {
+		//DataSourceの取得
+		InitialContext ic;
+		DataSource ds = null;
+		
+		try {
+			ic = new InitialContext();
+			
+			//DBの場所
+			ds = (DataSource)ic.lookup("java:comp/env/jdbc/calendar");
+		}catch(NamingException e) {
+			e.printStackTrace();
+		}
+		return null;
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 	}
 	
 	//userIdで1件取得
