@@ -6,7 +6,7 @@
 		response.sendRedirect("login.jsp");
 		return;
 	}
-	String current = request.getAttribute("currentPage");
+	String current = (String)request.getAttribute("currentPage");
 	boolean isMypage = "Mypage".equals(current);
 %>
 <%@ page import="java.util.List,java.util.ArrayList,model.User" %>
