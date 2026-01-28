@@ -18,10 +18,6 @@ public class User {
 		this.passwd = passwd;
 		this.userName = userName;
 		this.icon = icon;
-<<<<<<< HEAD
-=======
-		
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 	}
 	
 	//userIdのsetter&getter
