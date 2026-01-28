@@ -18,29 +18,29 @@ public class UserDao {
 	public List<User> findAll() {
 		//リストを生成
 		List<User> userList = new ArrayList<User>();
-
+		
 		//DataSourceの取得
 		InitialContext ic;
 		DataSource ds = null;
-
+		
 		try {
 			ic = new InitialContext();
-
+			
 			//DBの場所
 			ds = (DataSource) ic.lookup("java:comp/env/jdbc/calendar");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-
+		
 		//データベース接続
 		try (Connection conn = ds.getConnection()) {
 			//SELECT文の準備
 			String sql = "SELECT userId, passwd, userName, icon FROM USER ORDER BY userId DESC;";
 			PreparedStatement ps = conn.prepareStatement(sql);
-
+			
 			//SELECT文を実行し、結果を取得
 			ResultSet rs = ps.executeQuery();
-
+			
 			//SELECT文を取得後、AllayListに格納
 			while (rs.next()) {
 				int userId = rs.getInt("userId");
@@ -59,63 +59,35 @@ public class UserDao {
 	
 	
 	//INSERT文
-	public boolean insertUser(User user) {
-		//DataSourceの取得
-		InitialContext ic;
-		DataSource ds = null;
-		
-		try {
-			ic = new InitialContext();
-			System.out.println("login.try");
-			//DBの場所
-			ds = (DataSource)ic.lookup("java:comp/env/jdbc/calendar");
-		}catch(NamingException e) {
-			System.out.println("login.catch");
-			e.printStackTrace();
-		}
-		
-		
-		//データベース接続
-		try(Connection con = ds.getConnection()){
-			//INSERT文の準備
-			String sql = "INSERT INTO USER(USER_ID, PASSWD, USERNAME, ICON) VALUES(?,?,?,?);";
-			PreparedStatement ps = con.prepareStatement(sql);
-			
-			//INSERT文の?の部分の値を指定
-			
-		try(Connection conn = ds.getConnection()) {
-			System.out.println("try");
-			//SELECT文の準備
-			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE ID = (?) AND PASSWORD = (?) ;";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			//文の「?」に使用する値を設定してSQL文を完成
-			
-			ps.setInt(1,user.getUserId());
-			ps.setString(2,user.getPasswd());
-			ps.setString(3,user.getUserName());
-			ps.setInt(4,user.getIcon());
-			
-			//INSERT文実行
-			int result = ps.executeUpdate();
-			if(result != 1) {
-				return false;
-				
-			//SELECT文を取得後、AllayListに格納
-			while(rs.next()) {
-				System.out.println("wright");
-				int userId = rs.getInt("userId");
-				String passwd = rs.getString("passwd");
-				String userName = rs.getString("userName");
-				int icon = rs.getInt("icon");
-				user = new User(userId,passwd,userName,icon);
-				userList.add(user);
-			}
-		}catch(SQLException e) {
-			System.out.println("catch");
-			e.printStackTrace();
-			return false;
-		}
-		return true;
+	public boolean createUser(User user) {
+	    InitialContext ic;
+	    DataSource ds = null;
+	    
+	    try {
+	        ic = new InitialContext();
+	        ds = (DataSource) ic.lookup("java:comp/env/jdbc/calendar");
+	    } catch (NamingException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	    
+	    String sql = "INSERT INTO USER (userId, passwd, userName, icon) VALUES (?, ?, ?, ?)";
+	    
+	    try (Connection conn = ds.getConnection();
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+	    	
+	        ps.setInt(1, user.getUserId());
+	        ps.setString(2, user.getPasswd());
+	        ps.setString(3, user.getUserName());
+	        ps.setInt(4, user.getIcon());
+	        
+	        int result = ps.executeUpdate();
+	        return result == 1;
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
 	}
 	
 	//userIdとpasswdで1件検索
@@ -132,16 +104,25 @@ public class UserDao {
 		}catch(NamingException e) {
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
+		try(Connection con = ds.getConnection()){
+			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userId = ? AND passwd = ?;";
+			PreparedStatement ps = con.prepareStatement(sql);
+=======
 		
 <<<<<<< HEAD
 		try(Connection con = ds.getConnection()){
 			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userId = ? AND passwd = ?;";
 			PreparedStatement ps = con.prepareStatement(sql);
 =======
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 		try(Connection conn = ds.getConnection()) {
 			//SELECT文の準備
 			String sql = "SELECT userID, passwd, userName, icon FROM USER ORDER BY userId DESC;";
 			PreparedStatement ps = conn.prepareStatement(sql);
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 >>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 			
 			ps.setInt(1,userId);
@@ -158,6 +139,16 @@ public class UserDao {
 			                rs.getInt("icon")
 			            );
 =======
+<<<<<<< HEAD
+			if(rs.next()) {
+				 return new User(
+			                rs.getInt("userId"),
+			                rs.getString("passwd"),
+			                rs.getString("userName"),
+			                rs.getInt("icon")
+			            );
+=======
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 			//SELECT文を取得後、AllayListに格納
 			while(rs.next()) {
 				int userId = rs.getInt("userID");
@@ -166,6 +157,9 @@ public class UserDao {
 				int icon = rs.getInt("icon");
 				User user = new User(userId,passwd,userName,icon);
 				userList.add(user);
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 >>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 			}
 		}catch(SQLException e) {
