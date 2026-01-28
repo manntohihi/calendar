@@ -13,6 +13,10 @@ public class User {
 	}
 	
 	public User(int userId,String passwd,String userName,int icon) {
+		this.userId = userId;
+		this.passwd = passwd;
+		this.userName = userName;
+		this.icon = icon;
 		
 	}
 	
