@@ -62,6 +62,15 @@ public class CreateNewUserServlet extends HttpServlet {
 
 		//作ったIDが既存のIDと被りがないかのチェック
 		//ここから下に書く
+		while (true) {
+			//数値と変数、if文条件の仮置き
+			int i = 0;
+			if (i == 0) {
+
+			} else {
+				break;
+			}
+		}
 
 		return kari;
 	}
