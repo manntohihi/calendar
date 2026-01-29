@@ -52,7 +52,8 @@ if (CalendarEventList != null) {
     end:   new Date(<%= e.getEnd_datetime().getYear() %>,
                     <%= e.getEnd_datetime().getMonthValue() - 1 %>,
                     <%= e.getEnd_datetime().getDayOfMonth() %>),
-    color: "<%= e.getColler() %>"
+    color: "<%= e.getColler() %>",
+    description: "<%= e.getTexdescription() %>"
   }<%= (i < CalendarEventList.size() - 1) ? "," : "" %>
 <%
   }
