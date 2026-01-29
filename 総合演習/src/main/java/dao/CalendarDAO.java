@@ -10,6 +10,7 @@ import java.util.List;
 
 import model.PostPrductLogic;
 import model.Product;
+import model.User;
 
 public class CalendarDAO {
 	private final String JDBC_URL = "jdbc:mysql://localhost/ECommerceDB";	
