@@ -26,7 +26,7 @@ public class MypageServlet extends HttpServlet {
     	
     	// 未ログインならログイン画面へ
     	if (session == null || session.getAttribute("loginUser") == null) {
-    	 response.sendRedirect("login.jsp");
+    	 response.sendRedirect("Login.jsp");
     	 return;
      }
     	
