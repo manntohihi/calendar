@@ -3,7 +3,7 @@
 <%
 	User user = (User)session.getAttribute("user");
 	if(user == null){
-		response.sendRedirect("login.jsp");
+		response.sendRedirect("Login.jsp");
 		return;
 	}
 	String current = (String)request.getAttribute("currentPage");

@@ -18,12 +18,12 @@ public class MypageServlet extends HttpServlet {
 	public MypageServlet() {
 		super();
 	}
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//セッションの取得
 		HttpSession session = request.getSession(false);
-
+				
 		// 未ログインならログイン画面へ
 		if (session == null || session.getAttribute("loginUser") == null) {
 			response.sendRedirect("Login.jsp");
@@ -39,7 +39,7 @@ public class MypageServlet extends HttpServlet {
 		request.setAttribute("currentPage", "Mypage");
 
 		//フォワード
-		request.getRequestDispatcher("mypage.jsp").forward(request, response);
+		request.getRequestDispatcher("myPage.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
