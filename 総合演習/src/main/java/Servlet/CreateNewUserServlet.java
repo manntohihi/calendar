@@ -54,8 +54,9 @@ public class CreateNewUserServlet extends HttpServlet {
 			session.setAttribute("loginUser", newUser);
 
 			//登録が完了したら部屋選択画面へ遷移する。
-			dispatcher = request.getRequestDispatcher("/RoomSelection");
-			dispatcher.forward(request, response);
+			//			dispatcher = request.getRequestDispatcher("/RoomSelection");
+			//			dispatcher.forward(request, response);
+			response.sendRedirect("RoomSelection");
 
 		} else {
 			//違ったらユーザー登録画面へ
