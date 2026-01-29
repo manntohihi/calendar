@@ -28,14 +28,14 @@
 	        </div>
 	      </div>
 	      <div class="grid_test-child">
-	      	<a href="#">
+	      	<a href="Mypage">
         		<img src="img/Mypage.png" alt="Move" width="100">
     		</a>
 	      </div>
 	      <div class="grid_test-child">
 	        <details>
 	          <summary>新規部屋作成</summary>
-	            <input type="text" name="roomID" class="text" placeholder="部屋のID">
+	            <input type="text" name="roomID" class="text" pattern="^[0-9]*$" maxlength="5" placeholder="部屋のID">
 	            <input type="text" name="roomname" maxlength="16" class="text" placeholder="部屋の名前 半角16文字">
 	            <input type="text" name="roompassword" maxlength="6" class="text" placeholder="部屋のパスワード 半角6文字">
 	            <input type="submit" name="botton" value="新規部屋作成" class="new">

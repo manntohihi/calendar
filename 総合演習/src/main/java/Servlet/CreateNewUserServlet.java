@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import dao.UserDao;
 import model.User;
@@ -48,6 +49,9 @@ public class CreateNewUserServlet extends HttpServlet {
 
 			User newUser = new User(userID, password, name, iconNum);
 			userDAO.createUser(newUser);
+
+			HttpSession session = request.getSession(true);
+			session.setAttribute("loginUser", newUser);
 
 			//登録が完了したら部屋選択画面へ遷移する。
 			dispatcher = request.getRequestDispatcher("/RoomSelection");
