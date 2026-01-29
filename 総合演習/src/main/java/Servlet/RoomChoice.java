@@ -47,19 +47,26 @@ public class RoomChoice extends HttpServlet {
 		//doGet(request, response);
 		System.out.println("RCdP");
 		HttpSession session = request.getSession();
-		int ID = Integer.parseInt( request.getParameter("ID"));
+		int ID = Integer.parseInt( request.getParameter("roomID"));
 		String password = request.getParameter("password");
 		List<Room> roomList = new ArrayList<Room>();
 		roomList = (List<Room>) session.getAttribute("roomList");
 		for(Room room : roomList) {
+			System.out.println(roomList);
+			System.out.println("for");
+			System.err.println(room.getId());
+			System.err.println(room.getRoomname());
 			if(ID == room.getId()) {
+				System.out.println("if1");
 				if(password.equals(room.getRoompassword())) {
+					System.out.println("if2");
 					RequestDispatcher dispatcher;
 					dispatcher = request.getRequestDispatcher("/Room.jsp");
 					dispatcher.forward(request,response);
 				}
 			}
 		}
+		System.out.println("error");
 	}
 
 }
