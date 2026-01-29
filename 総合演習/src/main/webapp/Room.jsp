@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@
-	page import java.util.ArrayList, java.util.List, model.User.java
+	page import java.util.ArrayList, java.util.List, model.Room.java
 %>
 <%
-	c
+	Room room = new Room();
+	List<Room> roomList = new ArrayList<Room>();
+	roomList = (List<Room>) session.getAttribute("roomList");
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -28,16 +30,19 @@
 	        <p>残日数</p>
 	      </div>
 	      <div class="grid_test-child">
-	        <p>部屋選択遷移</p>
-	        <a href="RoomSelection" class="a"><img src="img/Home.png" class="icon"></a>
+	        <a href="#">
+	        	<img src="img/Home.png" alt="Home" width="100">
+	        </a>
 	      </div>
 	      <div class="grid_test-child">
-	        <p>カレンダー遷移</p>
-	        <a href="CalendarServlet" class="a"><img src="img/Chalendar.png" class="icon"></a>
+	        <a href="#">
+	        	<img src="img/Chalendar.png" alt="Calendar" width="100">
+	        </a>
 	      </div>
 	      <div class="grid_test-child">
-	        <p>マイページアイコン</p>
-	        <a href="myPage.jsp" class="a"><img src="img/Mypage.png" class="icon"></a>
+	        <a href="#">
+        		<img src="img/Mypage.png" alt="Move" width="100">
+    		</a>
 	      </div>
 	    </div>
     </form>

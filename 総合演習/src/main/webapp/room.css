@@ -31,11 +31,7 @@
 	text-align: center;
 }
 
-.icon{
-	width: 30%;
-	height: 50%;
-	place-items: center;
-}
+
 /*
 .grid_test-child:nth-child(1) {
         background-color:  #7b9ad0;     
