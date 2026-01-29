@@ -54,26 +54,32 @@ public class RoomDao {
 	 public List<Room> findFromID(int ID){//部屋IDから取得
 		 List<Room> roomList = new ArrayList<Room>();
 		 
+		 System.out.println("findFromID");
 		InitialContext initCtx;
 		DataSource ds =null;
 		try {
+			System.out.println("try1");
 			initCtx = new InitialContext();
 			ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/calendar");//DBの場所へ変更
 		}catch(NamingException e) {
+			System.out.println("cat1");
 			e.printStackTrace();
 		}
 		
 		try (Connection conn = ds.getConnection()){
+			System.out.println("try2");
 			//SELECT文を準備
-			String sql = "SELECT ROOMID,ROOMNAME,ROOMPASSWORD FROM ROOM WHERE ID = ? ORDER BY ID DESC";
+			String sql = "SELECT ROOMID,ROOMNAME,ROOMPASSWD FROM ROOM WHERE ROOMID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			//INSERT文の「?」に使用する値を設定してSQL文を完成
  			pStmt.setInt(1,ID);
- 			
+ 			System.out.println(pStmt);
 			//SELECT文を実行し、結果票を取得
 			ResultSet rs = pStmt.executeQuery();
+			System.out.println(rs);
 			//SELECT文の結果をArrayListに格納
 			while (rs.next()) {
+				System.out.println("whi1");
 				int id = 0 ;
 				String roomname = rs.getString("ROOMNAME");
 				String roompassword = null;
@@ -81,9 +87,11 @@ public class RoomDao {
 				roomList.add(room);
 			}
 		}catch(SQLException e) {
+			System.out.println("cat2");
 			e.printStackTrace();
 			return null;
 		}
+		System.out.println("go");
 		return roomList;
  	 }
 	 

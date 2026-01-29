@@ -89,7 +89,7 @@ public class UserDao {
 			String passwd = null;
 			String userName = null;
 			int icon = 0;
-			while(rs.next()) {					//ここでエラー
+			while(rs.next()) {
 				System.out.println("wright");
 				userId = rs.getInt("userID");
 				passwd = rs.getString("passwd");
