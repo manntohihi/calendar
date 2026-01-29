@@ -39,7 +39,7 @@ public class MypageServlet extends HttpServlet {
     	request.setAttribute("currentPage","Mypage"); 
     	
     	//フォワード
-    	request.getRequestDispatcher("mypage.jsp").forward(request, response);
+    	request.getRequestDispatcher("myPage.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
