@@ -1,4 +1,6 @@
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
@@ -22,9 +24,9 @@
 	        </div>
 	      </div>
 	      <div class="grid_test-child">
-			<a href="#">
-				<img src="img/Mypage.png" alt="Move" width="100">
-			</a>
+	        <a href="#">
+        		<img src="img/Mypage.png" alt="Move" width="100">
+    		</a>
 	      </div>
 	      <div class="grid_test-child">
 	        <details>
@@ -45,7 +47,7 @@
 	        <p>グループアイコン</p>
 	      </div>
 		  <div class="grid_test-child">
-		    <p class="error">IDまたはpasswordが異なります</p>
+		    <p class="error">該当する部屋がございません</p>
 		  </div>
 	    </div>
 	</form>

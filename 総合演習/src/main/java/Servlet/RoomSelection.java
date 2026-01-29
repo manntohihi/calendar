@@ -53,6 +53,7 @@ public class RoomSelection extends HttpServlet {
 		List<Room> roomList = new ArrayList<Room>();
 		RoomDao rdao = new RoomDao();
 		if("新規部屋作成".equals(botton)) {//新規部屋作成bottonが押される
+			System.out.println("新規部屋作成");
 			ID = Integer.parseInt(request.getParameter("roomID"));
 			String roomID = request.getParameter("roomname");
 			String userID = request.getParameter("roompassword");
@@ -61,17 +62,22 @@ public class RoomSelection extends HttpServlet {
 			
 			roomList.add(room);
 			session.setAttribute("roomList", roomList);
-			dispatcher = request.getRequestDispatcher("/roomChoice.jsp");
+			dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");
 			dispatcher.forward(request,response);
 		}else if ("検索".equals(botton)){//検索bottonが押される
+			System.out.println("検索");
 			ID = Integer.parseInt(request.getParameter("roomSearchID"));
+			System.out.println(ID);
 			roomList = rdao.findFromID(ID);//ROOMtableにIDを送りIDに合致したデータをもらう
-			if(roomList==null) {//検索結果＝なし
-				dispatcher = request.getRequestDispatcher("/roomSelectionError.html");
+			if(roomList.size()!= 1) {//検索結果＝なし
+				System.out.println("検索結果＝なし");
+				dispatcher = request.getRequestDispatcher("/RoomSelectionError.jsp");
 				dispatcher.forward(request,response);
 			}else {//検索結果＝あり
 				session.setAttribute("roomList", roomList);//セッションにroomListを保存
-				dispatcher = request.getRequestDispatcher("/roomChoice.jsp");
+				System.out.println(roomList);
+				System.out.println("検索結果＝あり");
+				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");
 				dispatcher.forward(request,response);
 			}
 			/*
