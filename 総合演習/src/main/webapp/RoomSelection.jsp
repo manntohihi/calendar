@@ -28,7 +28,7 @@
 	        </div>
 	      </div>
 	      <div class="grid_test-child">
-	      	<a href="#">
+	      	<a href="Mypage">
         		<img src="img/Mypage.png" alt="Move" width="100">
     		</a>
 	      </div>
