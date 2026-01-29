@@ -30,7 +30,7 @@ public class RoomDao {
 		
 		try (Connection conn = ds.getConnection()){
 			//SELECT文を準備
-			String sql = "SELECT ROOMID,ROOMNAME,ROOMPASSWORD FROM ROOM ORDER BY ID DESC";
+			String sql = "SELECT ROOMID,ROOMNAME,ROOMPASSWD FROM ROOM ORDER BY ID DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			//SELECT文を実行し、結果票を取得
@@ -38,9 +38,9 @@ public class RoomDao {
 			
 			//SELECT文の結果をArrayListに格納
 			while (rs.next()) {
-				int id = rs.getInt("ID");
+				int id = rs.getInt("ROOMID");
 				String roomname = rs.getString("ROOMNAME");
-				String roompassword = rs.getString("ROOMPASSWORD");
+				String roompassword = rs.getString("ROOMPASSWD");
 				Room room = new Room(id,roomname,roompassword);
 				roomList.add(room);
 			}
@@ -80,9 +80,9 @@ public class RoomDao {
 			//SELECT文の結果をArrayListに格納
 			while (rs.next()) {
 				System.out.println("whi1");
-				int id = 0 ;
+				int id = rs.getInt("ROOMID"); ;
 				String roomname = rs.getString("ROOMNAME");
-				String roompassword = null;
+				String roompassword = rs.getString("ROOMPASSWD");
 				Room room = new Room(id,roomname,roompassword);
 				roomList.add(room);
 			}

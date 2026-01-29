@@ -57,6 +57,7 @@ public class RoomSelection extends HttpServlet {
 			ID = Integer.parseInt(request.getParameter("roomID"));
 			String roomID = request.getParameter("roomname");
 			String userID = request.getParameter("roompassword");
+			
 			Room room = new Room(ID,roomID,userID); 
 			rdao.createRoom(room);//ROOMtableに保存
 			
