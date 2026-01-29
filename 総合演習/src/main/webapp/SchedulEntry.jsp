@@ -16,7 +16,7 @@
 <div class="container">
 
   <!-- 戻る -->
-  <a href="Calendar.jsp" class="back">← 戻る</a>
+  <a href="CalendarServlet" class="back">← 戻る</a>
 
   <!-- タイトル -->
   <h1>予定を入力</h1>

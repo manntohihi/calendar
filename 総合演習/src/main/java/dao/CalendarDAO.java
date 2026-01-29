@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +9,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 import model.CalendarEvent;
 import model.CalendraEventList;
 
@@ -29,20 +35,24 @@ public class CalendarDAO {
 		long end;
 		start = System.currentTimeMillis();
 		
-		
+		InitialContext ic;
+		DataSource ds = null;
 		// JBDCドライバの読み込みorエラー表示
-		 try {
-			 Class.forName("com.mysql.cj.jdbc.Driver");
-		 }catch(ClassNotFoundException e) {
-			 throw new IllegalStateException("JDBSドライバを読み込めませんでした");
-		 }
+		try {
+			ic = new InitialContext();
+			
+			//DBの場所
+			ds = (DataSource) ic.lookup("java:comp/env/jdbc/calendar");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
 		//データベース接続、connに詰め替え
-		try(Connection conn = DriverManager.getConnection(JDBC_URL,JDBC_USER,JDBC_PASS)){
+		try(Connection conn = ds.getConnection()){
 		
 		//SELCT文を準備
-		String sql = "SELECT e."
-				+ "FROM calendar_events e"
-				+ "JOIN group_members gm ON e.group_id = gm.group_id"
+		String sql = "SELECT e.* "
+				+ "FROM calendar_events e "
+				+ "JOIN group_members gm ON e.group_id = gm.group_id "
 				+ "WHERE gm.user_id = ? " 
 				+ "AND e.group_id =  ? ;";
 		
@@ -63,10 +73,12 @@ public class CalendarDAO {
 			String title = rs.getString("title");
 			String description = rs.getString("description");
 			LocalDateTime start_datetime = rs.getTimestamp("start_datetime").toLocalDateTime();
-			LocalDateTime end_datetime = rs.getTimestamp("start_datetime").toLocalDateTime();
+			LocalDateTime end_datetime = rs.getTimestamp("end_datetime").toLocalDateTime();
 			int created_by = rs.getInt("created_by");
+			String coller = rs.getString("coller");
 			
-			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime, end_datetime, created_by);
+			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime, end_datetime, created_by,coller
+					);
 			CalendarEventList.add(CalendarEvent);
 		}
 		end = System.currentTimeMillis();
@@ -82,21 +94,27 @@ public class CalendarDAO {
 	}
 
 
+
 	public void setCalendarDate(int group_id,String title,String texdescription, LocalDateTime start_datetime,LocalDateTime end_datetime,int created_by){
 		CalendraEventList PostPrductLogic = null;
 		List<CalendarEvent> CalendarEventList = new ArrayList();
 		
 		
 		
-		
+		InitialContext ic;
+		DataSource ds = null;
 		// JBDCドライバの読み込みorエラー表示
-		 try {
-			 Class.forName("com.mysql.cj.jdbc.Driver");
-		 }catch(ClassNotFoundException e) {
-			 throw new IllegalStateException("JDBSドライバを読み込めませんでした");
-		 }
+		// JBDCドライバの読み込みorエラー表示
+		try {
+			ic = new InitialContext();
+			
+			//DBの場所
+			ds = (DataSource) ic.lookup("java:comp/env/jdbc/calendar");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
 		//データベース接続、connに詰め替え
-		try(Connection conn = DriverManager.getConnection(JDBC_URL,JDBC_USER,JDBC_PASS)){
+		try(Connection conn = ds.getConnection()){
 		
 		//SELCT文を準備
 				String sql =

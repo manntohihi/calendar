@@ -46,6 +46,7 @@ public class RoomChoice extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		System.out.println("RCdP");
+		RequestDispatcher dispatcher;
 		HttpSession session = request.getSession();
 		int ID = Integer.parseInt( request.getParameter("roomID"));
 		String password = request.getParameter("password");
@@ -60,13 +61,14 @@ public class RoomChoice extends HttpServlet {
 					/*if() {
 						//calendarDao完成後
 					}*/
-					RequestDispatcher dispatcher;
 					dispatcher = request.getRequestDispatcher("/Room.jsp");
 					dispatcher.forward(request,response);
 				}
 			}
 		}
 		System.out.println("error");
+		dispatcher = request.getRequestDispatcher("/RoomChoiceError.jsp");
+		dispatcher.forward(request,response);
 	}
 
 }
