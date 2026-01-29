@@ -95,6 +95,7 @@ public class UserDao {
 		//DataSourceの取得
 		InitialContext ic;
 		DataSource ds = null;
+		User user = null;
 
 		try {
 			ic = new InitialContext();
@@ -104,7 +105,33 @@ public class UserDao {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-		return null;
+
+		try (Connection conn = ds.getConnection()) {
+			System.out.println("try");
+			//SELECT文の準備
+			String sql = "SELECT userID, passwd, userName, icon FROM USER WHERE userID = ? AND PASSWD = ?;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			//文の「?」に使用する値を設定してSQL文を完成
+			ps.setInt(1, userId);
+			ps.setString(2, passwd);
+			System.out.println(ps);
+			//SELECT文を実行し、結果を取得
+			ResultSet rs = ps.executeQuery();
+			System.out.println(rs);
+			//SELECT文を取得後、結果をreturn
+			if (rs.next()) {
+				return new User(
+						rs.getInt("userId"),
+						rs.getString("passwd"),
+						rs.getString("userName"),
+						rs.getInt("icon"));
+			}
+		} catch (SQLException e) {
+			System.out.println("catch");
+			e.printStackTrace();
+			return null;
+		}
+		return user;
 	}
 
 	//userIdで1件取得
