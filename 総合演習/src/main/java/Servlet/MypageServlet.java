@@ -18,37 +18,12 @@ public class MypageServlet extends HttpServlet {
 	public MypageServlet() {
 		super();
 	}
-
-<<<<<<< HEAD
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException { 
-    	//セッションの取得
-    	HttpSession session = request.getSession(false);
-    	
-    	// 未ログインならログイン画面へ
-    	if (session == null || session.getAttribute("loginUser") == null) {
-    	 response.sendRedirect("Login.jsp");
-    	 return;
-     }
-    	
-    	//ログインユーザーを取得
-    	User user = (User)session.getAttribute("loginUser");
-    	
-    	 // JSPに渡す
-    	request.setAttribute("user", user);
-    	//現在の画面の情報をJSPに渡す
-    	request.setAttribute("currentPage","Mypage"); 
-    	
-    	//フォワード
-    	request.getRequestDispatcher("myPage.jsp").forward(request, response);
-    }
-=======
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//セッションの取得
 		HttpSession session = request.getSession(false);
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
-
+				
 		// 未ログインならログイン画面へ
 		if (session == null || session.getAttribute("loginUser") == null) {
 			response.sendRedirect("Login.jsp");
@@ -64,7 +39,7 @@ public class MypageServlet extends HttpServlet {
 		request.setAttribute("currentPage", "Mypage");
 
 		//フォワード
-		request.getRequestDispatcher("mypage.jsp").forward(request, response);
+		request.getRequestDispatcher("myPage.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
