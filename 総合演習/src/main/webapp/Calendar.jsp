@@ -52,15 +52,17 @@ if (CalendarEventList != null) {
     end:   new Date(<%= e.getEnd_datetime().getYear() %>,
                     <%= e.getEnd_datetime().getMonthValue() - 1 %>,
                     <%= e.getEnd_datetime().getDayOfMonth() %>),
+    color: "<%= e.getColler() %>",
+    description: "<%= e.getTexdescription() %>"
   }<%= (i < CalendarEventList.size() - 1) ? "," : "" %>
 <%
   }
 }
 %>
 ];
-
 /* 指定日のイベント取得 */
 function getEventsForDay(day) {
+
   return events.filter(e => e.start <= day && day <= e.end);
 }
 
@@ -92,10 +94,11 @@ function renderCalendar(date) {
     const current = new Date(year, month, day);
     const dayEvents = getEventsForDay(current);
 
-    let eventHtml = '';
+    let eventHtml = '<div class="events">';
     dayEvents.forEach(e => {
-    	eventHtml = '<div class="yellow" style="width:100%; height:20%;"></div>';
+      eventHtml += '<div class="event ' + e.color + '"></div>';
     });
+    eventHtml += '</div>';
 
     const isToday =
       year === today.getFullYear() &&
