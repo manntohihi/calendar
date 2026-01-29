@@ -34,7 +34,7 @@ public class RoomChoice extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher;
-		dispatcher = request.getRequestDispatcher("/roomChoice.jsp");
+		dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");
 		dispatcher.forward(request,response);
 	}
 
