@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
@@ -29,7 +29,7 @@
                     <th>password</th>
                 </tr>
                 <tr>
-                    <th><input type="password" name="password" maxlength="6" placeholder="部屋のパスワード 半角10文字" class="password"></th>
+                    <th><input type="password" name="password" maxlength="6" placeholder="部屋のパスワード 半角6文字" class="password"></th>
                 </tr>
             </table>
         </div>
@@ -74,7 +74,7 @@
             </div>
         </div>
         <div class="grid_test-child">
-            <input type="button" name="login" value="ログイン">
+            <input type="submit" name="botton" value="ログイン">
         </div>
     </div>
     </form>
