@@ -13,6 +13,7 @@ import java.util.List;
 import model.CalendarEvent;
 import model.CalendraEventList;
 
+
 public class CalendarDAO {
 	private final String JDBC_URL = "jdbc:mysql://localhost/calendar";	
 	private final String JDBC_USER = "root";

@@ -55,16 +55,22 @@ public class RoomSelection extends HttpServlet {
 		if("新規部屋作成".equals(botton)) {//新規部屋作成bottonが押される
 			System.out.println("新規部屋作成");
 			ID = Integer.parseInt(request.getParameter("roomID"));
-			String roomID = request.getParameter("roomname");
-			String userID = request.getParameter("roompassword");
-			
-			Room room = new Room(ID,roomID,userID); 
-			rdao.createRoom(room);//ROOMtableに保存
-			
-			roomList.add(room);
-			session.setAttribute("roomList", roomList);
-			dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");
-			dispatcher.forward(request,response);
+			String roomName = request.getParameter("roomname");
+			String roomPasswd = request.getParameter("roompassword");
+			Room room = new Room(ID,roomName,roomPasswd); 
+			roomList = rdao.findFromID(ID);
+			if(roomList.size()!= 1) {//検索結果＝なし
+				System.out.println("create");
+				rdao.createRoom(room);//ROOMtableに保存
+				roomList.add(room);
+				session.setAttribute("roomList", roomList);
+				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");
+				dispatcher.forward(request,response);
+			}else {//検索結果＝あり
+				System.out.println("not create");
+				dispatcher = request.getRequestDispatcher("/RoomSelectionCreateError.jsp");
+				dispatcher.forward(request,response);
+			}
 		}else if ("検索".equals(botton)){//検索bottonが押される
 			System.out.println("検索");
 			ID = Integer.parseInt(request.getParameter("roomSearchID"));

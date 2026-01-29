@@ -52,14 +52,14 @@ public class RoomChoice extends HttpServlet {
 		List<Room> roomList = new ArrayList<Room>();
 		roomList = (List<Room>) session.getAttribute("roomList");
 		for(Room room : roomList) {
-			System.out.println(roomList);
 			System.out.println("for");
-			System.err.println(room.getId());
-			System.err.println(room.getRoomname());
 			if(ID == room.getId()) {
 				System.out.println("if1");
 				if(password.equals(room.getRoompassword())) {
 					System.out.println("if2");
+					/*if() {
+						//calendarDao完成後
+					}*/
 					RequestDispatcher dispatcher;
 					dispatcher = request.getRequestDispatcher("/Room.jsp");
 					dispatcher.forward(request,response);
