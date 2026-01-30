@@ -59,8 +59,9 @@ public class RoomChoice extends HttpServlet {
 				if(password.equals(room.getRoompassword())) {
 					System.out.println("if2");
 					/*if() {
-						//calendarDao完成後
+						//calendarDao完成後collarを入れる
 					}*/
+					session.setAttribute("room", room);
 					dispatcher = request.getRequestDispatcher("/Room.jsp");
 					dispatcher.forward(request,response);
 				}
