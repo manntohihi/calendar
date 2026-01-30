@@ -25,7 +25,6 @@ public class UserDao {
 
 		try {
 			ic = new InitialContext();
-
 			//DBの場所
 			ds = (DataSource) ic.lookup("java:comp/env/jdbc/calendar");
 		} catch (NamingException e) {
@@ -37,10 +36,10 @@ public class UserDao {
 			//SELECT文の準備
 			String sql = "SELECT userId, passwd, userName, icon FROM USER ORDER BY userId DESC;";
 			PreparedStatement ps = conn.prepareStatement(sql);
-
+			
 			//SELECT文を実行し、結果を取得
 			ResultSet rs = ps.executeQuery();
-
+			
 			//SELECT文を取得後、AllayListに格納
 			while (rs.next()) {
 				int userId = rs.getInt("userID");
