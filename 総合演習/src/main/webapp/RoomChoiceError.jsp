@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@
+	page import= "model.Room"
+%>
+<% 
+	Room room = new Room();
+	room = (Room) session.getAttribute("room");
+	String roomName;
+	roomName = room.getRoomname();
+%>
 <!doctype html>
 <html lang="ja">
   <head>
@@ -11,7 +20,7 @@
   	<form action="RoomChoice" method="post">
     <div class="grid_test">
         <div class="grid_test-child">
-          <h1>ユーザーの選択した部屋名</h1><br>
+          <h1><%= roomName%></h1><br>
         </div>
         <div class="grid_test-child">
           <table class="line">

@@ -71,7 +71,7 @@ public class Login extends HttpServlet {
 		}
 		dispatcher = request.getRequestDispatcher("/LoginError.jsp");
 		System.out.println("eroor");
-		
+		dispatcher.forward(request,response);
 		//テスト
 		/*
 		if(ID==111111) {

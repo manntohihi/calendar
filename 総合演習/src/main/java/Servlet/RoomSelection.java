@@ -57,7 +57,7 @@ public class RoomSelection extends HttpServlet {
 			ID = Integer.parseInt(request.getParameter("roomID"));
 			String roomName = request.getParameter("roomname");
 			String roomPasswd = request.getParameter("roompassword");
-			Room room = new Room(ID,roomName,roomPasswd); 
+			Room room = new Room(ID,roomName,roomPasswd); //のちに出てくるroomとは別物
 			roomList = rdao.findFromID(ID);
 			if(roomList.size()!= 1) {//検索結果＝なし
 				System.out.println("create");
@@ -82,8 +82,20 @@ public class RoomSelection extends HttpServlet {
 				dispatcher.forward(request,response);
 			}else {//検索結果＝あり
 				session.setAttribute("roomList", roomList);//セッションにroomListを保存
+				for(Room room : roomList) {
+					if(ID == room.getId()) {//sessionに行く部屋の情報を追加
+						System.out.println("yes se");
+						session.setAttribute("room", room);
+					}else {
+						System.out.println("not se");
+					dispatcher = request.getRequestDispatcher("/RoomSelectionError.jsp");
+					dispatcher.forward(request,response);
+					}
+					
+				}
 				System.out.println(roomList);
 				System.out.println("検索結果＝あり");
+				
 				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");
 				dispatcher.forward(request,response);
 			}

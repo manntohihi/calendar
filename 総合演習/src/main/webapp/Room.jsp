@@ -22,8 +22,7 @@
   	<form action="Room" method="post">
 	    <div class="grid_test">
 	      <div class="grid_test-child">
-	        <p><%= roomID%></p>
-	        <p><%= roomName%></p>
+	        <h1><%= roomID%> <%= roomName%></h1>
 	      </div>
 	      <div class="grid_test-child">
 	        <p>一時予定</p>
