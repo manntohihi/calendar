@@ -9,13 +9,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
-=======
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 import model.CalendarEvent;
 import model.CalendraEventList;
 
