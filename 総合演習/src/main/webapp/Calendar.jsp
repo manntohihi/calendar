@@ -53,6 +53,7 @@ if (CalendarEventList != null) {
                     <%= e.getEnd_datetime().getMonthValue() - 1 %>,
                     <%= e.getEnd_datetime().getDayOfMonth() %>),
     color: "<%= e.getColler() %>",
+    title: "<%= e.getTexdescription() %>",
     description: "<%= e.getTexdescription() %>"
   }<%= (i < CalendarEventList.size() - 1) ? "," : "" %>
 <%
@@ -62,7 +63,6 @@ if (CalendarEventList != null) {
 ];
 /* 指定日のイベント取得 */
 function getEventsForDay(day) {
-
   return events.filter(e => e.start <= day && day <= e.end);
 }
 
@@ -96,7 +96,10 @@ function renderCalendar(date) {
 
     let eventHtml = '<div class="events">';
     dayEvents.forEach(e => {
-      eventHtml += '<div class="event ' + e.color + '"></div>';
+      eventHtml +=
+        '<a href="EntryServlet?title=' + encodeURIComponent(e.title) + '">' +
+          '<div class="event ' + e.color + '"></div>' +
+        '</a>';
     });
     eventHtml += '</div>';
 
