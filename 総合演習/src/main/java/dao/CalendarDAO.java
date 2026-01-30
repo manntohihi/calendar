@@ -18,9 +18,7 @@ import model.CalendraEventList;
 
 
 public class CalendarDAO {
-	private final String JDBC_URL = "jdbc:mysql://localhost/calendar";	
-	private final String JDBC_USER = "root";
-	private final String JDBC_PASS = "kcsf";
+
 
 
 	public  List<CalendarEvent> findCalendarDate(int loginUserId,int GroupId){
