@@ -33,12 +33,13 @@ public class EntryServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("CalendarServlet;doget");
-		List<CalendarEvent> CalendarEventList;
+		CalendarEvent CalendarEvent;
 		CalendarDAO cDao = new CalendarDAO();
+		String = 
 		int group_id = 1;
 		int user_id = 1;
-		CalendarEventList = cDao.findCalendarDate(user_id, group_id);
-		request.setAttribute("CalendarEventList", CalendarEventList);
+		CalendarEvent= cDao.findEntryrDate(user_id, group_id);
+		request.setAttribute("CalendarEvent", CalendarEvent);
 		RequestDispatcher dispatcher = 
 	    	request.getRequestDispatcher("SchedulEntry.jsp");
 	    dispatcher.forward(request, response);
