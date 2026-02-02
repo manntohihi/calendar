@@ -29,20 +29,25 @@
             <a href="#"><button class="logoutbtn">ログアウト</button></a>
         </div>
     </div>
-    <div class="bottom-nav">
-        <a href="roomSelection.html" class="nav-item" img src="/image/homeChange.png"><i class="fa-solid fa-house"></i></a>
-        <a href="Calendar.jsp" class="nav-item" img src="/image/calendarChange.png"><i class="fa-solid fa-calendar"></i><span>カレンダー画面へ</span></a>
-        <% if(isMypage){ %>
-        	<!-- マイページ画面にいるとき -->
-        	<span class="fa-solid fa-house">
-        		<i class="fa-solid fa-user"></i>
-        	</span>
-        <% }else{ %>
-        	<!-- マイページ画面にいないとき -->
-        	<a href="Mypage" class="nav-item">
-        		<i class="fa-solid fa-user"></i>
-        	</a>
-        <% } %>
-    </div>
+   <div class="bottom-nav">
+    <a href="roomSelection.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+    </a>
+
+    <a href="Calendar.jsp" class="nav-item">
+        <i class="fa-solid fa-calendar"></i>
+        <span>カレンダー画面へ</span>
+    </a>
+
+    <% if(isMypage){ %>
+        <span class="nav-item active">
+            <i class="fa-solid fa-user"></i>
+        </span>
+    <% } else { %>
+        <a href="Mypage" class="nav-item">
+            <i class="fa-solid fa-user"></i>
+        </a>
+    <% } %>
+</div>
 </body>
 </html>
