@@ -29,7 +29,7 @@
             <a href="#"><button class="logoutbtn">ログアウト</button></a>
         </div>
     </div>
-   <div class="bottom-nav">
+    <div class="bottom-nav">
     <a href="roomSelection.html" class="nav-item">
         <i class="fa-solid fa-house"></i>
     </a>
@@ -48,6 +48,7 @@
             <i class="fa-solid fa-user"></i>
         </a>
     <% } %>
+</div>
 </div>
 </body>
 </html>
