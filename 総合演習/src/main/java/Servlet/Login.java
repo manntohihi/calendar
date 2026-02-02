@@ -68,7 +68,7 @@ public class Login extends HttpServlet {
 			session.setAttribute("loginUser", loginUser);
 			Room_members rm = new Room_members();
 			Room_membersDAO rmdao = new Room_membersDAO();
-			
+			//rm = rmdao.
 			dispatcher = request.getRequestDispatcher("/RoomSelection");
 			dispatcher.forward(request, response);
 		}

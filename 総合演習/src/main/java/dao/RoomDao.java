@@ -119,7 +119,6 @@ public class RoomDao {
 			//SELECT文の結果をArrayListに格納
 			while (rs.next()) {
 				int id = rs.getInt("ID");
-				String roomid = null;
 				String roomname = rs.getString("ROOMNAME");
 				String roompassword = null;
 				room = new Room(id,roomname,roompassword);

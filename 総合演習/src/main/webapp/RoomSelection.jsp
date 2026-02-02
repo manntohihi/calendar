@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
   
 <%@ page import="model.User,java.util.ArrayList,java.util.List" %>
-<% 	List<User> userList = new ArrayList<User>();
-	userList = (List<User>)session.getAttribute("loginUser"); %>
+<% 	User user = new User();
+	user = (User)session.getAttribute("loginUser"); %>
 <!doctype html>
 <html lang="ja">
   <head>
@@ -52,7 +52,7 @@
 	        	<%	
 	        		
 	        	%>
-	        
+	        	
 	      </div>
 	    </div>
 	</form>
