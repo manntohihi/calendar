@@ -26,17 +26,17 @@ public class MypageServlet extends HttpServlet {
 			throws ServletException, IOException {
 		//セッションの取得
 		HttpSession session = request.getSession(false);
+		
+		//ログインユーザーを取得
+		List<User> userList = new ArrayList<User>();
+		userList = (List<User>)session.getAttribute("loginUser");
 				
 		// 未ログインならログイン画面へ
 		if (session == null || session.getAttribute("loginUser") == null) {
 			response.sendRedirect("Login.jsp");
 			return;
 		}
-
-		//ログインユーザーを取得
-		List<User> userList = new ArrayList<User>();
-		userList = (List<User>)session.getAttribute("loginUser");
-
+		
 		// JSPに渡す
 		request.setAttribute("userList", userList);
 		//現在の画面の情報をJSPに渡す
