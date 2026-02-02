@@ -39,7 +39,7 @@ public class CreateNewUserServlet extends HttpServlet {
 		String name = request.getParameter("userName");
 		String password = request.getParameter("password");
 		String confirmPassword = request.getParameter("confirmPassword");
-		int iconNum = 0;
+		int iconNum = 1;
 
 		//新規ユーザーのユーザーIDを作成
 		int userID = CreateID();
