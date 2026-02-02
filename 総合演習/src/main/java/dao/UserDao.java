@@ -70,7 +70,7 @@ public class UserDao {
 			return false;
 		}
 
-		String sql = "INSERT INTO USER (userID, passwd, userName, icon) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO USER (userID, passwd, userName, icon_id) VALUES (?, ?, ?, ?)";
 
 		try (Connection conn = ds.getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -108,7 +108,7 @@ public class UserDao {
 		try (Connection conn = ds.getConnection()) {
 			System.out.println("try");
 			//SELECT文の準備
-			String sql = "SELECT userID, passwd, userName, icon FROM USER WHERE userID = ? AND PASSWD = ?;";
+			String sql = "SELECT userID, passwd, userName, icon_id FROM USER WHERE userID = ? AND PASSWD = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			//文の「?」に使用する値を設定してSQL文を完成
 			ps.setInt(1, userId);
@@ -123,7 +123,7 @@ public class UserDao {
 						rs.getInt("userId"),
 						rs.getString("passwd"),
 						rs.getString("userName"),
-						rs.getInt("icon"));
+						rs.getInt("icon_id"));
 			}
 		} catch (SQLException e) {
 			System.out.println("catch");
@@ -146,7 +146,7 @@ public class UserDao {
 		}
 
 		try (Connection conn = ds.getConnection()) {
-			String sql = "SELECT userId, passwd, userName, icon FROM USER WHERE userId = ?";
+			String sql = "SELECT userId, passwd, userName, icon_id FROM USER WHERE userId = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, userId);
 
@@ -157,7 +157,7 @@ public class UserDao {
 						rs.getInt("userId"),
 						rs.getString("passwd"),
 						rs.getString("userName"),
-						rs.getInt("icon"));
+						rs.getInt("icon_id"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -176,7 +176,7 @@ public class UserDao {
 
 			try (Connection conn = ds.getConnection()) {
 
-				String sql = "SELECT userId, passwd, userName, icon "
+				String sql = "SELECT userId, passwd, userName, icon_id "
 						+ "FROM USER WHERE userId = ? AND passwd = ?";
 
 				PreparedStatement ps = conn.prepareStatement(sql);
@@ -189,7 +189,7 @@ public class UserDao {
 					int id = rs.getInt("userId");
 					String pw = rs.getString("passwd");
 					String name = rs.getString("userName");
-					int icon = rs.getInt("icon");
+					int icon = rs.getInt("icon_id");
 
 					loginUser = new User(id, pw, name, icon);
 				}
