@@ -10,7 +10,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import dao.UserDao;
 import model.User;
@@ -33,7 +32,8 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher dispatcher;
 		dispatcher = request.getRequestDispatcher("/Login.jsp");
 		dispatcher.forward(request,response);
@@ -42,19 +42,25 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Login.java");
-		int ID = Integer.parseInt( request.getParameter("ID"));
-		String password = request.getParameter("password");
-		User user = new User();
-		user.setUserId(ID);
-		user.setPasswd(password);
-		UserDao ud = new UserDao();
-		List<User> userList = new ArrayList<User>();
-		userList= ud.login(user);
-		RequestDispatcher dispatcher;
-		String name = null;
-		System.out.println(userList.size()+"size");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {{
+				System.out.println("Login.java");
+				int ID = Integer.parseInt(request.getParameter("ID"));
+				String password = request.getParameter("password");
+				User user = new User();
+				user.setUserId(ID);
+				user.setPasswd(password);
+				UserDao ud = new UserDao();
+				List<User> userList = new ArrayList<User>();
+				userList= ud.login(user);
+				RequestDispatcher dispatcher;
+				String name = null;
+			}
+		
+		/*
+		System.out.println(userList.size()+"size");//削除
+		>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 		for(User use : userList) {
 			System.out.println("f2");
 			name = use.getUserName();
@@ -70,8 +76,15 @@ public class Login extends HttpServlet {
 			System.out.println("end");
 		}
 		dispatcher = request.getRequestDispatcher("/LoginError.jsp");
+<<<<<<< HEAD
 		System.out.println("eroor");
 		dispatcher.forward(request,response);
+=======
+
+		System.out.println("eroor");//削除
+		dispatcher.forward(request, response);//LoginError.jsp遷移
+
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 		//テスト
 		/*
 		if(ID==111111) {
