@@ -11,7 +11,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import dao.Room_membersDAO;
 import dao.UserDao;
+import model.Room_members;
 import model.User;
 
 /**
@@ -64,39 +66,17 @@ public class Login extends HttpServlet {
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
+			Room_members rm = new Room_members();
+			Room_membersDAO rmdao = new Room_membersDAO();
+			
 			dispatcher = request.getRequestDispatcher("/RoomSelection");
 			dispatcher.forward(request, response);
 		}
 		System.out.println("end");
-
-		/*
-		System.out.println(userList.size()+"size");//削除
-		>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
-		>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
-		for(User use : userList) {
-			System.out.println("f2");
-			name = use.getUserName();
-			if (name.equals(null)){
-				dispatcher = request.getRequestDispatcher("/LoginError.jsp");
-				dispatcher.forward(request,response);
-			}else {
-				HttpSession session = request.getSession();
-				session.setAttribute("loginUser",userList);
-				dispatcher = request.getRequestDispatcher("/RoomSelection");
-				dispatcher.forward(request,response);
-			}
-			System.out.println("end");
-		}
 		dispatcher = request.getRequestDispatcher("/LoginError.jsp");
-		<<<<<<< HEAD
 		System.out.println("eroor");
 		dispatcher.forward(request,response);
-		=======
 		
-		System.out.println("eroor");//削除
-		dispatcher.forward(request, response);//LoginError.jsp遷移
-		
-		>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 		//テスト
 		/*
 		if(ID==111111) {
