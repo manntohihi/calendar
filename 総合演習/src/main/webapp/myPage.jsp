@@ -38,7 +38,7 @@
     <div class="bottom-nav">
 
         <!-- ホーム -->
-        <a href="roomSelection.html" class="nav-item">
+        <a href="roomSelection.jsp" class="nav-item">
             <i class="fa-solid fa-house"></i>
         </a>
 
