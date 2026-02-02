@@ -70,6 +70,7 @@ public class RoomSelection extends HttpServlet {
 				rdao.createRoom(room, userID);//ROOMtableに保存
 				roomList.add(room);
 				session.setAttribute("roomList", roomList);
+				session.setAttribute("room", room);
 				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");
 				dispatcher.forward(request, response);//RoomChoice.jsp遷移
 			} else {//検索結果＝あり
