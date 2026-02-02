@@ -47,9 +47,9 @@ public class CalendarDAO {
 		//SELCT文を準備
 		String sql = "SELECT e.* "
 				+ "FROM calendar_events e "
-				+ "JOIN group_members gm ON e.group_id = gm.group_id "
-				+ "WHERE gm.user_id = ? " 
-				+ "AND e.group_id =  ? ;";
+				+ "JOIN room_members rm ON e.groupID = rm.groupID "
+				+ "WHERE rm.userID = ? " 
+				+ "AND e.groupID =  ? ;";
 		
 		PreparedStatement ps = conn.prepareStatement(sql);
 		
@@ -64,15 +64,15 @@ public class CalendarDAO {
 		//Employeeインスタンスに設定し、ArrayListインスタンスに追加
 		while(rs.next()) {
 			int id = rs.getInt("id");
-			int group_id = rs.getInt("group_id");
+			int group_id = rs.getInt("groupID");
 			String title = rs.getString("title");
 			String description = rs.getString("description");
 			LocalDateTime start_datetime = rs.getTimestamp("start_datetime").toLocalDateTime();
 			LocalDateTime end_datetime = rs.getTimestamp("end_datetime").toLocalDateTime();
 			int created_by = rs.getInt("created_by");
-			String coller = rs.getString("coller");
+			String color = rs.getString("color");
 			
-			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime, end_datetime, created_by,coller
+			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime, end_datetime, created_by,color
 					);
 			CalendarEventList.add(CalendarEvent);
 		}
@@ -112,18 +112,18 @@ public  CalendarEvent findEntryrDate(int loginUserId,int GroupId,String title){
 		try(Connection conn = ds.getConnection()){
 		
 		//SELCT文を準備
-		String sql = "SELECT e.* "
-				+ "FROM calendar_events e "
-				+ "JOIN group_members gm ON e.group_id = gm.group_id "
-				+ "WHERE gm.user_id = ? " 
-				+ "AND e.group_id =  ? "
-				+ "AND e.group_id =  ? ;";
+			String sql =
+				    "SELECT e.* " +
+				    "FROM calendar_events e " +
+				    "JOIN Room_members gm ON e.groupID = gm.groupID " +
+				    "WHERE gm.userID = ? " +
+				    "AND e.groupID = ? ";
 		
 		PreparedStatement ps = conn.prepareStatement(sql);
 		
 		ps.setLong(1, loginUserId);
 		ps.setLong(2, GroupId);
-		ps.setString(2, title);
+
 		
 		
 		//SELECT文を実行し、結果表を取得
@@ -181,7 +181,7 @@ public  CalendarEvent findEntryrDate(int loginUserId,int GroupId,String title){
 		//SELCT文を準備
 				String sql =
 				"INSERT INTO calendar_events " +
-				"(group_id, title, description, start_datetime, end_datetime, created_by) " +
+				"(groupID, title, description, start_datetime, end_datetime, created_by) " +
 				"VALUES (?, ?, ?, ?, ?, ?)";
 
 				PreparedStatement ps = conn.prepareStatement(sql);

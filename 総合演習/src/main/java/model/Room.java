@@ -4,6 +4,7 @@ public class Room {
 	int id = 0;
 	String roomname = null;
 	String roompassword =null;
+	
 	public Room() {
 		
 	}
