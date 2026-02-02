@@ -49,7 +49,7 @@ public class Room_membersDAO {
 		return roomList;
 	}
 	
-	public List<Room_members> find(){//
+	public List<Room_members> find(){//必要なものに変更する
 		 List<Room_members> roomList = new ArrayList<Room_members>();
 		 
 		InitialContext initCtx;

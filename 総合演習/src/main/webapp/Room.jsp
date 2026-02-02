@@ -32,17 +32,17 @@
 	        <p>残日数</p>
 	      </div>
 	      <div class="grid_test-child">
-	        <a href="#">
+	        <a href="RoomSelection">
 	        	<img src="img/Home.png" alt="Home" width="100">
 	        </a>
 	      </div>
 	      <div class="grid_test-child">
-	        <a href="#">
+	        <a href="CalendarServlet">
 	        	<img src="img/Chalendar.png" alt="Calendar" width="100">
 	        </a>
 	      </div>
 	      <div class="grid_test-child">
-	        <a href="#">
+	        <a href="Mypage">
         		<img src="img/Mypage.png" alt="Move" width="100">
     		</a>
 	      </div>
