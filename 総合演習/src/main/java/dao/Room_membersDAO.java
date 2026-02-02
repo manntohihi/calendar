@@ -49,7 +49,7 @@ public class Room_membersDAO {
 		return roomList;
 	}
 	
-	public List<Room_members> find(){//必要なものに変更する
+	public List<Room_members> find(Room_members rm){//必要なものに変更する
 		 List<Room_members> roomList = new ArrayList<Room_members>();
 		 
 		InitialContext initCtx;
@@ -63,9 +63,10 @@ public class Room_membersDAO {
 		
 		try (Connection conn = ds.getConnection()){
 			//SELECT文を準備
-			String sql = "SELECT ID,ROOMID,USERID FROM ROOM_MEMBERS ORDER BY ID DESC";
+			String sql = "SELECT ID,ROOMID,USERID FROM ROOM_MEMBERS WHERE USERID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			
+			//INSERT文の「?」に使用する値を設定してSQL文を完成
+ 			pStmt.setInt(1,rm.getuserID());
 			//SELECT文を実行し、結果票を取得
 			ResultSet rs = pStmt.executeQuery();
 			
