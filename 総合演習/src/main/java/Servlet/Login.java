@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import dao.UserDao;
-import model.Room_members;
 import model.User;
 
 /**
@@ -33,13 +32,9 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-<<<<<<< HEAD
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-=======
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("へい");//削除
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
+
 		RequestDispatcher dispatcher;
 		dispatcher = request.getRequestDispatcher("/Login.jsp");
 		dispatcher.forward(request, response);
@@ -48,16 +43,10 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-<<<<<<< HEAD
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Login.java");
 		int ID = Integer.parseInt(request.getParameter("ID"));
-=======
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Login.java");//削除
-		int ID = Integer.parseInt( request.getParameter("ID"));
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 		String password = request.getParameter("password");
 		User user = new User();
 		user.setUserId(ID);
@@ -68,13 +57,12 @@ public class Login extends HttpServlet {
 		loginUser = ud.login(user);
 		RequestDispatcher dispatcher;
 		String name = null;
-<<<<<<< HEAD
+
 		System.out.println(loginUser + "size");
 
 		/*
-=======
 		System.out.println(userList.size()+"size");//削除
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
+		>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 		for(User use : userList) {
 			System.out.println("f2");//削除
 			name = use.getUserName();
@@ -108,13 +96,10 @@ public class Login extends HttpServlet {
 		System.out.println("end");
 
 		dispatcher = request.getRequestDispatcher("/LoginError.jsp");
-<<<<<<< HEAD
-		System.out.println("eroor");
-		dispatcher.forward(request, response);
-=======
+
 		System.out.println("eroor");//削除
-		dispatcher.forward(request,response);//LoginError.jsp遷移
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
+		dispatcher.forward(request, response);//LoginError.jsp遷移
+
 		//テスト
 		/*
 		if(ID==111111) {
