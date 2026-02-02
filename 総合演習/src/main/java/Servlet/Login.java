@@ -34,6 +34,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("へい");//削除
 		RequestDispatcher dispatcher;
 		dispatcher = request.getRequestDispatcher("/Login.jsp");
 		dispatcher.forward(request,response);
@@ -43,7 +44,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Login.java");
+		System.out.println("Login.java");//削除
 		int ID = Integer.parseInt( request.getParameter("ID"));
 		String password = request.getParameter("password");
 		User user = new User();
@@ -54,24 +55,24 @@ public class Login extends HttpServlet {
 		userList= ud.login(user);
 		RequestDispatcher dispatcher;
 		String name = null;
-		System.out.println(userList.size()+"size");
+		System.out.println(userList.size()+"size");//削除
 		for(User use : userList) {
-			System.out.println("f2");
+			System.out.println("f2");//削除
 			name = use.getUserName();
 			if (name.equals(null)){
 				dispatcher = request.getRequestDispatcher("/LoginError.jsp");
-				dispatcher.forward(request,response);
+				dispatcher.forward(request,response);//遷移
 			}else {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser",userList);
 				dispatcher = request.getRequestDispatcher("/RoomSelection");
-				dispatcher.forward(request,response);
+				dispatcher.forward(request,response);//遷移
 			}
-			System.out.println("end");
+			System.out.println("end");//削除
 		}
 		dispatcher = request.getRequestDispatcher("/LoginError.jsp");
-		System.out.println("eroor");
-		dispatcher.forward(request,response);
+		System.out.println("eroor");//削除
+		dispatcher.forward(request,response);//遷移
 		//テスト
 		/*
 		if(ID==111111) {
