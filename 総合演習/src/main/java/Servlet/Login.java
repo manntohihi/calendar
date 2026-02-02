@@ -34,6 +34,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("へい");//削除
 		RequestDispatcher dispatcher;
 		dispatcher = request.getRequestDispatcher("/Login.jsp");
 		dispatcher.forward(request,response);
