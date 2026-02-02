@@ -1,6 +1,8 @@
 package Servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,6 +21,7 @@ public class MypageServlet extends HttpServlet {
 		super();
 	}
 	
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//セッションの取得
@@ -31,12 +34,13 @@ public class MypageServlet extends HttpServlet {
 		}
 
 		//ログインユーザーを取得
-		User user = (User) session.getAttribute("loginUser");
+		List<User> userList = new ArrayList<User>();
+		userList = (List<User>)session.getAttribute("loginUser");
 
 		// JSPに渡す
-		request.setAttribute("user", user);
+		request.setAttribute("userList", userList);
 		//現在の画面の情報をJSPに渡す
-		request.setAttribute("currentPage", "Mypage");
+		request.setAttribute("currentPage","Mypage");
 
 		//フォワード
 		request.getRequestDispatcher("myPage.jsp").forward(request, response);

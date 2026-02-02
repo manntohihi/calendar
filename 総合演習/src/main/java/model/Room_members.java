@@ -5,6 +5,9 @@ public class Room_members {
 	String roomID = null;
 	String userID = null;
 	
+	public Room_members(){
+	}
+	
 	public Room_members(int id,String roomid,String userid){
 		this.ID = id;
 		this.roomID = roomid;

@@ -49,7 +49,7 @@ public class Room_membersDAO {
 		return roomList;
 	}
 	
-	public List<Room_members> find(){//
+	public List<Room_members> find(){//必要なものに変更する
 		 List<Room_members> roomList = new ArrayList<Room_members>();
 		 
 		InitialContext initCtx;
@@ -83,4 +83,37 @@ public class Room_membersDAO {
 		}
 		return roomList;
 	}
+	
+	//insert文
+	public boolean createMenber(Room_members Room_members) {
+ 		InitialContext initCtx;
+ 		DataSource ds = null;
+ 		try {
+ 			initCtx = new InitialContext();
+ 			ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/calendar");//DBの場所へ変更
+ 		}catch(NamingException e) {
+ 			e.printStackTrace();
+ 		}
+ 		//データベース接続
+ 		try (Connection conn = ds.getConnection()){
+ 			//INSERT文の準備
+ 			String sql = "INSERT INTO ROOM(ROOMID,ROOMNAME,ROOMPASSWD) VALUES(?,?,?)";//変更
+ 			PreparedStatement pStmt = conn.prepareStatement(sql);
+ 			//INSERT文の「?」に使用する値を設定してSQL文を完成
+ 			pStmt.setInt(1,Room_members.getID());
+ 			pStmt.setString(2,Room_members.getroomID());
+ 			pStmt.setString(3,Room_members.getuserID());
+ 			
+ 			//INSERT文を実行
+ 			int result = pStmt.executeUpdate();
+ 			if (result != 1) {
+ 				return false;
+ 			}
+ 		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+ 		
+ 		}
+ 		return true;
+ 	}
 }
