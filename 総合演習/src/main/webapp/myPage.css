@@ -66,8 +66,10 @@ body {
     display: flex;
     background: #fafafa;
     border-top: 1px solid #000;
+    justify-content: space-around; /* ← 安定して均等配置 */
 }
 
+/* ナビアイテム */
 .nav-item {
     flex: 1;
     text-align: center;
@@ -80,14 +82,17 @@ body {
     gap: 4px;
 }
 
+/* ホバー */
 .nav-item:hover {
     background: #aca4ff;
 }
 
+/* アイコン */
 .nav-item i {
     font-size: 20px;
 }
 
+/* 現在地 */
 .nav-item.active {
     background: #ddd;
     pointer-events: none;

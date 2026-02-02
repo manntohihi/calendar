@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page import="model.User" %>
 <%
-	User user = (User)request.getAttribute("user");
-	if(user == null){
-		response.sendRedirect("Login.jsp");
-		return;
-	}
-	String current = (String)request.getAttribute("currentPage");
-	boolean isMypage = "Mypage".equals(current);
+    User user = (User)request.getAttribute("user");
+    if(user == null){
+        response.sendRedirect("Login.jsp");
+        return;
+    }
+    String current = (String)request.getAttribute("currentPage");
+    boolean isMypage = "Mypage".equals(current);
 %>
-<%@ page import="java.util.List,java.util.ArrayList,model.User" %>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -18,37 +18,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+
+    <!-- 上部プロフィール -->
     <div class="container">
         <div class="icon">
             <img src="default.png" alt="アイコン">
         </div>
+
         <div class="info">
             <label class="username"><%= user.getUserName() %></label>
             <a href="#"><button class="namecgbtn">名前を変更</button></a>
-            <label class="userid">ID:<%= user.getUserId() %></label>
+
+            <label class="userid">ID: <%= user.getUserId() %></label>
             <a href="#"><button class="logoutbtn">ログアウト</button></a>
         </div>
     </div>
+
+    <!-- 下部ナビゲーション -->
     <div class="bottom-nav">
-    <a href="roomSelection.html" class="nav-item">
-        <i class="fa-solid fa-house"></i>
-    </a>
 
-    <a href="Calendar.jsp" class="nav-item">
-        <i class="fa-solid fa-calendar"></i>
-        <span>カレンダー画面へ</span>
-    </a>
-
-    <% if(isMypage){ %>
-        <span class="nav-item active">
-            <i class="fa-solid fa-user"></i>
-        </span>
-    <% } else { %>
-        <a href="Mypage" class="nav-item">
-            <i class="fa-solid fa-user"></i>
+        <!-- ホーム -->
+        <a href="roomSelection.html" class="nav-item">
+            <i class="fa-solid fa-house"></i>
         </a>
-    <% } %>
-</div>
-</div>
+
+        <!-- カレンダー -->
+        <a href="Calendar.jsp" class="nav-item">
+            <i class="fa-solid fa-calendar"></i>
+            <span>カレンダー画面へ</span>
+        </a>
+
+        <!-- マイページ -->
+        <% if(isMypage){ %>
+            <span class="nav-item active">
+                <i class="fa-solid fa-user"></i>
+            </span>
+        <% } else { %>
+            <a href="Mypage" class="nav-item">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        <% } %>
+
+    </div>
+
 </body>
 </html>
