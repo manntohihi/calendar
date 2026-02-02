@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
   
 <%@ page import="model.User,java.util.ArrayList,java.util.List" %>
-<% 	//User user = new User();
-	//user = (User)session.getAttribute("loginUser"); %>
+<% 	User user = new User();
+	user = (User)session.getAttribute("loginUser"); %>
 <!doctype html>
 <html lang="ja">
   <head>
