@@ -1,35 +1,35 @@
 package model;
 
 public class Room_members {
-	int ID;
-	String roomID = null;
-	String userID = null;
+	String ID=null;
+	int roomID;
+	int userID;
 	
 	public Room_members(){
 	}
 	
-	public Room_members(int id,String roomid,String userid){
+	public Room_members(String id,int roomid,int userid){
 		this.ID = id;
 		this.roomID = roomid;
 		this.userID = userid;
 	}
 	
-	public int getID() {
+	public String getID() {
 		return this.ID;
 	}
-	public void setID(int id) {
+	public void setID(String id) {
 		this.ID=id;
 	}
-	public String getroomID() {
+	public int getroomID() {
 		return this.roomID;
 	}
-	public void setroomID(String roomid) {
+	public void setroomID(int roomid) {
 		this.roomID=roomid;
 	}
-	public String getuserID() {
+	public int getuserID() {
 		return this.userID;
 	}
-	public void setID(String userid) {
+	public void setID(int userid) {
 		this.userID=userid;
 	}
 	

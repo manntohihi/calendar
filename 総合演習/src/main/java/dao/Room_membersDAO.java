@@ -28,7 +28,7 @@ public class Room_membersDAO {
 		
 		try (Connection conn = ds.getConnection()){
 			//SELECT文を準備
-			String sql = "SELECT ID,ROOMID,USERID FROM ROOM_MEMBERS ORDER BY ID DESC";
+			String sql = "SELECT ID,ROOMMID,USERID FROM ROOM_MEMBERS ORDER BY ID DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			//SELECT文を実行し、結果票を取得
@@ -36,9 +36,9 @@ public class Room_membersDAO {
 			
 			//SELECT文の結果をArrayListに格納
 			while (rs.next()) {
-				int id = rs.getInt("ID");
-				String roomid = rs.getString("ROOMID");
-				String userid = rs.getString("USERID");
+				String id = rs.getString("ID");
+				int roomid = rs.getInt("ROOMID");
+				int userid = rs.getInt("USERID");
 				Room_members room_members = new Room_members(id,roomid,userid);
 				roomList.add(room_members);
 			}
@@ -71,9 +71,9 @@ public class Room_membersDAO {
 			
 			//SELECT文の結果をArrayListに格納
 			while (rs.next()) {
-				int id = rs.getInt("ID");
-				String roomid = rs.getString("ROOMID");
-				String userid = rs.getString("USERID");
+				String id = rs.getString("ID");
+				int roomid = rs.getInt("ROOMID");
+				int userid = rs.getInt("USERID");
 				Room_members room_members = new Room_members(id,roomid,userid);
 				roomList.add(room_members);
 			}
@@ -97,12 +97,12 @@ public class Room_membersDAO {
  		//データベース接続
  		try (Connection conn = ds.getConnection()){
  			//INSERT文の準備
- 			String sql = "INSERT INTO ROOM(ROOMID,ROOMNAME,ROOMPASSWD) VALUES(?,?,?)";//変更
+ 			String sql = "INSERT INTO ROOM_MEMBERS(ID,ROOMID,USERID) VALUES(?,?,?)";//変更
  			PreparedStatement pStmt = conn.prepareStatement(sql);
  			//INSERT文の「?」に使用する値を設定してSQL文を完成
- 			pStmt.setInt(1,Room_members.getID());
- 			pStmt.setString(2,Room_members.getroomID());
- 			pStmt.setString(3,Room_members.getuserID());
+ 			pStmt.setString(1,Room_members.getID());
+ 			pStmt.setInt(2,Room_members.getroomID());
+ 			pStmt.setInt(3,Room_members.getuserID());
  			
  			//INSERT文を実行
  			int result = pStmt.executeUpdate();
