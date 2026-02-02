@@ -28,7 +28,7 @@ public class Room_membersDAO {
 		
 		try (Connection conn = ds.getConnection()){
 			//SELECT文を準備
-			String sql = "SELECT ID,ROOMMID,USERID FROM ROOM_MEMBERS ORDER BY ID DESC";
+			String sql = "SELECT ID,GROUPID,USERID FROM ROOM_MEMBERS ORDER BY ID DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			//SELECT文を実行し、結果票を取得
@@ -63,7 +63,7 @@ public class Room_membersDAO {
 		
 		try (Connection conn = ds.getConnection()){
 			//SELECT文を準備
-			String sql = "SELECT ID,ROOMID,USERID FROM ROOM_MEMBERS WHERE USERID = ?";
+			String sql = "SELECT ID,GROUPID,USERID FROM ROOM_MEMBERS WHERE USERID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			//INSERT文の「?」に使用する値を設定してSQL文を完成
  			pStmt.setInt(1,rm.getuserID());
@@ -98,7 +98,7 @@ public class Room_membersDAO {
  		//データベース接続
  		try (Connection conn = ds.getConnection()){
  			//INSERT文の準備
- 			String sql = "INSERT INTO ROOM_MEMBERS(ID,ROOMID,USERID) VALUES(?,?,?)";//変更
+ 			String sql = "INSERT INTO ROOM_MEMBERS(ID,GROUPID,USERID) VALUES(?,?,?)";//変更
  			PreparedStatement pStmt = conn.prepareStatement(sql);
  			//INSERT文の「?」に使用する値を設定してSQL文を完成
  			pStmt.setString(1,Room_members.getID());
