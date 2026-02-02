@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import dao.UserDao;
+import model.Room_members;
 import model.User;
 
 /**
@@ -61,18 +62,21 @@ public class Login extends HttpServlet {
 			name = use.getUserName();
 			if (name.equals(null)){
 				dispatcher = request.getRequestDispatcher("/LoginError.jsp");
-				dispatcher.forward(request,response);//遷移
+				dispatcher.forward(request,response);//LoginError.jsp遷移
 			}else {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser",userList);
+				Room_members rm = new Room_members();//グループ作成	
+				
+				
 				dispatcher = request.getRequestDispatcher("/RoomSelection");
-				dispatcher.forward(request,response);//遷移
+				dispatcher.forward(request,response);//Servlet.RoomSelection.java遷移
 			}
 			System.out.println("end");//削除
 		}
 		dispatcher = request.getRequestDispatcher("/LoginError.jsp");
 		System.out.println("eroor");//削除
-		dispatcher.forward(request,response);//遷移
+		dispatcher.forward(request,response);//LoginError.jsp遷移
 		//テスト
 		/*
 		if(ID==111111) {
