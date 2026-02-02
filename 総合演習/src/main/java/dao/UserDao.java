@@ -36,10 +36,10 @@ public class UserDao {
 			//SELECT文の準備
 			String sql = "SELECT userId, passwd, userName, icon FROM USER ORDER BY userId DESC;";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			
+
 			//SELECT文を実行し、結果を取得
 			ResultSet rs = ps.executeQuery();
-			
+
 			//SELECT文を取得後、AllayListに格納
 			while (rs.next()) {
 				int userId = rs.getInt("userID");
@@ -166,8 +166,9 @@ public class UserDao {
 
 	}
 
-	public List<User> login(User user) {
-		List<User> userList = new ArrayList<>();
+	public User login(User user) {
+		//		List<User> userList = new ArrayList<>();
+		User loginUser = new User();
 
 		try {
 			InitialContext ic = new InitialContext();
@@ -190,7 +191,7 @@ public class UserDao {
 					String name = rs.getString("userName");
 					int icon = rs.getInt("icon");
 
-					userList.add(new User(id, pw, name, icon));
+					loginUser = new User(id, pw, name, icon);
 				}
 
 			}
@@ -200,6 +201,6 @@ public class UserDao {
 			return null;
 		}
 
-		return userList;
+		return loginUser;
 	}
 }
