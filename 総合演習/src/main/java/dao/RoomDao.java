@@ -11,14 +11,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-
 import model.Room;
-import model.User;
 
 public class RoomDao {
-	HttpServletRequest request;
 
 	//SELECT文関係
 	public List<Room> findAll() {//全部
@@ -175,10 +170,7 @@ public class RoomDao {
 	}
 
 	//INSERT文関係
-	public boolean createRoom(Room room) {
-		HttpSession session = request.getSession();
-		User user = new User();
-		user = (User) session.getAttribute("loginUser");
+	public boolean createRoom(Room room, int userId) {
 
 		InitialContext initCtx;
 		DataSource ds = null;
@@ -197,7 +189,7 @@ public class RoomDao {
 			pStmt.setInt(1, room.getId());
 			pStmt.setString(2, room.getRoomname());
 			pStmt.setString(3, room.getRoompassword());
-			pStmt.setInt(4, user.getUserId());
+			pStmt.setInt(4, userId);
 
 			//INSERT文を実行
 			int result = pStmt.executeUpdate();
