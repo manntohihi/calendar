@@ -45,7 +45,7 @@ public class RoomChoice extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		System.out.println("RCdP");
+		System.out.println("RCdP");//削除
 		RequestDispatcher dispatcher;
 		HttpSession session = request.getSession();
 		int ID = Integer.parseInt( request.getParameter("roomID"));
@@ -53,23 +53,23 @@ public class RoomChoice extends HttpServlet {
 		List<Room> roomList = new ArrayList<Room>();
 		roomList = (List<Room>) session.getAttribute("roomList");
 		for(Room room : roomList) {
-			System.out.println("for");
+			System.out.println("for");//削除
 			if(ID == room.getId()) {
-				System.out.println("if1");
+				System.out.println("if1");//削除
 				if(password.equals(room.getRoompassword())) {
-					System.out.println("if2");
+					System.out.println("if2");//削除
 					/*if() {
 						//calendarDao完成後collarを入れる
 					}*/
 					session.setAttribute("room", room);
 					dispatcher = request.getRequestDispatcher("/Room.jsp");
-					dispatcher.forward(request,response);
+					dispatcher.forward(request,response);//Room.jsp遷移
 				}
 			}
 		}
-		System.out.println("error");
+		System.out.println("error");//削除
 		dispatcher = request.getRequestDispatcher("/RoomChoiceError.jsp");
-		dispatcher.forward(request,response);
+		dispatcher.forward(request,response);//Room.jsp遷移
 	}
 
 }
