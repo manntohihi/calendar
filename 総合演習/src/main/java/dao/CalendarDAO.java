@@ -183,7 +183,7 @@ public  CalendarEvent findEntryrDate(int loginUserId,int GroupId,String title){
 				"INSERT INTO calendar_events " +
 				"(groupID, title, description, start_datetime, end_datetime, created_by,color) " +
 				"VALUES (?, ?, ?, ?, ?, ?, ?)";
-
+				
 				PreparedStatement ps = conn.prepareStatement(sql);
 				
 				ps.setLong(1, group_id);

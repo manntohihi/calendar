@@ -65,7 +65,7 @@ public class CalendarServlet extends HttpServlet {
 				int group_id = 2;
 				String memo      = request.getParameter("memo");
 				String staffName = request.getParameter("staffName");
-				int user_id = 301973; 
+				int user_id = 301973;
 				String color = "yellow";
 	    
 				String s = request.getParameter("startDate");
