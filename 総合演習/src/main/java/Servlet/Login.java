@@ -57,7 +57,7 @@ public class Login extends HttpServlet {
 		RequestDispatcher dispatcher;
 		String name = null;
 
-		System.out.println("f2");
+		System.out.println("Login.java f2");
 		loginUser = ud.login(user);
 		name = loginUser.getUserName();
 		if (Objects.isNull(name)) {
@@ -72,9 +72,9 @@ public class Login extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("/RoomSelection");
 			dispatcher.forward(request, response);
 		}
-		System.out.println("end");
+		System.out.println("logi.java end");
 		dispatcher = request.getRequestDispatcher("/LoginError.jsp");
-		System.out.println("eroor");
+		System.out.println("login.java eroor");
 		dispatcher.forward(request,response);
 		
 		//テスト
