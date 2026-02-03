@@ -47,14 +47,15 @@ public class RoomSelection extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("RoomSelection.javaPost");//削除
-		String botton = request.getParameter("rs.java botton");
+		String botton = request.getParameter("botton");
+		System.out.println("rs.java "+botton);
 		HttpSession session = request.getSession();
 		RequestDispatcher dispatcher;
 		User loginUser = new User();
 		loginUser = (User) session.getAttribute("loginUser");
 		int userid = 0;
 		userid = loginUser.getUserId();
-		System.out.println("rs.java"+userid);
+		System.out.println("rs.java "+userid);
 		int ID = 0;
 		List<Room> roomList = new ArrayList<Room>();
 		RoomDao rdao = new RoomDao();
