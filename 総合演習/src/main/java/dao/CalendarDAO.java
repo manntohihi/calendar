@@ -179,7 +179,7 @@ public  CalendarEvent findEntryrDate(int loginUserId,int GroupId,String title){
 		try(Connection conn = ds.getConnection()){
 		
 		//SELCT文を準備
-				String sql =
+				String sql = 
 				"INSERT INTO calendar_events " +
 				"(groupID, title, description, start_datetime, end_datetime, created_by,color) " +
 				"VALUES (?, ?, ?, ?, ?, ?, ?)";
