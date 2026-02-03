@@ -56,6 +56,9 @@ public class CreateNewUserServlet extends HttpServlet {
 			//登録が完了したら部屋選択画面へ遷移する。
 			//			dispatcher = request.getRequestDispatcher("/RoomSelection");
 			//			dispatcher.forward(request, response);
+
+			//			JOptionPane.showMessageDialog(null, "あなたのIDは" + userID + "です。");
+
 			response.sendRedirect("RoomSelection");
 
 		} else {
