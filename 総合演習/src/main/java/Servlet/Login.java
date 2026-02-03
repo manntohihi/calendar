@@ -57,7 +57,7 @@ public class Login extends HttpServlet {
 		RequestDispatcher dispatcher;
 		String name = null;
 
-		System.out.println("f2");
+		System.out.println("Login.java f2");
 		loginUser = ud.login(user);
 		name = loginUser.getUserName();
 		if (Objects.isNull(name)) {
@@ -66,17 +66,18 @@ public class Login extends HttpServlet {
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
-			Room_members rm = new Room_members();
+			Room_members rm = new Room_members();//room_membe追加
 			Room_membersDAO rmdao = new Room_membersDAO();
 			//rm = rmdao.
-			dispatcher = request.getRequestDispatcher("/RoomSelection");
+			dispatcher = request.getRequestDispatcher("/RoomSelection.jsp");
 			dispatcher.forward(request, response);
 		}
-		System.out.println("end");
+		System.out.println("login.java end");
+		/*
 		dispatcher = request.getRequestDispatcher("/LoginError.jsp");
-		System.out.println("eroor");
+		System.out.println("login.java eroor");
 		dispatcher.forward(request,response);
-		
+		*/
 		//テスト
 		/*
 		if(ID==111111) {

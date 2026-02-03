@@ -102,7 +102,7 @@ function renderCalendar(date) {
         '</a>';
     });
     eventHtml += '</div>';
-
+ 
     const isToday =
       year === today.getFullYear() &&
       month === today.getMonth() &&
