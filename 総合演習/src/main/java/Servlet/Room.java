@@ -34,7 +34,7 @@ public class Room extends HttpServlet {
 		//System.out.println(user.getUserId());
 		
 		RequestDispatcher dispatcher;
-		dispatcher = request.getRequestDispatcher("/Room.jsp");
+		dispatcher = request.getRequestDispatcher("/Room.jsp");// /jsp/Room.jsp
 		dispatcher.forward(request,response);//遷移
 	}
 

@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   
-<%@ page import="model.User,java.util.ArrayList,java.util.List" %>
+<%@ page import="model.User,model.Room_members,java.util.ArrayList,java.util.List" %>
 <% 	User user = new User();
-	user = (User)session.getAttribute("loginUser"); %>
+	user = (User)session.getAttribute("loginUser");
+	Room_members rm = new Room_members();
+	rm = (Room_members) session.getAttribute("rm");
+	
+	%>
 <!doctype html>
 <html lang="ja">
   <head>

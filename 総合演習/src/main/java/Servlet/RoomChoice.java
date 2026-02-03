@@ -32,7 +32,7 @@ public class RoomChoice extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher;
-		dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");
+		dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp
 		dispatcher.forward(request,response);
 	}
 
@@ -78,12 +78,12 @@ public class RoomChoice extends HttpServlet {
 					//calendarDao完成後collarを入れる
 				}*/
 				session.setAttribute("room", room);
-				dispatcher = request.getRequestDispatcher("/Room.jsp");
+				dispatcher = request.getRequestDispatcher("/Room.jsp");// /jsp/Room.jsp
 				dispatcher.forward(request,response);//Room.jsp遷移
 			}
 		}
 		System.out.println("error");//削除
-		dispatcher = request.getRequestDispatcher("/RoomChoiceError.jsp");
+		dispatcher = request.getRequestDispatcher("/RoomChoiceError.jsp");// /jsp/RoomChoiceError.jsp
 		dispatcher.forward(request,response);//Room.jsp遷移
 	}
 

@@ -86,7 +86,7 @@ public class Room_membersDAO {
 	}
 	
 	//insert文
-	public boolean createMenber(Room_members Room_members) {
+	public boolean createMember(Room_members Room_members) {
  		InitialContext initCtx;
  		DataSource ds = null;
  		try {
