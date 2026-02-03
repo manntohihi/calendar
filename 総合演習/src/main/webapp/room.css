@@ -7,21 +7,24 @@
  .grid_test-child:nth-child(1) {
      grid-column:1/4;    /* 配置指定 */
      grid-row:1;       /* 配置指定 */
-	 border-bottom: 2px skyblue;
+	 margin: 30px;
+	 border: 3px solid #4caf50;
  }
  .grid_test-child:nth-child(2) {
      grid-column:1/4;    /* 配置指定 */
      grid-row:2/5;       /* 配置指定 */
-	 border-bottom: 2px skyblue; /* 下線だけ */
+	 border-top: 2px solid skyblue;
+	 border-bottom: 2px solid skyblue; /* 下線だけ */
  }
  .grid_test-child:nth-child(3) {
      grid-column:1/4;    /* 配置指定 */
      grid-row:5/7;       /* 配置指定 */
-	 border-bottom: 2px skyblue; /* 下線だけ */
+	 border-bottom: 2px solid skyblue; /* 下線だけ */
  }
  .grid_test-child:nth-child(4) {
-     grid-column:1;    /* 配置指定 */
-     grid-row:7/9;       /* 配置指定 */
+	margin: 0;
+	  padding: 0;
+	  box-sizing: border-box;
  	text-align: center;
 	border-right:2px solid skyblue;
  }
@@ -32,7 +35,9 @@
 	border-right:2px solid skyblue;
  }
  .grid_test-child:nth-child(6) {
-     grid-column:3;    /* 配置指定 */
+	grid-row:7/9;       /* 配置指定 */
+	text-align: center;
+    grid-column:3;    /* 配置指定 */
 
  }
 
