@@ -157,7 +157,7 @@ public  CalendarEvent findEntryrDate(int loginUserId,int GroupId,String title){
 
 
 
-	public void setCalendarDate(int group_id,String title,String texdescription, LocalDateTime start_datetime,LocalDateTime end_datetime,int created_by){
+	public void setCalendarDate(int group_id,String title,String texdescription, LocalDateTime start_datetime,LocalDateTime end_datetime,int created_by,String color){
 		CalendraEventList PostPrductLogic = null;
 		List<CalendarEvent> CalendarEventList = new ArrayList();
 		
@@ -179,11 +179,11 @@ public  CalendarEvent findEntryrDate(int loginUserId,int GroupId,String title){
 		try(Connection conn = ds.getConnection()){
 		
 		//SELCT文を準備
-				String sql =
+				String sql = 
 				"INSERT INTO calendar_events " +
-				"(groupID, title, description, start_datetime, end_datetime, created_by) " +
-				"VALUES (?, ?, ?, ?, ?, ?)";
-
+				"(groupID, title, description, start_datetime, end_datetime, created_by,color) " +
+				"VALUES (?, ?, ?, ?, ?, ?, ?)";
+				
 				PreparedStatement ps = conn.prepareStatement(sql);
 				
 				ps.setLong(1, group_id);
@@ -192,6 +192,7 @@ public  CalendarEvent findEntryrDate(int loginUserId,int GroupId,String title){
 				ps.setTimestamp(4, Timestamp.valueOf(start_datetime));
 				ps.setTimestamp(5, Timestamp.valueOf(end_datetime));
 				ps.setLong(6, created_by);
+				ps.setString(7, color);
 				System.out.println(ps);
 				ps.executeUpdate();
 		
