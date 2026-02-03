@@ -19,7 +19,9 @@
   <a href="CalendarServlet" class="back">← 戻る</a>
 
   <!-- タイトル -->
-  <h1>予定を入力</h1>
+  <h1><input type="text" name="title" placeholder="予定を入力"></h1>
+  
+  
 
   <!-- 期間 -->
   <div class="period">
