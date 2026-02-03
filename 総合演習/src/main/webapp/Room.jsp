@@ -43,7 +43,7 @@
 	      </div>
 	      <div class="grid_test-child">
 	        <a href="Mypage">
-        		<img src="img/Mypage.png" alt="Move" width="100">
+        		<img  src="img/Mypage.png" alt="Move" width="100">
     		</a>
 	      </div>
 	    </div>
