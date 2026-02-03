@@ -2,7 +2,7 @@ package model;
 
 public class Room_members {
 	String ID=null;
-	int roomID;
+	int roomID;//=groupid
 	int userID;
 	
 	public Room_members(){

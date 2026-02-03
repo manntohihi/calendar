@@ -37,7 +37,7 @@ public class RoomSelection extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("RoomSelection.java Get");//削除
 		RequestDispatcher dispatcher;
-		dispatcher = request.getRequestDispatcher("/RoomSelection.jsp");
+		dispatcher = request.getRequestDispatcher("/RoomSelection.jsp");// /jsp/RoomSelection.jsp
 		dispatcher.forward(request,response);
 		
 	}
@@ -72,11 +72,11 @@ public class RoomSelection extends HttpServlet {
 				//roomList= new ArrayList<Room>();
 				//roomList.add(room);
 				session.setAttribute("room", room);
-				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");
+				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp
 				dispatcher.forward(request,response);//RoomChoice.jsp遷移
 			}else {//検索結果＝あり
 				System.out.println("rs.java not create");//削除
-				dispatcher = request.getRequestDispatcher("/RoomSelectionCreateError.jsp");
+				dispatcher = request.getRequestDispatcher("/RoomSelectionCreateError.jsp");// /jsp/RoomSelectionCreateError.jsp
 				dispatcher.forward(request,response);//RoomSelectionCreateError.jsp遷移
 			}
 		}else if ("検索".equals(botton)){//検索bottonが押される
@@ -86,7 +86,7 @@ public class RoomSelection extends HttpServlet {
 			roomList = rdao.findFromID(ID);//ROOMtableにIDを送りIDに合致したデータをもらう
 			if(roomList.size()!= 1) {//検索結果＝なし
 				System.out.println("rs.java 検索結果＝なし");//削除
-				dispatcher = request.getRequestDispatcher("/RoomSelectionError.jsp");
+				dispatcher = request.getRequestDispatcher("/RoomSelectionError.jsp");// /jsp/RoomSelectionError.jsp
 				dispatcher.forward(request,response);//RoomSelectionError.jsp遷移
 			}else {//検索結果＝あり
 				session.setAttribute("roomList", roomList);//セッションにroomListを保存
@@ -96,7 +96,7 @@ public class RoomSelection extends HttpServlet {
 						session.setAttribute("room", room);
 					}else {
 						System.out.println("rs.java not se");//削除
-					dispatcher = request.getRequestDispatcher("/RoomSelectionError.jsp");
+					dispatcher = request.getRequestDispatcher("/RoomSelectionError.jsp");// /jsp/RoomSelectionError.jsp
 					dispatcher.forward(request,response);//RoomSelectionError.jsp遷移
 					}
 					
@@ -104,7 +104,7 @@ public class RoomSelection extends HttpServlet {
 				System.out.println(roomList);//削除
 				System.out.println("rs.java 検索結果＝あり");//削除
 				
-				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");
+				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp
 				dispatcher.forward(request,response);//RoomChoice.jsp遷移
 			}
 			/*

@@ -11,9 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import dao.Room_membersDAO;
 import dao.UserDao;
-import model.Room_members;
 import model.User;
 
 /**
@@ -61,15 +59,12 @@ public class Login extends HttpServlet {
 		loginUser = ud.login(user);
 		name = loginUser.getUserName();
 		if (Objects.isNull(name)) {
-			dispatcher = request.getRequestDispatcher("/LoginError.jsp");
+			dispatcher = request.getRequestDispatcher("/LoginError.jsp");// /jsp/LoginError.jsp
 			dispatcher.forward(request, response);
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
-			Room_members rm = new Room_members();//room_membe追加
-			Room_membersDAO rmdao = new Room_membersDAO();
-			//rm = rmdao.
-			dispatcher = request.getRequestDispatcher("/RoomSelection.jsp");
+			dispatcher = request.getRequestDispatcher("/RoomSelection.jsp");// /jsp/RoomSelection.jsp
 			dispatcher.forward(request, response);
 		}
 		System.out.println("login.java end");
