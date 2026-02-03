@@ -106,7 +106,7 @@ public class UserDao {
 		}
 
 		try (Connection conn = ds.getConnection()) {
-			System.out.println("try");
+			System.out.println("userdao try");
 			//SELECT文の準備
 			String sql = "SELECT userID, passwd, userName, icon_id FROM USER WHERE userID = ? AND PASSWD = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -126,7 +126,7 @@ public class UserDao {
 						rs.getInt("icon_id"));
 			}
 		} catch (SQLException e) {
-			System.out.println("catch");
+			System.out.println("userdao catch");
 			e.printStackTrace();
 			return null;
 		}
