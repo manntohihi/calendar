@@ -37,8 +37,8 @@
     <!-- 下部ナビゲーション -->
     <div class="bottom-nav">
 
-        <!-- ホーム -->
-        <a href="roomSelection.jsp" class="nav-item">
+        <!-- 部屋選択 -->
+        <a href="RoomSelection.jsp" class="nav-item">
             <i class="fa-solid fa-house"></i>
         </a>
 

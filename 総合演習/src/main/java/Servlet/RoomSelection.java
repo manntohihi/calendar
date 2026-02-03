@@ -66,11 +66,12 @@ public class RoomSelection extends HttpServlet {
 			String roomPasswd = request.getParameter("roompassword");
 			Room room = new Room(ID,roomName,roomPasswd); //のちに出てくるroomとは別物
 			roomList = rdao.findFromID(ID);
-			if(roomList.size()!= 1) {//検索結果＝なし
+			if(roomList.size()!= 1) {//同一のroomIDがないか検索 結果＝なし
 				System.out.println("rs.java create");//削除
 				rdao.createRoom(room,userid);//ROOMtableに保存
-				roomList.add(room);
-				session.setAttribute("roomList", roomList);
+				//roomList= new ArrayList<Room>();
+				//roomList.add(room);
+				session.setAttribute("room", room);
 				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");
 				dispatcher.forward(request,response);//RoomChoice.jsp遷移
 			}else {//検索結果＝あり
