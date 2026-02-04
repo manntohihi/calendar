@@ -1,9 +1,11 @@
 package Servlet;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,7 +13,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import dao.Room_membersDAO;
 import dao.UserDao;
+import model.Room_members;
 import model.User;
 
 /**
@@ -64,6 +68,11 @@ public class Login extends HttpServlet {
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
+			
+			Room_membersDAO rmdao = new Room_membersDAO();//Room_memberに登録 String id,int roomid,int userid
+			List<Room_members> roomids = rmdao.searchByUseridForGroup(ID);
+			ServletContext application = this.getServletContext();
+			application.setAttribute("roomids", roomids);//アプリケーションスコープroomids
 			dispatcher = request.getRequestDispatcher("/RoomSelection.jsp");// /jsp/RoomSelection.jsp
 			dispatcher.forward(request, response);
 		}
