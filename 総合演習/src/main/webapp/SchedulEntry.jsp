@@ -29,7 +29,7 @@
     <input type="datetime-local" name="startDate"  id="startDate"> ～ <input type="datetime-local" name="endDate" id="endDate">
   </div>
 
-  <!-- 担当者 -->
+   <!-- 担当者 -->
   <div class="staff">
     <label>担当者名</label>
    <input type="text" name="staffName" class="name" id="staffName" placeholder="担当者名を入力">

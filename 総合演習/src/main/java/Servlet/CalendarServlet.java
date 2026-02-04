@@ -76,7 +76,7 @@ public class CalendarServlet extends HttpServlet {
 	        
 				
 				CalendarDAO cDao = new CalendarDAO();
-				cDao.setCalendarDate(group_id, memo, staffName, sqlStartDate, sqlEndDate, user_id,color);
+				cDao.setCalendarDate(group_id, memo, staffName, sqlStartDate, sqlEndDate, user_id,color,title);
 	   
 				response.sendRedirect("CalendarServlet");
 			}catch (Exception e) {

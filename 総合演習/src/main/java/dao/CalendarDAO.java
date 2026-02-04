@@ -234,7 +234,7 @@ public  CalendarEvent findEntryrDate(int loginUserId,int GroupId,String title){
 		
 		InitialContext ic;
 		DataSource ds = null;
-		// JBDCドライバの読み込みorエラー表示
+		 // JBDCドライバの読み込みorエラー表示
 		// JBDCドライバの読み込みorエラー表示
 		try {
 			ic = new InitialContext();
