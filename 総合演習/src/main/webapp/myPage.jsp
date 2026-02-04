@@ -10,6 +10,7 @@
     String current = (String)request.getAttribute("currentPage");
     boolean isMypage = "Mypage".equals(current);
     
+    
     Room room = (Room)session.getAttribute("room");
     boolean isRoomLoggedIn = (room != null);
 %>
