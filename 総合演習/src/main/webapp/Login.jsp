@@ -19,7 +19,7 @@
 	                    <th>ID</th>
 	                </tr>
 	                <tr>
-	                    <th><input class="text" type="text" name="ID" placeholder="部屋のID 数字"></th>
+	                    <th><input class="text" type="text" name="ID" placeholder="部屋のID 数字" value="${pram.userID }"></th>
 	                </tr>
 	            </table>
 	        </div>
