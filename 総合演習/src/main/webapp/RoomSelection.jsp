@@ -59,7 +59,7 @@
 	      <div class="grid_test-child">
 	        <p>グループアイコン</p>
 	        	<a href="/RoomChoics.jsp">
-		        	<!--<%
+		        	<!--<%--
 		        		for(Room_members rm : roomids){
 		        			rmuserid = rm.getuserID();
 		        			if(userid == rmuserid){
@@ -72,7 +72,7 @@
 		        				<p><%= roomname%></p>
 		        		  <%}
 		        		}
-		        	%>-->
+		        	--%>-->
 	        	</a> 
 	      </div>
 	    </div>
