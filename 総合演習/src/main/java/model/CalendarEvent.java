@@ -39,6 +39,10 @@ public class CalendarEvent {
 		return this.group_id;
 	}
 	
+	public String getTitle() {
+		return this.title;
+	}
+	
 	public String getUserName() {
 		return this.title;
 	}

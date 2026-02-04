@@ -1,17 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   
-<%@ page import="model.User,model.Room_members,model.Room,java.util.ArrayList,java.util.List" %>
+<%@ page import="model.User,model.Room_members,model.Room,dao.RoomDao,java.util.ArrayList,java.util.List" %>
 <% 	User user = new User();
 	user = (User) session.getAttribute("loginUser");
 	int userid = 0;
 	userid = user.getUserId();
 	List<Room_members> roomids = null;
 	roomids = (List<Room_members>) application.getAttribute("roomids");
-	List<Room> room = null;
+	List<Room> roomList = new ArrayList<Room>();
 	int rmuserid = 0;
 	String roomname = null;
 	int roomid = 0;
+	RoomDao rdao = new RoomDao();
+	
+	
 	%>
 <!doctype html>
 <html lang="ja">
@@ -58,14 +61,22 @@
 	      </div>
 	      <div class="grid_test-child">
 	        <p>グループアイコン</p>
-	        	<a href="/RoomChoics.jsp">
-		        	<%for(Room_members rm : roomids){
-		        		
-		        	}
-		        		
-		        	%>
-		        	
-	        	</a> 
+	        	<%for(Room_members rm : roomids){
+	        		roomid = rm.getroomID();
+	        		if(roomid != 0){
+	        			roomList = rdao.findFromID(roomid);
+		        		for(Room room : roomList){
+		        			roomname = room.getRoomname();
+		        			if(roomname != null){
+		        			%><a href="RoomChoice.jsp">
+		        				<p><%= roomname%></p><br>
+		        			</a> <%
+		        			session.setAttribute("room", room);
+		        			}
+		        		}
+	        		}
+	        		
+	        	}%>
 	      </div>
 	    </div>
 	</form>
