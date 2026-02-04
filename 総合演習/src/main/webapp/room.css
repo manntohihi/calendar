@@ -23,7 +23,7 @@
  }
  .grid_test-child:nth-child(4) {
 	grid-column:2;    /* 配置指定 */
-	grid-row:7/9; 
+	grid-row:7/9;       
 	  box-sizing: border-box;
  	text-align: center;
 	border-right:2px solid skyblue;
@@ -35,8 +35,7 @@
 	border-right:2px solid skyblue;
  }
  .grid_test-child:nth-child(6) {
-	grid-column:2;    /* 配置指定 */
-	grid-row:7/9;        /* 配置指定 */
+	grid-row:7/9;       /* 配置指定 */
 	text-align: center;
     grid-column:3;    /* 配置指定 */
 
