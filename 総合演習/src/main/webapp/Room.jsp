@@ -4,8 +4,7 @@
 	page import= "model.Room"
 %>
 <%
-List<CalendarEvent> CalendarEventList =
-	(List<CalendarEvent>)request.getAttribute("UserCalendarEventList")
+
 
 %>
 <!DOCTYPE html>
@@ -27,8 +26,10 @@ List<CalendarEvent> CalendarEventList =
 	      </div>
 	      <div class="grid_test-child">
 	        <p>残日数</p>
-	          	<% for(CalendarEvent event: CalendarEventList){ %>
-  					<td><%= event.get %></td>
+	       		<% for(int i = 0;i < 2; i++){ %>
+	       			<div class="box">
+  						<td>タイトル　のこり１０日</td>
+  					</div>
   				<% } %>
 	      </div>
 	      <div class="grid_test-child">
