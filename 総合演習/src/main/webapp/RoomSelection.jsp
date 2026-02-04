@@ -68,10 +68,9 @@
 		        		for(Room room : roomList){
 		        			roomname = room.getRoomname();
 		        			if(roomname != null){
-		        			%><a href="RoomChoice.jsp">
+		        			%><a href="RoomChoice?roomID=<%= roomid %>">
 		        				<p><%= roomname%></p><br>
 		        			</a> <%
-		        			session.setAttribute("room", room);
 		        			}
 		        		}
 	        		}

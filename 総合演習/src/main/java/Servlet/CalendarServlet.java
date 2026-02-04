@@ -36,7 +36,7 @@ public class CalendarServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Room room = (Room) request.getSession().getAttribute("room");
-
+		System.out.println("room:"+room);
 		if(room == null){
 
 		    response.sendRedirect("Mypage");

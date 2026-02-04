@@ -41,6 +41,10 @@ public class RoomChoice extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		int roomid = Integer.parseInt(request.getParameter("room"));
+		//なんとかroom作成
+		session.setAttribute("room", room);
 		RequestDispatcher dispatcher;
 		dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp
 		dispatcher.forward(request,response);
