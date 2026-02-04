@@ -38,7 +38,7 @@ public class CalendarServlet extends HttpServlet {
 		List<CalendarEvent> CalendarEventList;
 		CalendarDAO cDao = new CalendarDAO();
 		int group_id = 1;
-		int user_id = 579901;
+		int user_id = 934492;
 		CalendarEventList = cDao.findCalendarDate(user_id, group_id);
 		request.setAttribute("CalendarEventList", CalendarEventList);
 		RequestDispatcher dispatcher = 
@@ -64,8 +64,9 @@ public class CalendarServlet extends HttpServlet {
 
 				int group_id = 1;
 				String memo      = request.getParameter("memo");
+				String title      = request.getParameter("title");
 				String staffName = request.getParameter("staffName");
-				int user_id = 579901;
+				int user_id = 934492;
 				String color = "yellow";
 	    
 				String s = request.getParameter("startDate");

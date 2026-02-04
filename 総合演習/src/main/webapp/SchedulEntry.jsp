@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>予定を入力</title>
 <link rel="stylesheet" href="schedule.css">
+
 </head>
 <body>
 <form action="CalendarServlet" method="post" id="scheduleForm">
