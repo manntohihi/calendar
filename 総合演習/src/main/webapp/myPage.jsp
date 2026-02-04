@@ -12,7 +12,6 @@
     
     Room room = (Room)session.getAttribute("room");
     boolean isRoomLoggedIn = (room != null);
-
 %>
 <!DOCTYPE html>
 <html lang="ja">
