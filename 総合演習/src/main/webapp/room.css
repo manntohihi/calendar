@@ -21,12 +21,11 @@
      grid-row:5/7;       /* 配置指定 */
 	 border-bottom: 2px solid skyblue; /* 下線だけ */
  }
- .grid_test-child:nth-child(4) {
-	grid-column:2;    /* 配置指定 */
-	grid-row:7/9; 
-	  box-sizing: border-box;
- 	text-align: center;
-	border-right:2px solid skyblue;
+.grid_test-child:nth-child(4) {
+	 grid-column:1;/* 配置指定 */ 
+	 grid-row:7/9;
+	 text-align: center;
+	 border-right:2px solid skyblue;
  }
  .grid_test-child:nth-child(5) {
      grid-column:2;    /* 配置指定 */
@@ -35,12 +34,14 @@
 	border-right:2px solid skyblue;
  }
  .grid_test-child:nth-child(6) {
-	grid-column:2;    /* 配置指定 */
-	grid-row:7/9;        /* 配置指定 */
+	grid-column:3;
+	grid-row:7/9;       /* 配置指定 */
 	text-align: center;
     grid-column:3;    /* 配置指定 */
 
  }
+ 
+ 
 
 
 /*

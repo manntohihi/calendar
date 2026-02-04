@@ -4,12 +4,9 @@
 	page import= "model.Room"
 %>
 <%
-	Room room = new Room();
-	room = (Room) session.getAttribute("room");
-	int roomID;
-	roomID = room.getId();
-	String roomName;
-	roomName = room.getRoomname();
+List<CalendarEvent> CalendarEventList =
+	(List<CalendarEvent>)request.getAttribute("UserCalendarEventList")
+
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -22,7 +19,7 @@
   	<form action="Room" method="post">
 	    <div class="grid_test">
 	      <div class="grid_test-child">
-	        <h1><%= roomID%> <%= roomName%></h1>
+	        <h1>1567　テストデータ</h1>
 	      </div>
 	      <div class="grid_test-child">
 	        <p>一時予定</p>
@@ -30,6 +27,9 @@
 	      </div>
 	      <div class="grid_test-child">
 	        <p>残日数</p>
+	          	<% for(CalendarEvent event: CalendarEventList){ %>
+  					<td><%= event.get %></td>
+  				<% } %>
 	      </div>
 	      <div class="grid_test-child">
 	        <a href="RoomSelection">

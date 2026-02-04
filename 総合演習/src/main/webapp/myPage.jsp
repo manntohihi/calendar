@@ -6,8 +6,12 @@
         response.sendRedirect("Login.jsp");
         return;
     }
+    
     String current = (String)request.getAttribute("currentPage");
     boolean isMypage = "Mypage".equals(current);
+    
+    Room room = (Room)session.getAttribute("room");
+    boolean isRoomLoggedIn = (room != null);
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -36,18 +40,19 @@
 
     <!-- 下部ナビゲーション -->
     <div class="bottom-nav">
-
-        <!-- 部屋選択 -->
-        <a href="RoomSelection.jsp" class="nav-item">
-            <i class="fa-solid fa-house"></i>
-        </a>
-
-        <!-- カレンダー -->
-        <a href="Calendar.jsp" class="nav-item">
-            <i class="fa-solid fa-calendar"></i>
-            <span>カレンダー画面へ</span>
-        </a>
-
+    
+    <!-- 部屋選択 -->
+    <% if(isRoomLoggedIn){ %>
+    <a href="Calendar.jsp" class="nav-item">
+        <i class="fa-solid fa-calendar"></i>
+        <span>カレンダー画面へ</span>
+    </a>
+    <% } else { %>
+    <span class="nav-item disabled" style="opacity:0.4; pointer-events:none;">
+        <i class="fa-solid fa-calendar"></i>
+        <span>部屋にログインしてください</span>
+    </span>
+    <% } %>
         <!-- マイページ -->
         <% if(isMypage){ %>
             <span class="nav-item active">
@@ -58,8 +63,7 @@
                 <i class="fa-solid fa-user"></i>
             </a>
         <% } %>
-
-    </div>
+	</div>
 
 </body>
 </html>
