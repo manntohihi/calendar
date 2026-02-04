@@ -2,8 +2,8 @@ package model;
 
 public class Room_members {
 	//String ID=null;
-	int roomID;//=groupid
-	int userID;
+	int roomID = 0;//=groupid
+	int userID = 0;
 	
 	public Room_members(){
 	}
