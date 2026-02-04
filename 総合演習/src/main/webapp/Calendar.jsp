@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.CalendarEvent,java.util.List" %>
+<%@ page import="model.CalendarEvent,java.util.List,model.Room" %>
 <!DOCTYPE html>
 <%
 List<CalendarEvent> CalendarEventList =
     (List<CalendarEvent>)request.getAttribute("CalendarEventList");
+%>
+<%
+    Room room = (Room)session.getAttribute("room");
+    if(room == null){
+        response.sendRedirect("Mypage");
+        return;
+    }
 %>
 <html>
 <head>
