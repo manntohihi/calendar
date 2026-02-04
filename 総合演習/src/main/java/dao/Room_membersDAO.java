@@ -82,6 +82,7 @@ public class Room_membersDAO {
 		return roomids;
 	}
 	
+	
 	//insert文
 	public boolean createMember(Room_members Room_members) {
  		InitialContext initCtx;

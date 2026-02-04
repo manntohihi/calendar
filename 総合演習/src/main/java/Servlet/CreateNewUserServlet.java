@@ -59,7 +59,7 @@ public class CreateNewUserServlet extends HttpServlet {
 
 			//			JOptionPane.showMessageDialog(null, "あなたのIDは" + userID + "です。");
 
-			response.sendRedirect("RoomSelection");
+			response.sendRedirect("Login.jsp?userID=" + userID);
 
 		} else {
 			//違ったらユーザー登録画面へ

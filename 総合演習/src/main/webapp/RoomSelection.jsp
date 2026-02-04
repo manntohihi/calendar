@@ -59,20 +59,12 @@
 	      <div class="grid_test-child">
 	        <p>グループアイコン</p>
 	        	<a href="/RoomChoics.jsp">
-		        	<!--<%--
-		        		for(Room_members rm : roomids){
-		        			rmuserid = rm.getuserID();
-		        			if(userid == rmuserid){
-		        				for(){
-		        				roomid = rm.getroomID();
-		        				
-		        				
-		        			roomname = room.getRoomname();
-		        			%> 
-		        				<p><%= roomname%></p>
-		        		  <%}
-		        		}
-		        	--%>-->
+		        	<%for(Room_members rm : roomids){
+		        		
+		        	}
+		        		
+		        	%>
+		        	
 	        	</a> 
 	      </div>
 	    </div>

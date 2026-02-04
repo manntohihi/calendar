@@ -6,10 +6,11 @@ body {
 	align-items: center;
 }
 
-.schedule-input {
-  font-size: 24px;
-  height: 64px;        /* 文字に合わせて高さも調整 */
-  padding: 12px 16px;
+   .schedule-input {
+  width: 400px;      /* 横を広げる */
+  height: 40px;      /* 縦を広げる */
+  font-size: 16px;   /* 文字も大きく */
+  padding: 8px 12px; /* 内側余白 */
 }
 
 
