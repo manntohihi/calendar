@@ -3,15 +3,15 @@
   
 <%@ page import="model.User,model.Room_members,model.Room,java.util.ArrayList,java.util.List" %>
 <% 	User user = new User();
-	user = (User)session.getAttribute("loginUser");
+	user = (User) session.getAttribute("loginUser");
 	int userid = 0;
-	userid = loginUser.getUserId();
+	userid = user.getUserId();
 	List<Room_members> roomids = null;
 	roomids = (List<Room_members>) application.getAttribute("roomids");
 	List<Room> room = null;
 	int rmuserid = 0;
 	String roomname = null;
-	
+	int roomid = 0;
 	%>
 <!doctype html>
 <html lang="ja">
@@ -58,19 +58,22 @@
 	      </div>
 	      <div class="grid_test-child">
 	        <p>グループアイコン</p>
-	        	<%=	//
-	        		for(Room_members rm : roomids){
-	        			rmuserid = rm.getuserID();
-	        			if(userid == rmuserid){
-	        			roomname = rm.getRoomname();
-	        			%> 
-	        				<a href="/RoomChoics.jsp">
-	        					<p><%= roomname%></p>
-	        				</a> 
-	        		  <%=}
-	        		}
-	        	%>
-	        	
+	        	<a href="/RoomChoics.jsp">
+		        	<!--<%
+		        		for(Room_members rm : roomids){
+		        			rmuserid = rm.getuserID();
+		        			if(userid == rmuserid){
+		        				for(){
+		        				roomid = rm.getroomID();
+		        				
+		        				
+		        			roomname = room.getRoomname();
+		        			%> 
+		        				<p><%= roomname%></p>
+		        		  <%}
+		        		}
+		        	%>-->
+	        	</a> 
 	      </div>
 	    </div>
 	</form>
