@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,7 +14,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import dao.RoomDao;
+import dao.Room_membersDAO;
 import model.Room;
+import model.Room_members;
 import model.User;
 
 /**
@@ -72,6 +75,11 @@ public class RoomSelection extends HttpServlet {
 				//roomList= new ArrayList<Room>();
 				//roomList.add(room);
 				session.setAttribute("room", room);
+				Room_membersDAO rmdao = new Room_membersDAO();//Room_memberに登録 String id,int roomid,int userid
+				List<Room_members> roomids = rmdao.searchByUseridForGroup(userid);
+				ServletContext application = this.getServletContext();
+				application.setAttribute("roomids", roomids);//アプリケーションスコープroomids
+				
 				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp
 				dispatcher.forward(request,response);//RoomChoice.jsp遷移
 			}else {//検索結果＝あり

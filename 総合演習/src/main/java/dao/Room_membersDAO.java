@@ -28,7 +28,7 @@ public class Room_membersDAO {
 		
 		try (Connection conn = ds.getConnection()){
 			//SELECT文を準備
-			String sql = "SELECT ID,GROUPID,USERID FROM ROOM_MEMBERS ORDER BY ID DESC";
+			String sql = "SELECT GROUPID,USERID FROM ROOM_MEMBERS ORDER BY ID DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			//SELECT文を実行し、結果票を取得
@@ -36,10 +36,9 @@ public class Room_membersDAO {
 			
 			//SELECT文の結果をArrayListに格納
 			while (rs.next()) {
-				String id = rs.getString("ID");
-				int roomid = rs.getInt("ROOMID");
+				int roomid = rs.getInt("GROUPID");
 				int userid = rs.getInt("USERID");
-				Room_members room_members = new Room_members(id,roomid,userid);
+				Room_members room_members = new Room_members(roomid,userid);
 				roomList.add(room_members);
 			}
 		}catch(SQLException e) {
@@ -49,8 +48,8 @@ public class Room_membersDAO {
 		return roomList;
 	}
 	
-	public List<Room_members> find(Room_members rm){//必要なものに変更する
-		 List<Room_members> roomList = new ArrayList<Room_members>();
+	public List<Room_members> searchByUseridForGroup(int userid){//useridから検索
+		 List<Room_members> roomids = new ArrayList<Room_members>();
 		 
 		InitialContext initCtx;
 		DataSource ds =null;
@@ -63,26 +62,24 @@ public class Room_membersDAO {
 		
 		try (Connection conn = ds.getConnection()){
 			//SELECT文を準備
-			String sql = "SELECT ID,GROUPID,USERID FROM ROOM_MEMBERS WHERE USERID = ?";
+			String sql = "SELECT GROUPID FROM ROOM_MEMBERS WHERE USERID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			//INSERT文の「?」に使用する値を設定してSQL文を完成
- 			pStmt.setInt(1,rm.getuserID());
+ 			pStmt.setInt(1,userid);
 			//SELECT文を実行し、結果票を取得
 			ResultSet rs = pStmt.executeQuery();
 			
 			//SELECT文の結果をArrayListに格納
 			while (rs.next()) {
-				String id = rs.getString("ID");
-				int roomid = rs.getInt("ROOMID");
-				int userid = rs.getInt("USERID");
-				Room_members room_members = new Room_members(id,roomid,userid);
-				roomList.add(room_members);
+				int roomid = rs.getInt("GROUPID");
+				Room_members room_members = new Room_members(roomid,userid);
+				roomids.add(room_members);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		return roomList;
+		return roomids;
 	}
 	
 	//insert文
@@ -98,12 +95,12 @@ public class Room_membersDAO {
  		//データベース接続
  		try (Connection conn = ds.getConnection()){
  			//INSERT文の準備
- 			String sql = "INSERT INTO ROOM_MEMBERS(ID,GROUPID,USERID) VALUES(?,?,?)";//変更
+ 			String sql = "INSERT INTO ROOM_MEMBERS(ID,GROUPID,USERID) VALUES(null,?,?)";//変更
  			PreparedStatement pStmt = conn.prepareStatement(sql);
  			//INSERT文の「?」に使用する値を設定してSQL文を完成
- 			pStmt.setString(1,Room_members.getID());
- 			pStmt.setInt(2,Room_members.getroomID());
- 			pStmt.setInt(3,Room_members.getuserID());
+ 			//pStmt.setString(1,Room_members.getID());
+ 			pStmt.setInt(1,Room_members.getroomID());
+ 			pStmt.setInt(2,Room_members.getuserID());
  			
  			//INSERT文を実行
  			int result = pStmt.executeUpdate();
