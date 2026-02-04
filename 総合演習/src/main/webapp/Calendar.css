@@ -60,6 +60,11 @@ td {
 }
 
 /* 色 */
+.orange { background: orange;}
+.lightblue {background: aqua;}
+.pink {background: pink;}
+.green{background: green;}
+.yellowgreen{background: yellowgreen;}
 .yellow { background: yellow;}
 .purple { background: purple;}
 .blue   { background: #4da3ff;}
