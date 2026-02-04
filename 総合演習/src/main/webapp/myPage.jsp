@@ -39,32 +39,41 @@
         </div>
     </div>
 
-    <!-- 下部ナビゲーション -->
     <div class="bottom-nav">
-    
-    <!-- 部屋選択 -->
-    <% if(isRoomLoggedIn){ %>
-    <a href="Calendar.jsp" class="nav-item">
-        <i class="fa-solid fa-calendar"></i>
-        <span>カレンダー画面へ</span>
+
+    <!-- 部屋選択（常にクリック可能） -->
+    <a href="RoomSelection" class="nav-item">
+        <i class="fa-solid fa-door-open"></i>
+        <span>部屋選択</span>
     </a>
+
+    <!-- カレンダー（部屋ログイン時のみ有効） -->
+    <% if(isRoomLoggedIn){ %>
+        <a href="CalendarServlet" class="nav-item">
+            <i class="fa-solid fa-calendar"></i>
+            <span>カレンダー</span>
+        </a>
     <% } else { %>
-    <span class="nav-item disabled" style="opacity:0.4; pointer-events:none;">
-        <i class="fa-solid fa-calendar"></i>
-        <span>部屋にログインしてください</span>
-    </span>
+        <span class="nav-item disabled" style="opacity:0.4; pointer-events:none;">
+            <i class="fa-solid fa-calendar"></i>
+            <span>部屋にログインしてください</span>
+        </span>
     <% } %>
-        <!-- マイページ -->
-        <% if(isMypage){ %>
-            <span class="nav-item active">
-                <i class="fa-solid fa-user"></i>
-            </span>
-        <% } else { %>
-            <a href="Mypage" class="nav-item">
-                <i class="fa-solid fa-user"></i>
-            </a>
-        <% } %>
-	</div>
+
+    <!-- マイページ（現在地ならクリック不可） -->
+    <% if(isMypage){ %>
+        <span class="nav-item active">
+            <i class="fa-solid fa-user"></i>
+            <span>マイページ</span>
+        </span>
+    <% } else { %>
+        <a href="Mypage" class="nav-item">
+            <i class="fa-solid fa-user"></i>
+            <span>マイページ</span>
+        </a>
+    <% } %>
+
+</div>
 
 </body>
 </html>
