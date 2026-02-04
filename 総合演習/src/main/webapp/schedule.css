@@ -6,7 +6,7 @@ body {
 	align-items: center;
 }
 
-.schedule-input {
+ .schedule-input {
   width: 400px;      /* 横を広げる */
   height: 40px;      /* 縦を広げる */
   font-size: 16px;   /* 文字も大きく */
