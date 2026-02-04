@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="model.User" %>
+<%@ page import="model.User,model.Room" %>
 <%
     User user = (User)request.getAttribute("user");
     if(user == null){
