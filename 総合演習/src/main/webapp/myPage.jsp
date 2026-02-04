@@ -6,7 +6,6 @@
         response.sendRedirect("Login.jsp");
         return;
     }
-    
     String current = (String)request.getAttribute("currentPage");
     boolean isMypage = "Mypage".equals(current);
     
