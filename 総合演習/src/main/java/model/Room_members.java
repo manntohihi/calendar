@@ -1,25 +1,25 @@
 package model;
 
 public class Room_members {
-	String ID=null;
+	//String ID=null;
 	int roomID;//=groupid
 	int userID;
 	
 	public Room_members(){
 	}
 	
-	public Room_members(String id,int roomid,int userid){
-		this.ID = id;
+	public Room_members(int roomid,int userid){
 		this.roomID = roomid;
 		this.userID = userid;
 	}
-	
+	/*
 	public String getID() {
 		return this.ID;
 	}
 	public void setID(String id) {
 		this.ID=id;
 	}
+	*/
 	public int getroomID() {
 		return this.roomID;
 	}

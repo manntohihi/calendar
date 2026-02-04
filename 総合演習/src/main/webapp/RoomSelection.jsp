@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   
-<%@ page import="model.User,model.Room_members,java.util.ArrayList,java.util.List" %>
+<%@ page import="model.User,model.Room_members,model.Room,java.util.ArrayList,java.util.List" %>
 <% 	User user = new User();
 	user = (User)session.getAttribute("loginUser");
-	Room_members rm = new Room_members();
-	rm = (Room_members) session.getAttribute("rm");
+	int userid = 0;
+	userid = loginUser.getUserId();
+	List<Room_members> roomids = null;
+	roomids = (List<Room_members>) application.getAttribute("roomids");
+	List<Room> room = null;
+	int rmuserid = 0;
+	String roomname = null;
 	
 	%>
 <!doctype html>
@@ -53,8 +58,17 @@
 	      </div>
 	      <div class="grid_test-child">
 	        <p>グループアイコン</p>
-	        	<%	
-	        		
+	        	<%=	//
+	        		for(Room_members rm : roomids){
+	        			rmuserid = rm.getuserID();
+	        			if(userid == rmuserid){
+	        			roomname = rm.getRoomname();
+	        			%> 
+	        				<a href="/RoomChoics.jsp">
+	        					<p><%= roomname%></p>
+	        				</a> 
+	        		  <%=}
+	        		}
 	        	%>
 	        	
 	      </div>
