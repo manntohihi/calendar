@@ -8,7 +8,6 @@
 	userid = user.getUserId();
 	List<Room> roomList = 
 			(List<Room>) application.getAttribute("roomList");
-	List<Room> roomList = new ArrayList<Room>();
 	int rmuserid = 0;
 	String roomname = null;
 	int roomid = 0;
@@ -67,9 +66,6 @@
 		        				<p><%= rm.getRoomname()%></p><br>
 		        			</a> <%
 		        			}
-		        		}
-	        		}
-	        		
 	        	}%>
 	      </div>
 	    </div>

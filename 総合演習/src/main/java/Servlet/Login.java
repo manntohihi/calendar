@@ -82,8 +82,10 @@ public class Login extends HttpServlet {
 			Room_membersDAO rmdao = new Room_membersDAO();//Room_memberに登録 String id,int roomid,int userid
 			List<Room_members> roomids = rmdao.searchByUseridForGroup(ID);
 			List<Room> roomList = new ArrayList<Room>();
-			for(Room_members roomId: roomids) {
-				roomList = rdao.findFromID(roomId.getroomID());
+			for(Room_members rm: roomids) {
+				System.out.println(rm.getroomID());
+				 List<Room> rooms = rdao.findFromID(rm.getroomID());
+				 roomList.addAll(rooms);
 			}
 			ServletContext application = this.getServletContext();
 			application.setAttribute("roomList", roomList);//アプリケーションスコープroomids
