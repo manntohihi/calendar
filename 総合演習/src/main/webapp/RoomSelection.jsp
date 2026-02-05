@@ -68,7 +68,7 @@
 		        		for(Room room : roomList){
 		        			roomname = room.getRoomname();
 		        			if(roomname != null){
-		        			%><a href="RoomChoice?roomID=<%= roomid %>">
+		        			%><a href="RoomChoice?roomID=<%= room.getId() %>">
 		        				<p><%= roomname%></p><br>
 		        			</a> <%
 		        			}

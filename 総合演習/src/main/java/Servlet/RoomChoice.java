@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import dao.CalendarDAO;
+import dao.RoomDao;
 import model.CalendarEvent;
 import model.Room;
 import model.User;
@@ -42,8 +43,13 @@ public class RoomChoice extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		int roomid = Integer.parseInt(request.getParameter("room"));
+		String id = request.getParameter("roomID");
+		int roomid = Integer.parseInt(id);
 		//なんとかroom作成
+		RoomDao rdao = new RoomDao();
+		List<Room> roomList = new ArrayList<Room>();
+		roomList = rdao.findFromID(roomid);
+		Room room = roomList.get(0);
 		session.setAttribute("room", room);
 		RequestDispatcher dispatcher;
 		dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp
