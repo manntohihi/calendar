@@ -52,16 +52,22 @@ public class Login extends HttpServlet {
 	 protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Login.java");
-		int ID = Integer.parseInt(request.getParameter("ID"));
-		String password = request.getParameter("password");
+		String testID = request.getParameter("ID");
+		String password = null;
+		password = request.getParameter("password");
+		RequestDispatcher dispatcher;
+		if(testID.trim().isEmpty() || password.trim().isEmpty()) {//""ならエラー画面
+			dispatcher = request.getRequestDispatcher("/LoginError.jsp");// /jsp/LoginError.jsp
+			dispatcher.forward(request, response);
+		}
+		int ID = 0;
+		ID = Integer.parseInt(testID);
 		User user = new User();
 		user.setUserId(ID);
 		user.setPasswd(password);
 		UserDao ud = new UserDao();
 		User loginUser = new User();
-		RequestDispatcher dispatcher;
 		String name = null;
-
 		System.out.println("Login.java f2");
 		loginUser = ud.login(user);
 		name = loginUser.getUserName();
