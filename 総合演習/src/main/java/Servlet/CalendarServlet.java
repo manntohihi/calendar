@@ -10,10 +10,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import dao.CalendarDAO;
 import model.CalendarEvent;
 import model.Room;
+import model.User;
 
 /**
  * Servlet implementation class CalendarServlet
@@ -35,6 +37,8 @@ public class CalendarServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("loginUser");
 		Room room = (Room) request.getSession().getAttribute("room");
 		System.out.println("room:"+room);
 		if(room == null){
@@ -48,9 +52,7 @@ public class CalendarServlet extends HttpServlet {
 			System.out.println("CalendarServlet;doget");
 			List<CalendarEvent> CalendarEventList;
 			CalendarDAO cDao = new CalendarDAO();
-			int group_id = 1;
-			int user_id = 579901;
-			CalendarEventList = cDao.findCalendarDate(user_id, group_id);
+			CalendarEventList = cDao.findCalendarDate(user.getUserId(),room.getId());
 			request.setAttribute("CalendarEventList", CalendarEventList);
 			System.out.println(2);
 			RequestDispatcher dispatcher = 
@@ -66,10 +68,11 @@ public class CalendarServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("CalendarServlet;dopost");
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("loginUser");
+		Room room = (Room) request.getSession().getAttribute("room");
 		String from =
 				 (String)request.getParameter("from");
-		System.out.println(from);
-		Room room = (Room) request.getSession().getAttribute("room");
 
 		if(room == null){
 
@@ -82,10 +85,9 @@ public class CalendarServlet extends HttpServlet {
 				System.out.println("サーブレットに移動");
 
 
-				int group_id = 1;
+
 				String memo      = request.getParameter("memo");
 				String staffName = request.getParameter("staffName");
-				int user_id = 579901;
 				String color = "yellow";
 	    
 				String s = request.getParameter("startDate");
@@ -95,7 +97,7 @@ public class CalendarServlet extends HttpServlet {
 	        
 				
 				CalendarDAO cDao = new CalendarDAO();
-				cDao.setCalendarDate(group_id, memo, staffName, sqlStartDate, sqlEndDate, user_id,color);
+				cDao.setCalendarDate(room.getId(), memo, staffName, sqlStartDate, sqlEndDate, user.getUserId(),color);
 	   
 				response.sendRedirect("CalendarServlet");
 			}catch (Exception e) {
