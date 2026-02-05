@@ -35,7 +35,9 @@
 	      <div class="grid_test-child">
 	        <p>残日数</p>
 			<% for(UserEvent event : userEvList){ %>
-  				<p><td><%= event.getTitle() %>  のこり<%= event.getRemainingDays() %>日</td></p>
+				<div class="box">
+  					<p><td><%= event.getTitle() %>      のこり<%= event.getRemainingDays() %>日</td></p>
+  				</div>
   			<% } %>
 	      </div>
 	      <div class="grid_test-child">
