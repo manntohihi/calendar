@@ -6,8 +6,8 @@
 	user = (User) session.getAttribute("loginUser");
 	int userid = 0;
 	userid = user.getUserId();
-	List<Room_members> roomids = null;
-	roomids = (List<Room_members>) application.getAttribute("roomids");
+	List<Room> roomList = 
+			(List<Room>) application.getAttribute("roomList");
 	List<Room> roomList = new ArrayList<Room>();
 	int rmuserid = 0;
 	String roomname = null;
@@ -61,15 +61,10 @@
 	      </div>
 	      <div class="grid_test-child">
 	        <p>グループアイコン</p>
-	        	<%for(Room_members rm : roomids){
-	        		roomid = rm.getroomID();
-	        		if(roomid != 0){
-	        			roomList = rdao.findFromID(roomid);
-		        		for(Room room : roomList){
-		        			roomname = room.getRoomname();
-		        			if(roomname != null){
-		        			%><a href="RoomChoice?roomID=<%= room.getId() %>">
-		        				<p><%= roomname%></p><br>
+	        	<%for(Room rm : roomList){
+		        	if(rm.getRoomname() != null){
+		        			%><a href="RoomChoice?roomID=<%= rm.getId() %>">
+		        				<p><%= rm.getRoomname()%></p><br>
 		        			</a> <%
 		        			}
 		        		}

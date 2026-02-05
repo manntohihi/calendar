@@ -69,7 +69,7 @@ public class RoomDao {
 		try (Connection conn = ds.getConnection()) {
 			System.out.println("try2");
 			//SELECT文を準備
-			String sql = "SELECT ROOMID,ROOMNAME,ROOMPASSWD FROM ROOM WHERE ROOMID = ?";
+			String sql = "SELECT ROOMID,ROOMNAME ROOMPASSWD FROM ROOM WHERE ROOMID = ?;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			//INSERT文の「?」に使用する値を設定してSQL文を完成
 			pStmt.setInt(1, ID);
@@ -110,7 +110,7 @@ public class RoomDao {
 
 		try (Connection conn = ds.getConnection()) {
 			//SELECT文を準備
-			String sql = "SELECT ROOMID,ROOMNAME, FROM ROOM WHERE ROOMID = ? ORDER BY ID DESC";
+			String sql = "SELECT ROOMID,ROOMNAME FROM ROOM WHERE ROOMID = ? ORDER BY ID DESC;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			//INSERT文の「?」に使用する値を設定してSQL文を完成
 			pStmt.setInt(1, room.getId());
