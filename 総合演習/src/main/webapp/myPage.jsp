@@ -36,9 +36,7 @@
 
     <!-- 部屋選択（常にクリック可能） -->
     <a href="RoomSelection" class="nav-item">
-    	<img src="/ing/Home.png" alt="部屋選択" class="nav-icon">
-    	<i class="fa-solid fa-door-open"></i>
-    	<span>部屋選択</span>
+    	<img src="img/Home.png" alt="部屋選択" class="nav-icon">
 	</a>
 </div>
 
