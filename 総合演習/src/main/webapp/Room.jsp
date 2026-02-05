@@ -4,8 +4,7 @@
 	page import= "model.Room,model.UserEvent"
 %>
 <%
-	userEvList userEvList =
-		(userEvList)request.getAttribute("userEvList");
+	userEvList userEvList =(userEvList)request.getAttribute("userEvList");
 		
 		
 	Room room = new Room();
