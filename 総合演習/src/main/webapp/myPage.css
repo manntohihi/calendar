@@ -71,13 +71,14 @@ body {
 
 /* ナビアイテム */
 .nav-item {
-    flex: 1;
+    flex: none;
+    padding: 8px 0; /* ← 好きな高さに変更（上に伸びる） */
     text-align: center;
-    padding: 15px 0;
     text-decoration: none;
     color: #070707;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start; /* ← 上詰め */
     align-items: center;
     gap: 4px;
 }
@@ -88,8 +89,10 @@ body {
 }
 
 /* アイコン */
-.nav-item i {
-    font-size: 20px;
+.nav-icon {
+    width: 48px;
+	height: 48px;
+	object-fit: contain;
 }
 
 /* 現在地 */
