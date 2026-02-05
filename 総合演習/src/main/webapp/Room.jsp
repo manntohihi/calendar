@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@
-	page import= "model.Room,model.UserEvent"
-%>
+<%@ page import="java.util.List, model.Room, model.UserEvent" %>
+
 <%
-	userEvList userEvList =(userEvList)request.getAttribute("userEvList");
+	List<UserEvent> userEvList =
+    	(List<UserEvent>) session.getAttribute("userEvList");
 		
 		
 	Room room = new Room();
@@ -26,7 +26,7 @@
   	<form action="Room" method="post">
 	    <div class="grid_test">
 	      <div class="grid_test-child">
-	        <h1></h1>
+	        <h1><%= room.getRoomname() %>  <%= room.getId() %></h1>
 	      </div>
 	      <div class="grid_test-child">
 	        <p>一時予定</p>
@@ -34,8 +34,8 @@
 	      </div>
 	      <div class="grid_test-child">
 	        <p>残日数</p>
-			<% for(CalendarEvent event: CalendarEventList){ %>
-  				<td><%= event.getTitle() %>  のこり<%= remainingDays %>日</td>
+			<% for(UserEvent event : userEvList){ %>
+  				<p><td><%= event.getTitle() %>  のこり<%= event.getRemainingDays() %>日</td></p>
   			<% } %>
 	      </div>
 	      <div class="grid_test-child">
