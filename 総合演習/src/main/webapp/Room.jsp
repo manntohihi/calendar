@@ -5,7 +5,7 @@
 %>
 <%
 	userEvList userEvList =
-		(userEvList)request.getAttribute("userEvList")
+		(userEvList)request.getAttribute("userEvList");
 		
 		
 	Room room = new Room();
