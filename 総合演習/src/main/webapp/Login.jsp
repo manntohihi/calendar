@@ -19,7 +19,7 @@
 	                    <th>ID</th>
 	                </tr>
 	                <tr>
-	                    <th><input class="text" type="text" name="ID" placeholder="部屋のID 数字"></th>
+	                    <th><input class="text" type="text" name="ID" pattern="^[1-9][0-9]*$" value="${param.userID }" placeholder="部屋のID 数字"></th>
 	                </tr>
 	            </table>
 	        </div>
