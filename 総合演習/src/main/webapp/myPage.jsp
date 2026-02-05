@@ -19,7 +19,7 @@
 
     <!-- 上部プロフィール -->
     <div class="container">
-        <div class="icon">
+        <div class="profile-icon">
             <img src="default.png" alt="アイコン">
         </div>
 
