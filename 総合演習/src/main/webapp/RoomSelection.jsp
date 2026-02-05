@@ -6,9 +6,8 @@
 	user = (User) session.getAttribute("loginUser");
 	int userid = 0;
 	userid = user.getUserId();
-	List<Room_members> roomids = null;
-	roomids = (List<Room_members>) application.getAttribute("roomids");
-	List<Room> roomList = new ArrayList<Room>();
+	List<Room> roomList = 
+			(List<Room>) application.getAttribute("roomList");
 	int rmuserid = 0;
 	String roomname = null;
 	int roomid = 0;
@@ -32,8 +31,8 @@
 	          <label for="drawer_input" class="drawer_open"><span></span></label>
 	          <nav class="nav_content">
 	            <ul class="nav_list">
-	              <li class="nav_item"><a href="/CalendarServlet">カレンダー画面</a></li>
-	              <li class="nav_item"><a href="/EntryServlet">予定入力画面</a></li>
+	              <li class="nav_item"><a href="CalendarServlet">カレンダー画面</a></li>
+	              <li class="nav_item"><a href="EntryServlet">予定入力画面</a></li>
 	              <li class="nav_item"><a href="">メニュー3</a></li>
 	            </ul>
 	          </nav>
@@ -61,20 +60,12 @@
 	      </div>
 	      <div class="grid_test-child">
 	        <p>グループアイコン</p>
-	        	<%for(Room_members rm : roomids){
-	        		roomid = rm.getroomID();
-	        		if(roomid != 0){
-	        			roomList = rdao.findFromID(roomid);
-		        		for(Room room : roomList){
-		        			roomname = room.getRoomname();
-		        			if(roomname != null){
-		        			%><a href="RoomChoice?roomID=<%= room.getId() %>">
-		        				<p><%= roomname%></p><br>
+	        	<%for(Room rm : roomList){
+		        	if(rm.getRoomname() != null){
+		        			%><a href="RoomChoice?roomID=<%= rm.getId() %>">
+		        				<p><%= rm.getRoomname()%></p><br>
 		        			</a> <%
 		        			}
-		        		}
-	        		}
-	        		
 	        	}%>
 	      </div>
 	    </div>
