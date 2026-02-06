@@ -281,7 +281,7 @@ public class CalendarDAO {
 		// JBDCドライバの読み込みorエラー表示
 		try {
 			ic = new InitialContext();
-			
+			 
 			//DBの場所
 			ds = (DataSource) ic.lookup("java:comp/env/jdbc/calendar");
 		} catch (NamingException e) {
