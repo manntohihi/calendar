@@ -225,7 +225,7 @@ public class CalendarDAO {
 
 
 
-	public void setCalendarDate(int group_id,String title,String texdescription, LocalDateTime start_datetime,LocalDateTime end_datetime,int created_by,String color){
+	public void setCalendarDate(int group_id,String title,String texdescription, LocalDateTime start_datetime,LocalDateTime end_datetime,int created_by,String color, String name){
 		CalendraEventList PostPrductLogic = null;
 		List<CalendarEvent> CalendarEventList = new ArrayList();
 		
@@ -233,7 +233,7 @@ public class CalendarDAO {
 		
 		InitialContext ic;
 		DataSource ds = null;
-		// JBDCドライバの読み込みorエラー表示
+		 // JBDCドライバの読み込みorエラー表示
 		// JBDCドライバの読み込みorエラー表示
 		try {
 			ic = new InitialContext();
