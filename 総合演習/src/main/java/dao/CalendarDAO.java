@@ -71,9 +71,10 @@ public class CalendarDAO {
 			LocalDateTime end_datetime = rs.getTimestamp("end_datetime").toLocalDateTime();
 			int created_by = rs.getInt("created_by");
 			String color = rs.getString("color");
+			String name = rs.getString("name");
 			
-			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime, end_datetime, created_by,color
-					);
+			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime
+					, end_datetime, created_by,color, name);
 			CalendarEventList.add(CalendarEvent);
 		}
 		end = System.currentTimeMillis();
@@ -137,8 +138,10 @@ public class CalendarDAO {
 			LocalDateTime end_datetime = rs.getTimestamp("end_datetime").toLocalDateTime();
 			int created_by = rs.getInt("created_by");
 			String color = rs.getString("color");
+			String name = rs.getString("name");
 			
-			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime, end_datetime, created_by,color);
+			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime
+					, end_datetime, created_by,color, name);
 
 		}
 		end = System.currentTimeMillis();
@@ -205,9 +208,10 @@ public class CalendarDAO {
 			LocalDateTime end_datetime = rs.getTimestamp("end_datetime").toLocalDateTime();
 			int created_by = rs.getInt("created_by");
 			String color = rs.getString("color");
+			String name = rs.getString("name");
 			
-			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime, end_datetime, created_by,color
-					);
+			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime
+					, end_datetime, created_by,color, name);
 			CalendarEventList.add(CalendarEvent);
 		}
 		end = System.currentTimeMillis();
@@ -249,7 +253,7 @@ public class CalendarDAO {
 		//SELCT文を準備
 				String sql = 
 				"INSERT INTO calendar_events " +
-				"(groupID, title, description, start_datetime, end_datetime, created_by,color) " +
+				"(groupID, title, description, start_datetime, end_datetime, created_by, color, name) " +
 				"VALUES (?, ?, ?, ?, ?, ?, ?)";
 				
 				PreparedStatement ps = conn.prepareStatement(sql);
@@ -261,6 +265,7 @@ public class CalendarDAO {
 				ps.setTimestamp(5, Timestamp.valueOf(end_datetime));
 				ps.setLong(6, created_by);
 				ps.setString(7, color);
+				ps.setString(8, name);
 				System.out.println(ps);
 				ps.executeUpdate();
 		
