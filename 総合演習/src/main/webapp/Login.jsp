@@ -20,7 +20,7 @@
 	                </tr>
 	                <tr>
 	                    <th><input class="text" type="text" name="ID" pattern="^[1-9][0-9]*$" value="${param.userID }" placeholder="ユーザーのID 数字"></th>
-	                </tr>
+	                </tr>　
 	            </table>
 	        </div>
 	        <div class="grid_test-child">

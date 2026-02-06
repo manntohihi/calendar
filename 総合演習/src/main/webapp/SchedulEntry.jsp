@@ -14,7 +14,7 @@
 
 </head>
 <body>
-<form action="CalendarServlet" method="post" id="scheduleForm">
+<form action="CalendarServlet" method="post" id="scheduleForm　">
 <div class="container">
 
   <!-- 戻る -->
