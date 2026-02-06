@@ -274,6 +274,44 @@ public class CalendarDAO {
 		
 	}
 	
+	public List<String> findColor(int ID){
+		List<String> colorList = new ArrayList<>();
+		InitialContext ic;
+		DataSource ds = null;
+		// JBDCドライバの読み込みorエラー表示
+		try {
+			ic = new InitialContext();
+			
+			//DBの場所
+			ds = (DataSource) ic.lookup("java:comp/env/jdbc/calendar");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+		//データベース接続、connに詰め替え
+		try(Connection conn = ds.getConnection()){
+		
+		//SELCT文を準備
+			String sql ="SELECT color " +
+				    "FROM calendar_events " +
+				    "WHERE groupID = ? ";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setLong(1, ID);
+		//SELECT文を実行し、結果表を取得
+		ResultSet rs = ps.executeQuery();
+		//結果表に格納された内容を
+		//Employeeインスタンスに設定し、ArrayListインスタンスに追加
+		while(rs.next()) {
+			String coller = rs.getString("color");
+			colorList.add(coller);
+		}
+		}catch(SQLException e){
+			e.printStackTrace();
+			return null;
+		}
+		return colorList;
+	}
+
+	
 	
 	
 }

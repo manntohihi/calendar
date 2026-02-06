@@ -2,9 +2,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.CalendarEvent" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <%
 	CalendarEvent BarEvent = (CalendarEvent)request.getAttribute("BarEvent");
+
+    String start = "";
+    String end = "";
+
+    if (BarEvent != null) {
+        DateTimeFormatter fmt =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+
+        start = BarEvent.getStart_datetime().format(fmt);
+        end   = BarEvent.getEnd_datetime().format(fmt);
+    }
 %>
 <html>
 <head>
@@ -22,13 +34,14 @@
 
   <!-- タイトル -->
   <h1><input type="text" name="title" placeholder="予定を入力"
-         value="<%= BarEvent != null ? BarEvent.getTitle() : "1" %>"></h1>
+         value="<%= BarEvent != null ? BarEvent.getTitle() : "" %>"></h1>
   
   
 
   <!-- 期間 -->
   <div class="period">
-    <input type="datetime-local" name="startDate"  id="startDate"> ～ <input type="datetime-local" name="endDate" id="endDate">
+    <input type="datetime-local" name="startDate"  id="startDate" value="<%= start %>"> ～ 
+    <input type="datetime-local" name="endDate"    id="endDate"   value="<%= end   %>">
   </div>
 
    <!-- 担当者 -->
