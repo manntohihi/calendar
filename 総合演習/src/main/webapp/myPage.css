@@ -83,6 +83,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	gap: 4px;
+	height: 100%;
 }
 
 /* ホバー */
