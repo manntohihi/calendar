@@ -27,6 +27,11 @@ public class NameChangeServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request,response);
+	}
+		
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
@@ -56,7 +61,7 @@ public class NameChangeServlet extends HttpServlet {
 
         // ログイン中ユーザーID取得（例）
         HttpSession session = request.getSession();
-        Integer userId = (Integer) session.getAttribute("userId");
+        Integer userId = (Integer) session.getAttribute("loginUser");
 
         if (userId == null) {
             request.setAttribute("error", "ログイン情報がありません");
