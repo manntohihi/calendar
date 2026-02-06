@@ -22,7 +22,7 @@
 
   <!-- タイトル -->
   <h1><input type="text" name="title" placeholder="予定を入力"
-         value="<%= BarEvent != null ? BarEvent.getTitle() : "" %>"></h1>
+         value="<%= BarEvent != null ? BarEvent.getTitle() : "1" %>"></h1>
   
   
 

@@ -37,18 +37,6 @@ public class CalendarServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
-		System.out.println("CalendarServlet;doget");
-		List<CalendarEvent> CalendarEventList;
-		CalendarDAO cDao = new CalendarDAO();
-		int group_id = 1;
-		int user_id = 934492;
-		CalendarEventList = cDao.findCalendarDate(user_id, group_id);
-		request.setAttribute("CalendarEventList", CalendarEventList);
-		RequestDispatcher dispatcher = 
-	    		request.getRequestDispatcher("Calendar.jsp");
-		dispatcher.forward(request, response);
-=======
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("loginUser");
 		Room room = (Room) request.getSession().getAttribute("room");
@@ -71,7 +59,6 @@ public class CalendarServlet extends HttpServlet {
 					request.getRequestDispatcher("Calendar.jsp");
 			dispatcher.forward(request, response);
 		}
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 
 	}
 
@@ -98,14 +85,11 @@ public class CalendarServlet extends HttpServlet {
 				System.out.println("サーブレットに移動");
 
 
-
+				
 				String memo      = request.getParameter("memo");
 				String title      = request.getParameter("title");
 				String staffName = request.getParameter("staffName");
-<<<<<<< HEAD
-				int user_id = 934492;
-=======
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
+
 				String color = "yellow";
 	    
 				String s = request.getParameter("startDate");
@@ -115,11 +99,9 @@ public class CalendarServlet extends HttpServlet {
 	        
 				
 				CalendarDAO cDao = new CalendarDAO();
-<<<<<<< HEAD
-				cDao.setCalendarDate(group_id, memo, staffName, sqlStartDate, sqlEndDate, user_id,color,title);
-=======
-				cDao.setCalendarDate(room.getId(), memo, staffName, sqlStartDate, sqlEndDate, user.getUserId(),color);
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
+
+				cDao.setCalendarDate(room.getId(), memo, staffName, sqlStartDate, sqlEndDate, user.getUserId(),color,staffName);
+
 	   
 				response.sendRedirect("CalendarServlet");
 			}catch (Exception e) {
