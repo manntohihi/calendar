@@ -19,7 +19,7 @@
 	                    <th>ID</th>
 	                </tr>
 	                <tr>
-	                    <th><input class="text" type="text" name="ID" pattern="^[1-9][0-9]*$" value="${param.userID }" placeholder="部屋のID 数字"></th>
+	                    <th><input class="text" type="text" name="ID" pattern="^[1-9][0-9]*$" value="${param.userID }" placeholder="ユーザーのID 数字"></th>
 	                </tr>
 	            </table>
 	        </div>
@@ -29,7 +29,7 @@
 	                    <th>password</th>
 	                </tr>
 	                <tr>
-	                    <th><input class="text" type="password" name="password" placeholder="部屋のパスワード 半角6文字" maxlength="6"></th>
+	                    <th><input class="text" type="password" name="password" placeholder="ユーザーのパスワード 半角6文字" maxlength="6"></th>
 	                </tr>
 	            </table>
 	        </div>

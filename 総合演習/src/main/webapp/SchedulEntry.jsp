@@ -1,10 +1,10 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.CalendarEvent %>
+<%@ page import="model.CalendarEvent" %>
 <!DOCTYPE html>
 <%
-	CalendarEvent BarEvent = (CalendarEvent)request.setAttribute("BarEvent");
+	CalendarEvent BarEvent = (CalendarEvent)request.getAttribute("BarEvent");
 %>
 <html>
 <head>
@@ -20,7 +20,8 @@
   <a href="CalendarServlet" class="back">← 戻る</a>
 
   <!-- タイトル -->
-  <h1><input type="text" name="title" placeholder="予定を入力"></h1>
+  <h1><input type="text" name="title" placeholder="予定を入力"
+         value="<%= BarEvent != null ? BarEvent.getTitle() : "" %>"></h1>
   
   
 
