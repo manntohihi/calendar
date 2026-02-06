@@ -46,14 +46,14 @@
 	      <div class="grid_test-child">
 	        <details>
 	          <summary>新規部屋作成</summary>
-	            <input type="text" name="roomID" class="text" placeholder="部屋のID">
-	            <input type="text" name="roomname" maxlength="16" class="text" placeholder="部屋の名前 半角16文字">
-	            <input type="text" name="roompassword" maxlength="6" class="text" placeholder="部屋のパスワード 半角6文字">
-	            <input type="submit" name="botton" value="新規部屋作成" class="new">
+	            <input class="text" type="text" name="roomID" pattern="^[0-9]+$" placeholder="部屋のID">
+	            <input class="text" type="text" name="roomname" maxlength="16" placeholder="部屋の名前 半角16文字">
+	            <input class="text" type="text" name="roompassword" maxlength="6" placeholder="部屋のパスワード 半角6文字">
+	            <input class="new"type="submit" name="botton" value="新規部屋作成" >
 	        </details>
 	      </div>
 	      <div class="grid_test-child">
-	        <input type="text" name="roomSearchID" class="text" placeholder="部屋ID">
+	        <input class="text" type="text" name="roomSearchID" pattern="^[0-9]+$" placeholder="部屋ID">
 	      </div>
 	      <div class="grid_test-child">
 	        <input type="submit" name="botton" value="検索">

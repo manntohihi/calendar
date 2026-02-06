@@ -96,9 +96,11 @@ public class RoomChoice extends HttpServlet {
 			System.out.println("if1");//削除
 			if(password.equals(room.getRoompassword())) {
 				System.out.println("if2");//削除
-				/*if() {
+				
 					//calendarDao完成後collarを入れる
-				}*/
+					/*
+					 * 
+					 */
 				
 				
 				List<CalendarEvent> UserCalendarEventList;
