@@ -1,6 +1,11 @@
 package Servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -10,7 +15,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import dao.CalendarDAO;
+import dao.RoomDao;
+import model.CalendarEvent;
 import model.Room;
+import model.User;
+import model.UserEvent;
+
 
 /**
  * Servlet implementation class RoomChoice
@@ -31,6 +42,15 @@ public class RoomChoice extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String id = request.getParameter("roomID");
+		int roomid = Integer.parseInt(id);
+		//なんとかroom作成
+		RoomDao rdao = new RoomDao();
+		List<Room> roomList = new ArrayList<Room>();
+		roomList = rdao.findFromID(roomid);
+		Room room = roomList.get(0);
+		session.setAttribute("room", room);
 		RequestDispatcher dispatcher;
 		dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp
 		dispatcher.forward(request,response);
@@ -68,6 +88,8 @@ public class RoomChoice extends HttpServlet {
 			}
 		}
 		*/
+		User user = new User();
+		user = (User)session.getAttribute("loginUser");
 		Room room = new Room();
 		room = (Room) session.getAttribute("room");
 		if(ID == room.getId()) {
@@ -77,6 +99,25 @@ public class RoomChoice extends HttpServlet {
 				/*if() {
 					//calendarDao完成後collarを入れる
 				}*/
+				
+				
+				List<CalendarEvent> UserCalendarEventList;
+				List<UserEvent> userEvList = new ArrayList<>();
+				CalendarDAO cDao = new CalendarDAO();
+				UserCalendarEventList = cDao.findUserCalendarDate(user.getUserId(), room.getId());
+				for(CalendarEvent event: UserCalendarEventList){ 
+					LocalDateTime endDate = event.getEnd_datetime();
+					LocalDate today = LocalDate.now();
+					LocalDate end = endDate.toLocalDate();
+					long remainingDays = ChronoUnit.DAYS.between(today, end);
+					
+					UserEvent userEv = new UserEvent(event.getTitle(), remainingDays);
+					userEvList.add(userEv);
+				} 
+				
+
+				
+				session.setAttribute("userEvList", userEvList);
 				session.setAttribute("room", room);
 				dispatcher = request.getRequestDispatcher("/Room.jsp");// /jsp/Room.jsp
 				dispatcher.forward(request,response);//Room.jsp遷移

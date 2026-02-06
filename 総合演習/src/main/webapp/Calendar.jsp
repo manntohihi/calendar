@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.CalendarEvent,java.util.List" %>
+<%@ page import="model.CalendarEvent,java.util.List,model.Room" %>
 <!DOCTYPE html>
 <%
 List<CalendarEvent> CalendarEventList =
     (List<CalendarEvent>)request.getAttribute("CalendarEventList");
+%>
+<%
+    Room room = (Room)session.getAttribute("room");
+    if(room == null){
+        response.sendRedirect("Mypage");
+        return;
+    }
 %>
 <html>
 <head>
@@ -53,7 +60,7 @@ if (CalendarEventList != null) {
                     <%= e.getEnd_datetime().getMonthValue() - 1 %>,
                     <%= e.getEnd_datetime().getDayOfMonth() %>),
     color: "<%= e.getColler() %>",
-    title: "<%= e.getTexdescription() %>",
+    id: "<%= e.getId() %>",
     description: "<%= e.getTexdescription() %>"
   }<%= (i < CalendarEventList.size() - 1) ? "," : "" %>
 <%
@@ -97,7 +104,7 @@ function renderCalendar(date) {
     let eventHtml = '<div class="events">';
     dayEvents.forEach(e => {
       eventHtml +=
-        '<a href="EntryServlet?title=' + encodeURIComponent(e.title) + '">' +
+        '<a href="EntryServlet?id=' + encodeURIComponent(e.id) + '">' +
           '<div class="event ' + e.color + '"></div>' +
         '</a>';
     });

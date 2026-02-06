@@ -1,7 +1,6 @@
 package Servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -9,9 +8,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import dao.CalendarDAO;
 import model.CalendarEvent;
+import model.User;
 
 /**
  * Servlet implementation class EntryServlet
@@ -33,13 +34,14 @@ public class EntryServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("CalendarServlet;doget");
-		CalendarEvent CalendarEvent;
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("loginUser");
+		CalendarEvent BarEvent;
 		CalendarDAO cDao = new CalendarDAO();
-		String = 
-		int group_id = 1;
-		int user_id = 1;
-		CalendarEvent= cDao.findEntryrDate(user_id, group_id);
-		request.setAttribute("CalendarEvent", CalendarEvent);
+		String Id = request.getParameter("id");
+		int id = Integer.parseInt(Id);
+		BarEvent= cDao.findBarDate(id, user.getUserId());
+		request.setAttribute("BarEvent", BarEvent);
 		RequestDispatcher dispatcher = 
 	    	request.getRequestDispatcher("SchedulEntry.jsp");
 	    dispatcher.forward(request, response);

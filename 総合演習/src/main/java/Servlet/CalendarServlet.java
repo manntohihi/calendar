@@ -10,9 +10,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import dao.CalendarDAO;
 import model.CalendarEvent;
+import model.Room;
+import model.User;
 
 /**
  * Servlet implementation class CalendarServlet
@@ -34,6 +37,7 @@ public class CalendarServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		System.out.println("CalendarServlet;doget");
 		List<CalendarEvent> CalendarEventList;
 		CalendarDAO cDao = new CalendarDAO();
@@ -44,6 +48,30 @@ public class CalendarServlet extends HttpServlet {
 		RequestDispatcher dispatcher = 
 	    		request.getRequestDispatcher("Calendar.jsp");
 		dispatcher.forward(request, response);
+=======
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("loginUser");
+		Room room = (Room) request.getSession().getAttribute("room");
+		System.out.println("room:"+room);
+		if(room == null){
+
+		    response.sendRedirect("Mypage");
+		    System.out.println("Mypage");
+		    return;
+
+		}else {
+		 
+			System.out.println("CalendarServlet;doget");
+			List<CalendarEvent> CalendarEventList;
+			CalendarDAO cDao = new CalendarDAO();
+			CalendarEventList = cDao.findCalendarDate(user.getUserId(),room.getId());
+			request.setAttribute("CalendarEventList", CalendarEventList);
+			System.out.println(2);
+			RequestDispatcher dispatcher = 
+					request.getRequestDispatcher("Calendar.jsp");
+			dispatcher.forward(request, response);
+		}
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 
 	}
 
@@ -53,20 +81,31 @@ public class CalendarServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("CalendarServlet;dopost");
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("loginUser");
+		Room room = (Room) request.getSession().getAttribute("room");
 		String from =
 				 (String)request.getParameter("from");
-		System.out.println(from);
-		
-		if("ScheduleEntry.jsp".equals(from)) {
+
+		if(room == null){
+
+		    response.sendRedirect("Mypage");
+
+		    return;
+
+		}else if("ScheduleEntry.jsp".equals(from)) {
 			try {
 				System.out.println("サーブレットに移動");
 
 
-				int group_id = 1;
+
 				String memo      = request.getParameter("memo");
 				String title      = request.getParameter("title");
 				String staffName = request.getParameter("staffName");
+<<<<<<< HEAD
 				int user_id = 934492;
+=======
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 				String color = "yellow";
 	    
 				String s = request.getParameter("startDate");
@@ -76,7 +115,11 @@ public class CalendarServlet extends HttpServlet {
 	        
 				
 				CalendarDAO cDao = new CalendarDAO();
+<<<<<<< HEAD
 				cDao.setCalendarDate(group_id, memo, staffName, sqlStartDate, sqlEndDate, user_id,color,title);
+=======
+				cDao.setCalendarDate(room.getId(), memo, staffName, sqlStartDate, sqlEndDate, user.getUserId(),color);
+>>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 	   
 				response.sendRedirect("CalendarServlet");
 			}catch (Exception e) {

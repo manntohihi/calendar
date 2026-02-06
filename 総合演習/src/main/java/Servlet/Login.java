@@ -1,6 +1,7 @@
 package Servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,8 +14,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import dao.RoomDao;
 import dao.Room_membersDAO;
 import dao.UserDao;
+import model.Room;
 import model.Room_members;
 import model.User;
 
@@ -49,16 +52,22 @@ public class Login extends HttpServlet {
 	 protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Login.java");
-		int ID = Integer.parseInt(request.getParameter("ID"));
-		String password = request.getParameter("password");
+		String testID = request.getParameter("ID");
+		String password = null;
+		password = request.getParameter("password");
+		RequestDispatcher dispatcher;
+		if(testID.trim().isEmpty() || password.trim().isEmpty()) {//""ならエラー画面
+			dispatcher = request.getRequestDispatcher("/LoginError.jsp");// /jsp/LoginError.jsp
+			dispatcher.forward(request, response);
+		}
+		int ID = 0;
+		ID = Integer.parseInt(testID);
 		User user = new User();
 		user.setUserId(ID);
 		user.setPasswd(password);
 		UserDao ud = new UserDao();
 		User loginUser = new User();
-		RequestDispatcher dispatcher;
 		String name = null;
-
 		System.out.println("Login.java f2");
 		loginUser = ud.login(user);
 		name = loginUser.getUserName();
@@ -69,10 +78,17 @@ public class Login extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
 			
+			RoomDao rdao = new RoomDao();
 			Room_membersDAO rmdao = new Room_membersDAO();//Room_memberに登録 String id,int roomid,int userid
 			List<Room_members> roomids = rmdao.searchByUseridForGroup(ID);
+			List<Room> roomList = new ArrayList<Room>();
+			for(Room_members rm: roomids) {
+				System.out.println(rm.getroomID());
+				 List<Room> rooms = rdao.findFromID(rm.getroomID());
+				 roomList.addAll(rooms);
+			}
 			ServletContext application = this.getServletContext();
-			application.setAttribute("roomids", roomids);//アプリケーションスコープroomids
+			application.setAttribute("roomList", roomList);//アプリケーションスコープroomids
 			dispatcher = request.getRequestDispatcher("/RoomSelection.jsp");// /jsp/RoomSelection.jsp
 			dispatcher.forward(request, response);
 		}
