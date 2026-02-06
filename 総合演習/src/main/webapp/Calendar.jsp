@@ -60,7 +60,7 @@ if (CalendarEventList != null) {
                     <%= e.getEnd_datetime().getMonthValue() - 1 %>,
                     <%= e.getEnd_datetime().getDayOfMonth() %>),
     color: "<%= e.getColler() %>",
-    title: "<%= e.getTexdescription() %>",
+    id: "<%= e.getId() %>",
     description: "<%= e.getTexdescription() %>"
   }<%= (i < CalendarEventList.size() - 1) ? "," : "" %>
 <%
@@ -104,7 +104,7 @@ function renderCalendar(date) {
     let eventHtml = '<div class="events">';
     dayEvents.forEach(e => {
       eventHtml +=
-        '<a href="EntryServlet?title=' + encodeURIComponent(e.title) + '">' +
+        '<a href="EntryServlet?id=' + encodeURIComponent(e.id) + '">' +
           '<div class="event ' + e.color + '"></div>' +
         '</a>';
     });
