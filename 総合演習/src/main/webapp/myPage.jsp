@@ -25,10 +25,10 @@
 
         <div class="info">
             <label class="username"><%= user.getUserName() %></label>
-            <a href="#"><button class="namecgbtn">名前を変更</button></a>
+            <a href="NameChangeServlet"><button class="namecgbtn">名前を変更</button></a>
 
             <label class="userid">ID: <%= user.getUserId() %></label>
-            <a href="#"><button class="logoutbtn">ログアウト</button></a>
+            <a href="LogoutServlet"><button class="logoutbtn">ログアウト</button></a>
         </div>
     </div>
 

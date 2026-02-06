@@ -203,4 +203,67 @@ public class UserDao {
 
 		return loginUser;
 	}
+	
+	// userId から現在の userName を取得
+	public String getUsernameById(int userId) {
+	    InitialContext ic;
+	    DataSource ds = null;
+
+	    try {
+	        ic = new InitialContext();
+	        ds = (DataSource) ic.lookup("java:comp/env/jdbc/calendar");
+	    } catch (NamingException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+
+	    String sql = "SELECT userName FROM USER WHERE userId = ?";
+
+	    try (Connection conn = ds.getConnection();
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+	        ps.setInt(1, userId);
+
+	        ResultSet rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            return rs.getString("userName");
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return null;
+	}
+	
+	// userId の userName を newName に更新
+	public boolean updateUsername(int userId, String newName) {
+	    InitialContext ic;
+	    DataSource ds = null;
+
+	    try {
+	        ic = new InitialContext();
+	        ds = (DataSource) ic.lookup("java:comp/env/jdbc/calendar");
+	    } catch (NamingException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+
+	    String sql = "UPDATE USER SET userName = ? WHERE userId = ?";
+
+	    try (Connection conn = ds.getConnection();
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+	        ps.setString(1, newName);
+	        ps.setInt(2, userId);
+
+	        int result = ps.executeUpdate();
+	        return result == 1;
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
 }
