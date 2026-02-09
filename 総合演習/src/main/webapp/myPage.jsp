@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="model.User" %>
+
 <%
-    User user = (User)request.getAttribute("user");
-    if(user == null){
+    // セッションからログインユーザーを取得
+    User user = (User) session.getAttribute("loginUser");
+
+    // 未ログインならログイン画面へ
+    if (user == null) {
         response.sendRedirect("Login.jsp");
         return;
     }
 %>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -25,7 +30,7 @@
 
         <div class="info">
             <label class="username"><%= user.getUserName() %></label>
-            <a href="NameChangeServlet"><button class="namecgbtn">名前を変更</button></a>
+            <a href="nameChange.jsp"><button class="namecgbtn">名前を変更</button></a>
 
             <label class="userid">ID: <%= user.getUserId() %></label>
             <a href="LogoutServlet"><button class="logoutbtn">ログアウト</button></a>
@@ -33,14 +38,12 @@
     </div>
 
     <div class="bottom-nav">
-
-    <!-- 部屋選択（常にクリック可能） -->
-    <a href="RoomSelection" class="nav-item">
-    	<div class="nav-icon">
-        	<img src="img/Home.png" alt="部屋選択">
-    	</div>
-	</a>
-</div>
+        <a href="RoomSelection" class="nav-item">
+            <div class="nav-icon">
+                <img src="img/Home.png" alt="部屋選択">
+            </div>
+        </a>
+    </div>
 
 </body>
 </html>

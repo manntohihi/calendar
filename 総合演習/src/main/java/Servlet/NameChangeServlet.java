@@ -11,31 +11,27 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import dao.UserDao;
+import model.User;
 
-/**
- * Servlet implementation class NameChangeServlet
- */
 @WebServlet("/NameChangeServlet")
 public class NameChangeServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private static final long serialVersionUID = 1L;
+
     public NameChangeServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request,response);
-	}
-		
-    
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
-		// 入力値取得
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
+
+        // 入力値取得
         String currentName = request.getParameter("currentName");
         String newName = request.getParameter("newName");
         String newNameConfirm = request.getParameter("newNameConfirm");
@@ -59,31 +55,40 @@ public class NameChangeServlet extends HttpServlet {
             return;
         }
 
-        // ログイン中ユーザーID取得（例）
+        // セッションから User を取得
         HttpSession session = request.getSession();
-        Integer userId = (Integer) session.getAttribute("loginUser");
+        User loginUser = (User) session.getAttribute("loginUser");
 
-        if (userId == null) {
+        if (loginUser == null) {
             request.setAttribute("error", "ログイン情報がありません");
             forward(request, response);
             return;
         }
-        
-         UserDao dao = new UserDao();
-         String dbCurrentName = dao.getUsernameById(userId);
-         if (!currentName.equals(dbCurrentName)) {
-             request.setAttribute("error", "現在の名前が正しくありません");
-             forward(request, response);
-             return;
-         }
-         boolean result = dao.updateUsername(userId, newName);
-         if (!result) {
-             request.setAttribute("error", "名前の更新に失敗しました");
-             forward(request, response);
-             return;
-         }
 
-        // とりあえず成功扱いで遷移
+        // ID を取得
+        Integer userId = loginUser.getUserId();
+
+        UserDao dao = new UserDao();
+        String dbCurrentName = dao.getUsernameById(userId);
+
+        if (!currentName.equals(dbCurrentName)) {
+            request.setAttribute("error", "現在の名前が正しくありません");
+            forward(request, response);
+            return;
+        }
+
+        boolean result = dao.updateUsername(userId, newName);
+        if (!result) {
+            request.setAttribute("error", "名前の更新に失敗しました");
+            forward(request, response);
+            return;
+        }
+        
+        // DB更新成功後
+        loginUser.setUserName(newName);
+        session.setAttribute("loginUser", loginUser);
+
+        // 成功
         request.setAttribute("newName", newName);
         RequestDispatcher rd = request.getRequestDispatcher("success.jsp");
         rd.forward(request, response);
