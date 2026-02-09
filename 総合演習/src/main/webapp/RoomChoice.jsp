@@ -11,6 +11,11 @@
 	//
 	List<String> colorList = null;
 	colorList = (List<String>) session.getAttribute("colorList");
+	if (colorList == null){
+		RequestDispatcher dispatcher;
+		dispatcher = request.getRequestDispatcher("/RoomSelectionError.jsp");// /jsp/RoomSelectionError.jsp
+		dispatcher.forward(request,response);//RoomSelectionError.jsp遷移
+	}
 %>
 <!doctype html>
 <html lang="ja">
@@ -18,7 +23,6 @@
     <meta charset="utf-8" />
     <title>部屋ログイン画面</title>
     <link rel="stylesheet" href="roomChoice.css" />
-    
     <%
 					for(int n = 1; n <= colorList.size(); n++){
 						String color = colorList.get(n);
