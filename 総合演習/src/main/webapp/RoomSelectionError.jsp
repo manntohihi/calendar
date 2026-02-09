@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="model.User,model.Room_members,model.Room,dao.RoomDao,java.util.ArrayList,java.util.List" %>
+<% 	User user = new User();
+	user = (User) session.getAttribute("loginUser");
+	int userid = 0;
+	userid = user.getUserId();
+	List<Room> roomList = 
+			(List<Room>) application.getAttribute("roomList");
+	int rmuserid = 0;
+	String roomname = null;
+	int roomid = 0;
+	RoomDao rdao = new RoomDao();
+	%>
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -46,6 +58,7 @@
 	      <div class="grid_test-child">
 	        <p>グループアイコン</p>
 	      </div>
+	      
 		  <div class="grid_test-child">
 		    <p class="error">該当する部屋がございません</p>
 		  </div>

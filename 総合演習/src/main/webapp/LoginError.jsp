@@ -19,7 +19,6 @@
 	                    <th>ID</th>
 	                </tr>
 	                <tr>
-	                    <th><input class="text" type="text" name="ID" placeholder="部屋のID 数字"></th>
 	                </tr>
 	            </table>
 	        </div>
@@ -36,8 +35,8 @@
 	        <div class="grid_test-child">
 	          <input type="submit" name="login" value="ログイン">
 	        </div>
-	        <div class="grid_test-child" align="right">
-	          <a href="subimt" class="btn-link">新規登録</a>
+	        <div class="grid_test-child">
+	          <a href="CreateNewUserServlet" class="btn-link">新規登録</a>
 	        </div>
 			<div class="grid_test-child" align="center">
 				<p class="error">IDまたはpasswordが異なります</p>

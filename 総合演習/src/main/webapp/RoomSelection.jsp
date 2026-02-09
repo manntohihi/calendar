@@ -12,8 +12,6 @@
 	String roomname = null;
 	int roomid = 0;
 	RoomDao rdao = new RoomDao();
-	
-	
 	%>
 <!doctype html>
 <html lang="ja">
