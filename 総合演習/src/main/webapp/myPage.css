@@ -79,11 +79,10 @@ body {
 /* ナビアイテム */
 .nav-item {
     display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 4px;
-	height: 100%;
+    justify-content: center;   /* 横方向の中央寄せ */
+    align-items: center;       /* 縦方向の中央寄せ（必要なら） */
+    width: 100%;
+    padding: 10px 0;
 }
 
 /* ホバー */
@@ -98,13 +97,12 @@ body {
 }
 
 .nav-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    width: auto;           /* 画像サイズはそのまま */
+    height: auto;
 }
 
 /* 現在地 */
 .nav-item.active {
-    background: #ddd;
+    background: rgb(255, 255, 255);
     pointer-events: none;
 }
