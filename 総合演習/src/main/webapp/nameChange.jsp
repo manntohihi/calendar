@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="form-container">
-    	<h2>名前の変更</h2>
+		<h2>名前の変更</h2>
 
     	<form action="NameChangeServlet" method="post">
         	<label>現在の名前：</label>
