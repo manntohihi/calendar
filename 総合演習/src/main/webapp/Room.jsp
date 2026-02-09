@@ -30,7 +30,7 @@
 	      </div>
 	      <div class="grid_test-child">
 	        <p>一時予定</p>
-	        <p>利用者</p> 
+	        <p>利用者</p> z
 	      </div>
 	      <div class="grid_test-child">
 	        <p>残日数</p>

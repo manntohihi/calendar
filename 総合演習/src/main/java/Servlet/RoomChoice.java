@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpSession;
 
 import dao.CalendarDAO;
 import dao.RoomDao;
+import dao.Room_membersDAO;
 import model.CalendarEvent;
 import model.Room;
 import model.User;
@@ -100,7 +101,10 @@ public class RoomChoice extends HttpServlet {
 			if(password.equals(room.getRoompassword())) {
 				System.out.println("if2");//削除
 				//
-
+				Room_membersDAO rmemDao = new Room_membersDAO();
+				if(rmemDao.searchUserInGroup(user.getUserId(), room.getId()) == null) {
+					rmemDao.setUserGroup(user.getUserId(), room.getId());
+				}
 				//
 				List<CalendarEvent> UserCalendarEventList;
 				List<UserEvent> userEvList = new ArrayList<>();

@@ -26,11 +26,15 @@
 
 </head>
 <body>
-<form action="CalendarServlet" method="post" id="scheduleForm　">
+<form action="CalendarServlet" method="post" id="scheduleForm">
 <div class="container">
 
-  <!-- 戻る -->
-  <a href="CalendarServlet" class="back">← 戻る</a>
+  <div class="header">
+    <a href="CalendarServlet" class="back">← 戻る</a>
+    <form action="EntryServlet" method="post" >
+   		 <a href="EntryServlet?id=<%= BarEvent.getId() %>"  class="delete">削除</a>
+   	</form>
+  </div>
 
   <!-- タイトル -->
   <h1><input type="text" name="title" placeholder="予定を入力"
@@ -47,14 +51,18 @@
    <!-- 担当者 -->
   <div class="staff">
     <label>担当者名</label>
-   <input type="text" name="staffName" class="name" id="staffName" placeholder="担当者名を入力">
+   <input type="text" name="staffName" class="name" id="staffName" placeholder="担当者名を入力"
+     value="<%= BarEvent != null ? BarEvent.getUserName() : "" %>">
 
   </div>
 
-  <button class="add-staff" name="staffName">担当者の追加</button>
 
   <!-- メモ -->
-  <textarea name="memo" id="memo" placeholder="メモを入力"></textarea>
+  <textarea name="memo" id="memo" placeholder="メモを入力">
+  	<%= 
+  		BarEvent != null ? BarEvent.getTexdescription() : "" 
+	%>
+  </textarea>
 
   <!-- 追加 -->
   <button class="submit" id="submitBtn">追加する</button>
