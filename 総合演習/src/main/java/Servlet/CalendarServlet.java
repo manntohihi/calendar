@@ -89,9 +89,8 @@ public class CalendarServlet extends HttpServlet {
 				String memo      = request.getParameter("memo");
 				String title      = request.getParameter("title");
 				String staffName = request.getParameter("staffName");
-
-				String color = request.getParameter("color");
-	    
+				String color = (String) request.getSession().getAttribute("color");
+				System.out.println(color);
 				String s = request.getParameter("startDate");
 				LocalDateTime sqlStartDate = LocalDateTime.parse(s);
 				String e = request.getParameter("endDate");

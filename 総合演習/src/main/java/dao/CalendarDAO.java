@@ -254,7 +254,7 @@ public class CalendarDAO {
 				String sql = 
 				"INSERT INTO calendar_events " +
 				"(groupID, title, description, start_datetime, end_datetime, created_by, color, name) " +
-				"VALUES (?, ?, ?, ?, ?, ?, ?)";
+				"VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 				
 				PreparedStatement ps = conn.prepareStatement(sql);
 				

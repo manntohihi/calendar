@@ -68,6 +68,9 @@ public class RoomChoice extends HttpServlet {
 		HttpSession session = request.getSession();
 		int ID = Integer.parseInt( request.getParameter("roomID"));
 		String password = request.getParameter("password");
+		String color = request.getParameter("color");
+		System.out.println(color);
+		session.setAttribute("color",color);
 		/*
 		List<Room> roomList = new ArrayList<Room>();
 		roomList = (List<Room>) session.getAttribute("roomList");
@@ -97,9 +100,7 @@ public class RoomChoice extends HttpServlet {
 			if(password.equals(room.getRoompassword())) {
 				System.out.println("if2");//削除
 				//
-				String color = request.getParameter("color");
-				System.out.println(color);
-				session.setAttribute("color",color);
+
 				//
 				List<CalendarEvent> UserCalendarEventList;
 				List<UserEvent> userEvList = new ArrayList<>();

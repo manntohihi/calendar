@@ -142,6 +142,22 @@ document.getElementById('nextBtn').onclick = () => {
   renderCalendar(currentDate);
 };
 </script>
-
+  <div class="grid_test">
+ 	<div class="grid_test-child">
+	       	 <a href="RoomSelection">
+	        	<img src="img/Home.png" alt="Home" width="100">
+	        </a>
+	      </div>
+	      <div class="grid_test-child">
+	        <a href="CalendarServlet">
+	        	<img src="img/Chalendar.png" alt="Calendar" width="100">
+	        </a>
+	      </div>
+	      <div class="grid_test-child">
+	        <a href="Mypage">
+        		<img src="img/Mypage.png" alt="Move" width="100">
+    		</a>
+	</div>
+</div>
 </body>
 </html>
