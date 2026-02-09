@@ -96,13 +96,11 @@ public class RoomChoice extends HttpServlet {
 			System.out.println("if1");//削除
 			if(password.equals(room.getRoompassword())) {
 				System.out.println("if2");//削除
-				
-					//calendarDao完成後collarを入れる
-					/*
-					 * 
-					 */
-				
-				
+				//
+				String color = request.getParameter("color");
+				System.out.println(color);
+				session.setAttribute("color",color);
+				//
 				List<CalendarEvent> UserCalendarEventList;
 				List<UserEvent> userEvList = new ArrayList<>();
 				CalendarDAO cDao = new CalendarDAO();
@@ -116,8 +114,6 @@ public class RoomChoice extends HttpServlet {
 					UserEvent userEv = new UserEvent(event.getTitle(), remainingDays);
 					userEvList.add(userEv);
 				} 
-				
-
 				
 				session.setAttribute("userEvList", userEvList);
 				session.setAttribute("room", room);

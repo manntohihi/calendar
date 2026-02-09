@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import dao.CalendarDAO;
 import dao.RoomDao;
 import dao.Room_membersDAO;
 import model.Room;
@@ -108,7 +109,12 @@ public class RoomSelection extends HttpServlet {
 				}
 				System.out.println(roomList);//削除
 				System.out.println("rs.java 検索結果＝あり");//削除
-				
+				//
+				CalendarDAO  cdao = new CalendarDAO();
+				List<String> colorList = null;
+				colorList = cdao.findColor(ID);
+				session.setAttribute("colorList",colorList);
+				//
 				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp
 				dispatcher.forward(request,response);//RoomChoice.jsp遷移
 			}
