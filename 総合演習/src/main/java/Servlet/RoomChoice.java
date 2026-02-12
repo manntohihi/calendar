@@ -77,26 +77,7 @@ public class RoomChoice extends HttpServlet {
 		String color = request.getParameter("color");
 		System.out.println(color);
 		session.setAttribute("color",color);
-		/*
-		List<Room> roomList = new ArrayList<Room>();
-		roomList = (List<Room>) session.getAttribute("roomList");
-		for(Room room : roomList) {
-			System.out.println("for");//削除
-			if(ID == room.getId()) {
-				System.out.println("if1");//削除
-				if(password.equals(room.getRoompassword())) {
-					System.out.println("if2");//削除
-					/*if() {
-						//calendarDao完成後collarを入れる
-					}*/
-		/*
-					session.setAttribute("room", room);
-					dispatcher = request.getRequestDispatcher("/Room.jsp");
-					dispatcher.forward(request,response);//Room.jsp遷移
-				}
-			}
-		}
-		*/
+		
 		User user = new User();
 		user = (User)session.getAttribute("loginUser");
 		Room room = new Room();
@@ -105,25 +86,26 @@ public class RoomChoice extends HttpServlet {
 			System.out.println("if1");//削除
 			if(password.equals(room.getRoompassword())) {
 				System.out.println("if2");//削除
-				//
-				Room_membersDAO rmemDao = new Room_membersDAO();
+				Room_membersDAO rmemDao = new Room_membersDAO();//room_memberに追加
 				if(rmemDao.searchUserInGroup(user.getUserId(), room.getId()) == null) {
 					rmemDao.setUserGroup(user.getUserId(), room.getId());
 				}
-				//
+				
+				
+				
+				
+				CalendarDAO cDao = new CalendarDAO();
 				List<CalendarEvent> UserCalendarEventList;
 				List<UserEvent> userEvList = new ArrayList<>();
-				CalendarDAO cDao = new CalendarDAO();
 				UserCalendarEventList = cDao.findUserCalendarDate(user.getUserId(), room.getId());
 				for(CalendarEvent event: UserCalendarEventList){ 
 					LocalDateTime endDate = event.getEnd_datetime();
 					LocalDate today = LocalDate.now();
 					LocalDate end = endDate.toLocalDate();
 					long remainingDays = ChronoUnit.DAYS.between(today, end);
-					
 					UserEvent userEv = new UserEvent(event.getTitle(), remainingDays);
 					userEvList.add(userEv);
-				} 
+				}
 				
 				session.setAttribute("userEvList", userEvList);
 				session.setAttribute("room", room);
