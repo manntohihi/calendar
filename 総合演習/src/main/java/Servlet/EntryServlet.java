@@ -54,7 +54,11 @@ public class EntryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("EntryServlet;dopost");
-		doGet(request, response);
+		CalendarDAO cDao = new CalendarDAO();
+		String Id = request.getParameter("id");
+		int id = Integer.parseInt(Id);
+		cDao.deleteCalendarDate(id);
+		response.sendRedirect("CalendarServlet");
 	}
 
 }

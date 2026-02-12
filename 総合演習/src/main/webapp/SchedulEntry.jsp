@@ -29,13 +29,20 @@
 <form action="CalendarServlet" method="post" id="scheduleForm">
 <div class="container">
 
-  <div class="header">
+<div class="header">
     <a href="CalendarServlet" class="back">← 戻る</a>
-    <form action="EntryServlet" method="post" >
-   		 <a href="EntryServlet?id=<%= BarEvent.getId() %>"  class="delete">削除</a>
-   	</form>
-  </div>
 
+    <% if (BarEvent != null) { %>
+      <button type="submit"
+              formaction="EntryServlet"
+              formmethod="post"
+              name="id"
+              value="<%= BarEvent.getId() %>"
+              class="delete">
+        削除
+      </button>
+    <% } %>
+  </div>
   <!-- タイトル -->
   <h1><input type="text" name="title" placeholder="予定を入力"
          value="<%= BarEvent != null ? BarEvent.getTitle() : "" %>"></h1>
@@ -63,11 +70,18 @@
   		BarEvent != null ? BarEvent.getTexdescription() : "" 
 	%>
   </textarea>
-
-  <!-- 追加 -->
-  <button class="submit" id="submitBtn">追加する</button>
-  <input type="hidden" name="from" value="ScheduleEntry.jsp">
-
+ <% if (BarEvent == null){ %>
+      <button type="submit">追加する</button>
+  <% } else { %>
+      <button type="submit"
+              formaction="EntryServlet"
+              formmethod="post"
+              name="id"
+              value="<%= BarEvent.getId() %>">
+        変更する
+      </button>
+  <% } %>
+	<input type="hidden" name="from" value="ScheduleEntry.jsp">
 </div>
 </form>
 </body>

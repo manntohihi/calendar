@@ -86,8 +86,8 @@ public class CalendarServlet extends HttpServlet {
 
 
 				
-				String memo      = request.getParameter("memo");
 				String title      = request.getParameter("title");
+				String memo      = request.getParameter("memo");
 				String staffName = request.getParameter("staffName");
 				String color = (String) request.getSession().getAttribute("color");
 				System.out.println(color);
@@ -99,7 +99,7 @@ public class CalendarServlet extends HttpServlet {
 				
 				CalendarDAO cDao = new CalendarDAO();
 
-				cDao.setCalendarDate(room.getId(), memo, title, sqlStartDate, sqlEndDate, user.getUserId(),color,staffName);
+				cDao.setCalendarDate(room.getId(), title, memo, sqlStartDate, sqlEndDate, user.getUserId(),color,staffName);
 
 	   
 				response.sendRedirect("CalendarServlet");

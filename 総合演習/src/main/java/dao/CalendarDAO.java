@@ -273,6 +273,41 @@ public class CalendarDAO {
 			e.printStackTrace();
 
 		}
+	}
+		public void deleteCalendarDate(int id){
+			CalendraEventList PostPrductLogic = null;
+			List<CalendarEvent> CalendarEventList = new ArrayList();
+			
+			
+			
+			InitialContext ic;
+			DataSource ds = null;
+			 // JBDCドライバの読み込みorエラー表示
+			// JBDCドライバの読み込みorエラー表示
+			try {
+				ic = new InitialContext();
+				
+				//DBの場所
+				ds = (DataSource) ic.lookup("java:comp/env/jdbc/calendar");
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+			//データベース接続、connに詰め替え
+			try(Connection conn = ds.getConnection()){
+			
+			//SELCT文を準備
+					String sql = 
+					"DELETE FROM calendar_events where id = ?;";
+					
+					PreparedStatement ps = conn.prepareStatement(sql);
+					
+					ps.setLong(1, id);
+					ps.executeUpdate();
+			
+			}catch(SQLException e){
+				e.printStackTrace();
+
+			}
 		
 		
 		

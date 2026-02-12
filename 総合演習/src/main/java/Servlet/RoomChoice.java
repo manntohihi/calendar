@@ -47,11 +47,16 @@ public class RoomChoice extends HttpServlet {
 		String id = request.getParameter("roomID");
 		int roomid = Integer.parseInt(id);
 		//なんとかroom作成
+		
 		RoomDao rdao = new RoomDao();
 		List<Room> roomList = new ArrayList<Room>();
 		roomList = rdao.findFromID(roomid);
 		Room room = roomList.get(0);
 		session.setAttribute("room", room);
+		
+		CalendarDAO cdao = new CalendarDAO();
+		List<String> colorList = cdao.findColor(roomid);
+		session.setAttribute("colorList", colorList);
 		RequestDispatcher dispatcher;
 		dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp
 		dispatcher.forward(request,response);
