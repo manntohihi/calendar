@@ -13,9 +13,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import dao.CalendarDAO;
-import model.CalendarEvent;
 import model.Room;
 import model.User;
+import model.barEvent;
 
 /**
  * Servlet implementation class CalendarServlet
@@ -50,7 +50,7 @@ public class CalendarServlet extends HttpServlet {
 		}else {
 		 
 			System.out.println("CalendarServlet;doget");
-			List<CalendarEvent> CalendarEventList;
+			List<barEvent> CalendarEventList;
 			CalendarDAO cDao = new CalendarDAO();
 			CalendarEventList = cDao.findCalendarDate(user.getUserId(),room.getId());
 			request.setAttribute("CalendarEventList", CalendarEventList);
@@ -89,8 +89,6 @@ public class CalendarServlet extends HttpServlet {
 				String title      = request.getParameter("title");
 				String memo      = request.getParameter("memo");
 				String staffName = request.getParameter("staffName");
-				String color = (String) request.getSession().getAttribute("color");
-				System.out.println(color);
 				String s = request.getParameter("startDate");
 				LocalDateTime sqlStartDate = LocalDateTime.parse(s);
 				String e = request.getParameter("endDate");
@@ -99,7 +97,7 @@ public class CalendarServlet extends HttpServlet {
 				
 				CalendarDAO cDao = new CalendarDAO();
 
-				cDao.setCalendarDate(room.getId(), title, memo, sqlStartDate, sqlEndDate, user.getUserId(),color,staffName);
+				cDao.setCalendarDate(room.getId(), title, memo, sqlStartDate, sqlEndDate, user.getUserId(),staffName);
 
 	   
 				response.sendRedirect("CalendarServlet");

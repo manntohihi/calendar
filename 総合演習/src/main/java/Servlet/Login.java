@@ -80,13 +80,14 @@ public class Login extends HttpServlet {
 			RoomDao rdao = new RoomDao();
 			Room_membersDAO rmdao = new Room_membersDAO();//Room_memberに登録 String id,int roomid,int userid
 			List<Room_members> roomids = rmdao.searchByUseridForGroup(ID);
-			System.out.println(ID);
 			List<Room> roomList = new ArrayList<Room>();
-			for(Room_members rm: roomids) {
-				System.out.println(rm.getroomID());
-				 List<Room> rooms = rdao.findFromID(rm.getroomID());
-				 System.out.println(rooms.get(0));
-				 roomList.addAll(rooms);
+			if(roomids != null) {
+				for(Room_members rm: roomids) {
+					System.out.println(rm.getroomID());
+					List<Room> rooms = rdao.findFromID(rm.getroomID());
+					System.out.println(rooms.get(0));
+					roomList.addAll(rooms);
+				}
 			}
 			
 			session.setAttribute("roomList", roomList);//アプリケーションスコープroomids

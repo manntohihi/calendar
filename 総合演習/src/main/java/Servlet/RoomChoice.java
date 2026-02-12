@@ -18,10 +18,10 @@ import jakarta.servlet.http.HttpSession;
 import dao.CalendarDAO;
 import dao.RoomDao;
 import dao.Room_membersDAO;
-import model.CalendarEvent;
 import model.Room;
 import model.User;
 import model.UserEvent;
+import model.barEvent;
 
 
 /**
@@ -73,11 +73,11 @@ public class RoomChoice extends HttpServlet {
 		System.out.println("RCdP");//削除
 		RequestDispatcher dispatcher;
 		HttpSession session = request.getSession();
+		Room_membersDAO rmemDao = new Room_membersDAO();
 		int ID = Integer.parseInt( request.getParameter("roomID"));
 		String password = request.getParameter("password");
 		String color = request.getParameter("color");
 		System.out.println(color);
-		session.setAttribute("color",color);
 		/*
 		List<Room> roomList = new ArrayList<Room>();
 		roomList = (List<Room>) session.getAttribute("roomList");
@@ -102,21 +102,24 @@ public class RoomChoice extends HttpServlet {
 		user = (User)session.getAttribute("loginUser");
 		Room room = new Room();
 		room = (Room) session.getAttribute("room");
+		rmemDao.setColor(room.getId(), user.getUserId(), color);
 		if(ID == room.getId()) {
 			System.out.println("if1");//削除
 			if(password.equals(room.getRoompassword())) {
 				System.out.println("if2");//削除
 				//
-				Room_membersDAO rmemDao = new Room_membersDAO();
+				
 				if(rmemDao.searchUserInGroup(user.getUserId(), room.getId()) == null) {
 					rmemDao.setUserGroup(user.getUserId(), room.getId());
 				}
 				//
-				List<CalendarEvent> UserCalendarEventList;
+				List<barEvent> UserCalendarEventList;
 				List<UserEvent> userEvList = new ArrayList<>();
 				CalendarDAO cDao = new CalendarDAO();
+				
+				System.out.println("aaaaa"+user.getUserId() + room.getId());
 				UserCalendarEventList = cDao.findUserCalendarDate(user.getUserId(), room.getId());
-				for(CalendarEvent event: UserCalendarEventList){ 
+				for(barEvent event: UserCalendarEventList){ 
 					LocalDateTime endDate = event.getEnd_datetime();
 					LocalDate today = LocalDate.now();
 					LocalDate end = endDate.toLocalDate();

@@ -23,7 +23,7 @@
     <meta charset="utf-8" />
     <title>部屋ログイン画面</title>
     <link rel="stylesheet" href="roomChoice.css" />
-    <%
+    <%			if(colorList != null ){
 					for(int n = 0; n < colorList.size(); n++){
 						String color = colorList.get(n);
 						if(!color.equals("red")){//変更
@@ -72,6 +72,7 @@
 							</style><%
 						}
 					}
+    			}
 				%>
     
   </head>
