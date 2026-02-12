@@ -34,6 +34,8 @@ public class Room extends HttpServlet {
 		//System.out.println(user.getUserId());
 		
 		RequestDispatcher dispatcher;
+		//colorを入れる
+		//CalenderDAO cdao = new  ;
 		dispatcher = request.getRequestDispatcher("/Room.jsp");// /jsp/Room.jsp
 		dispatcher.forward(request,response);//遷移
 	}

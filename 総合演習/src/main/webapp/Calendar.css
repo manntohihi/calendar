@@ -3,26 +3,27 @@
 /* ページ全体の中央寄せ */
 .grid_test {
     display: grid;  /* グリッドコンテナを作る */
-    grid-template-columns:3fr 3fr 3fr;      /* 縦向きのグリッドラインを決める */
-    grid-template-rows:1fr 1fr 1fr 1fr 1fr;         /* 横向きのグリッドラインを決める */
+    grid-template-columns:1fr 1fr 1fr;      /* 縦向きのグリッドラインを決める */
+    grid-template-rows:1fr ;         /* 横向きのグリッドラインを決める */
+	background-color:  #51a1a2;    
 }
 .grid_test-child:nth-child(1) {
 	 grid-column:1;/* 配置指定 */ 
-	 grid-row:7/9;
-	 text-align: center;
-	 border-right:2px solid skyblue;
+	 grid-row:1;
+	 /*text-align: center;
+	 border-right:2px solid skyblue;*/
  }
  .grid_test-child:nth-child(2) {
      grid-column:2;    /* 配置指定 */
-     grid-row:7/9;       /* 配置指定 */
- 	text-align: center;
-	border-right:2px solid skyblue;
+     grid-row:1;       /* 配置指定 */
+ 	/*text-align: center;
+	border-right:2px solid skyblue;*/
  }
  .grid_test-child:nth-child(3) {
 	grid-column:3;
-	grid-row:7/9;       /* 配置指定 */
-	text-align: center;
-    grid-column:3;    /* 配置指定 */
+	grid-row:1;       /* 配置指定 */
+	/*text-align: center;
+    grid-column:3;     配置指定 */
 }
 .grid_test-child:nth-child(1) {
         background-color:  #7b9ad0;     
@@ -43,10 +44,12 @@
         background-color:  #56c7ec;    
     }
 
+
+
 body {
   display:flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
 }
 
 /* カレンダー全体 */
