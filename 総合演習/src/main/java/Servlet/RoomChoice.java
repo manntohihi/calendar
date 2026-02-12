@@ -53,6 +53,7 @@ public class RoomChoice extends HttpServlet {
 		roomList = rdao.findFromID(roomid);
 		Room room = roomList.get(0);
 		session.setAttribute("room", room);
+		System.out.println("room名前"+ room.getRoomname());
 		
 		CalendarDAO cdao = new CalendarDAO();
 		List<String> colorList = cdao.findColor(roomid);
