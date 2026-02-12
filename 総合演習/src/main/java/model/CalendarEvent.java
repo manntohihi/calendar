@@ -11,7 +11,6 @@ public class CalendarEvent {
 	LocalDateTime start_datetime;
 	LocalDateTime end_datetime;
 	int created_by;
-	String coller;
 	String name;
 
 	//コンストラクタ
@@ -19,7 +18,7 @@ public class CalendarEvent {
 		
 	}
 	
-	public CalendarEvent(int id,int group_id,String title,String texdescription,LocalDateTime start_datetime,LocalDateTime end_datetime,int created_by,String coller, String name) {
+	public CalendarEvent(int id,int group_id,String title,String texdescription,LocalDateTime start_datetime,LocalDateTime end_datetime,int created_by, String name) {
 		this.id = id;
 		this.group_id = group_id;
 		this.title = title;
@@ -27,7 +26,6 @@ public class CalendarEvent {
 		this.start_datetime = start_datetime;
 		this.end_datetime = end_datetime;
 		this.created_by = created_by;
-		this.coller = coller;
 		this.name = name;
 	}
 	
@@ -64,9 +62,6 @@ public class CalendarEvent {
 	public int getCreated_by() {
 		return this.created_by;
 	}
-	public String getColler() {
-		return this.coller;
-	}
-	
+
 }
 

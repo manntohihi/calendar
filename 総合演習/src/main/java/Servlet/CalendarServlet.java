@@ -80,7 +80,7 @@ public class CalendarServlet extends HttpServlet {
 
 		    return;
 
-		}else if("ScheduleEntry.jsp".equals(from)) {
+		}else if("SchedulEntry.jsp".equals(from)) {
 			try {
 				System.out.println("サーブレットに移動");
 

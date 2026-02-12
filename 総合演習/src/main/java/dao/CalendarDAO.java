@@ -70,11 +70,10 @@ public class CalendarDAO {
 			LocalDateTime start_datetime = rs.getTimestamp("start_datetime").toLocalDateTime();
 			LocalDateTime end_datetime = rs.getTimestamp("end_datetime").toLocalDateTime();
 			int created_by = rs.getInt("created_by");
-			String color = rs.getString("color");
 			String name = rs.getString("name");
 			
 			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime
-					, end_datetime, created_by,color, name);
+					, end_datetime, created_by, name);
 			CalendarEventList.add(CalendarEvent);
 		}
 		end = System.currentTimeMillis();
@@ -137,11 +136,10 @@ public class CalendarDAO {
 			LocalDateTime start_datetime = rs.getTimestamp("start_datetime").toLocalDateTime();
 			LocalDateTime end_datetime = rs.getTimestamp("end_datetime").toLocalDateTime();
 			int created_by = rs.getInt("created_by");
-			String color = rs.getString("color");
 			String name = rs.getString("name");
 			
 			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime
-					, end_datetime, created_by,color, name);
+					, end_datetime, created_by, name);
 
 		}
 		end = System.currentTimeMillis();
@@ -207,11 +205,9 @@ public class CalendarDAO {
 			LocalDateTime start_datetime = rs.getTimestamp("start_datetime").toLocalDateTime();
 			LocalDateTime end_datetime = rs.getTimestamp("end_datetime").toLocalDateTime();
 			int created_by = rs.getInt("created_by");
-			String color = rs.getString("color");
 			String name = rs.getString("name");
 			
-			CalendarEvent = new CalendarEvent(id, group_id, title, description,start_datetime
-					, end_datetime, created_by,color, name);
+			CalendarEvent = new CalendarEvent(id, group_id, title, description, start_datetime, end_datetime, created_by, name);
 			CalendarEventList.add(CalendarEvent);
 		}
 		end = System.currentTimeMillis();
@@ -229,7 +225,7 @@ public class CalendarDAO {
 
 
 
-	public void setCalendarDate(int group_id,String title,String texdescription, LocalDateTime start_datetime,LocalDateTime end_datetime,int created_by,String color, String name){
+	public void setCalendarDate(int group_id,String title,String memo, LocalDateTime start_datetime,LocalDateTime end_datetime,int created_by,String color, String name){
 		CalendraEventList PostPrductLogic = null;
 		List<CalendarEvent> CalendarEventList = new ArrayList();
 		
@@ -254,17 +250,16 @@ public class CalendarDAO {
 				String sql = 
 				"INSERT INTO calendar_events " +
 				"(groupID, title, description, start_datetime, end_datetime, created_by, color, name) " +
-				"VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+				"VALUES (?, ?, ?, ?, ?, ?, ?)";
 				
 				PreparedStatement ps = conn.prepareStatement(sql);
 				
 				ps.setLong(1, group_id);
 				ps.setString(2, title);
-				ps.setString(3, texdescription);
+				ps.setString(3, memo);
 				ps.setTimestamp(4, Timestamp.valueOf(start_datetime));
 				ps.setTimestamp(5, Timestamp.valueOf(end_datetime));
 				ps.setLong(6, created_by);
-				ps.setString(7, color);
 				ps.setString(8, name);
 				System.out.println(ps);
 				ps.executeUpdate();
