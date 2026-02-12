@@ -113,6 +113,7 @@ public class RoomSelection extends HttpServlet {
 				CalendarDAO  cdao = new CalendarDAO();
 				List<String> colorList = null;
 				colorList = cdao.findColor(ID);
+				System.out.println("おっぱっぴー"+colorList.size());
 				session.setAttribute("colorList",colorList);
 				//
 				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp

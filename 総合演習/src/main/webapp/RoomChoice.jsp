@@ -24,7 +24,7 @@
     <title>部屋ログイン画面</title>
     <link rel="stylesheet" href="roomChoice.css" />
     <%
-					for(int n = 1; n <= colorList.size(); n++){
+					for(int n = 0; n < colorList.size(); n++){
 						String color = colorList.get(n);
 						if(!color.equals("red")){//変更
 							%><style>
