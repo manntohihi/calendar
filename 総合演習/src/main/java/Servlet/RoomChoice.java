@@ -98,6 +98,8 @@ public class RoomChoice extends HttpServlet {
 			}
 		}
 		*/
+
+		
 		User user = new User();
 		user = (User)session.getAttribute("loginUser");
 		Room room = new Room();
@@ -109,25 +111,27 @@ public class RoomChoice extends HttpServlet {
 				System.out.println("if2");//削除
 				//
 				
+
 				if(rmemDao.searchUserInGroup(user.getUserId(), room.getId()) == null) {
 					rmemDao.setUserGroup(user.getUserId(), room.getId());
 				}
 				//
 				List<barEvent> UserCalendarEventList;
-				List<UserEvent> userEvList = new ArrayList<>();
 				CalendarDAO cDao = new CalendarDAO();
+
+				List<UserEvent> userEvList = new ArrayList<>();
 				
 				System.out.println("aaaaa"+user.getUserId() + room.getId());
+
 				UserCalendarEventList = cDao.findUserCalendarDate(user.getUserId(), room.getId());
 				for(barEvent event: UserCalendarEventList){ 
 					LocalDateTime endDate = event.getEnd_datetime();
 					LocalDate today = LocalDate.now();
 					LocalDate end = endDate.toLocalDate();
 					long remainingDays = ChronoUnit.DAYS.between(today, end);
-					
 					UserEvent userEv = new UserEvent(event.getTitle(), remainingDays);
 					userEvList.add(userEv);
-				} 
+				}
 				
 				session.setAttribute("userEvList", userEvList);
 				session.setAttribute("room", room);

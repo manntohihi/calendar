@@ -109,7 +109,6 @@ public class Room_membersDAO {
 				int userId = rs.getInt("userID");
 				int roomId = rs.getInt("GROUPID");
 				room_members = new Room_members(roomId,userId);
-
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

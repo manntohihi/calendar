@@ -26,47 +26,39 @@
     <%			if(colorList != null ){
 					for(int n = 0; n < colorList.size(); n++){
 						String color = colorList.get(n);
-						if(!color.equals("red")){//変更
+						if(color.equals("red")){//変更
 							%><style>
 								red{display: none;}
 							</style><%
-						}
-						if(!color.equals("blue")){
+						}else if(color.equals("blue")){
 							%><style>
 								blue{display: none;}
 							</style><%
-						}
-						if(!color.equals("yellow")){
+						}else if(color.equals("yellow")){
 							%><style>
 								yellow{display: none;}
 							</style><%
-						}
-						if(!color.equals("green")){
+						}else if(color.equals("green")){
 							%><style>
 								green{display: none;}
 							</style><%
-						}
-						if(!color.equals("lightblue")){
+						}else if(color.equals("lightblue")){
 							%><style>
 								lightblue{display: none;}
 							</style><%
-						}
-						if(!color.equals("pink")){
+						}else if(color.equals("pink")){
 							%><style>
 								pink{display: none;}
 							</style><%
-						}
-						if(!color.equals("orange")){
+						}else if(color.equals("orange")){
 							%><style>
 								orange{display: none;}
 							</style><%
-						}
-						if(!color.equals("purple")){
+						}else if(color.equals("purple")){
 							%><style>
 								purple{display: none;}
 							</style><%
-						}
-						if(!color.equals("yellowgreen")){
+						}else if(color.equals("yellowgreen")){
 							%><style>
 								yellowgreen{display: none;}
 							</style><%
