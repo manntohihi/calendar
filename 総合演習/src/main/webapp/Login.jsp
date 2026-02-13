@@ -11,7 +11,7 @@
 	<form action="Login" method="post">
 		<div class="grid_test">
 	        <div class="grid_test-child" style="text-align: center;">
-	          <h1>マトリョシカ</h1><br>
+	          <h1>Syncal</h1><br>
 	        </div>
 	        <div class="grid_test-child">
 	          <table class="line">
