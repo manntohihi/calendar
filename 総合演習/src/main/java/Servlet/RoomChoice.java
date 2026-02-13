@@ -78,27 +78,6 @@ public class RoomChoice extends HttpServlet {
 		String password = request.getParameter("password");
 		String color = request.getParameter("color");
 		System.out.println(color);
-		/*
-		List<Room> roomList = new ArrayList<Room>();
-		roomList = (List<Room>) session.getAttribute("roomList");
-		for(Room room : roomList) {
-			System.out.println("for");//削除
-			if(ID == room.getId()) {
-				System.out.println("if1");//削除
-				if(password.equals(room.getRoompassword())) {
-					System.out.println("if2");//削除
-					/*if() {
-						//calendarDao完成後collarを入れる
-					}*/
-		/*
-					session.setAttribute("room", room);
-					dispatcher = request.getRequestDispatcher("/Room.jsp");
-					dispatcher.forward(request,response);//Room.jsp遷移
-				}
-			}
-		}
-		*/
-
 		
 		User user = new User();
 		user = (User)session.getAttribute("loginUser");
