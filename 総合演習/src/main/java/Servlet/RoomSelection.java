@@ -72,16 +72,29 @@ public class RoomSelection extends HttpServlet {
 			String roomPasswd = request.getParameter("roompassword");
 			Room room = new Room(ID,roomName,roomPasswd); //のちに出てくるroomとは別物
 			roomList = rdao.findFromID(ID);
-			if(roomList.size()!= 1) {//同一のroomIDがないか検索 結果＝なし
+			if(roomList.size()< 1) {
+
+			    rdao.createRoom(room,userid);
+
+			    Room_membersDAO rmdao = new Room_membersDAO();
+			    rmdao.setUserGroup(userid, ID);
+
+			    List<Room> updatedRoomList = new ArrayList<>();
+			    updatedRoomList.add(room);
+			    session.setAttribute("roomList", updatedRoomList);
+
+			    session.setAttribute("room", room);
+
+			    dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");
+			    dispatcher.forward(request,response);//同一のroomIDがないか検索 結果＝なし
 				System.out.println("rs.java create");//削除
 				rdao.createRoom(room,userid);//ROOMtableに保存
 				session.setAttribute("room", room);
-				Room_membersDAO rmdao = new Room_membersDAO();
 				rmdao.setUserGroup(userid, ID);//Room_memberに登録 String id,int roomid,int userid
 				List<Room_members> roomids = rmdao.searchByUseridForGroup(userid);
 				ServletContext application = this.getServletContext();
 				application.setAttribute("roomids", roomids);//アプリケーションスコープroomids
-				
+				System.out.println("RoomChoice.jsp");
 				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp
 				dispatcher.forward(request,response);//RoomChoice.jsp遷移
 			}else {//検索結果＝あり

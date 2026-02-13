@@ -96,7 +96,7 @@ public class Room_membersDAO {
 		
 		try (Connection conn = ds.getConnection()){
 			//SELECT文を準備
-			String sql = "SELECT GROUPID FROM ROOM_MEMBERS WHERE USERID = ? AND groupID = ?;";
+			String sql = "SELECT USERID,GROUPID FROM ROOM_MEMBERS WHERE USERID = ? AND groupID = ?;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			//INSERT文の「?」に使用する値を設定してSQL文を完成
 			pStmt.setInt(1,userid);
@@ -211,7 +211,7 @@ public class Room_membersDAO {
  			pStmt.setString(1,color);
  			pStmt.setInt(2,groupID);
  			pStmt.setInt(3,userID);
- 			
+ 			System.out.println("成功");
  			//INSERT文を実行
  			int result = pStmt.executeUpdate();
  			if (result != 1) {

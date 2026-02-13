@@ -102,6 +102,7 @@ public class RoomChoice extends HttpServlet {
 
 				List<UserEvent> userEvList = new ArrayList<>();
 				
+				
 				System.out.println("aaaaa"+user.getUserId() + room.getId());
 
 				UserCalendarEventList = cDao.findUserCalendarDate(user.getUserId(), room.getId());
