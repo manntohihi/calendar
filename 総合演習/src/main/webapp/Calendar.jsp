@@ -61,7 +61,14 @@ if (CalendarEventList != null) {
                     <%= e.getEnd_datetime().getDayOfMonth() %>),
     color: "<%= e.getColler() %>",
     id: "<%= e.getId() %>",
-    description: "<%= e.getTexdescription() %>"
+    description: "<%= 
+        e.getTexdescription() == null ? "" :
+        e.getTexdescription()
+            .replace("\\", "\\\\")
+            .replace("\"", "\\\"")
+            .replace("\r", "")
+            .replace("\n", "\\n")
+    %>"
   }<%= (i < CalendarEventList.size() - 1) ? "," : "" %>
 <%
   }
