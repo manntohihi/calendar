@@ -151,25 +151,22 @@ document.getElementById('nextBtn').onclick = () => {
 </script>
 <div class="grid_test">
 	<div class="grid_test-child"> 
-	<p>Home</p>
-	<!-- 
+	<!-- <p>Home</p> -->
 		<a href="RoomSelection">
 			<img src="img/Home.png" alt="Home" width="100">
-		</a>-->
+		</a>
 	</div>
 	<div class="grid_test-child"> 
-	<p>Calendar</p>
-	<!-- 
+	<!-- <p>Calendar</p> -->
 		<a href="CalendarServlet">
 			<img src="img/Chalendar.png" alt="Calendar" width="100">
-		</a>-->
+		</a>
 	</div>
 	<div class="grid_test-child">
-	<p>Move</p>
-	  <!--
+	<!--<p>Move</p>-->
 		<a href="Mypage">
 			<img src="img/Mypage.png" alt="Move" width="100">
-		</a>-->
+		</a>
 	</div>
 </div>
 </body>

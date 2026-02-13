@@ -40,6 +40,8 @@ public class RoomSelection extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("RoomSelection.java Get");//削除
+		HttpSession session = request.getSession();
+		session.removeAttribute("room");
 		RequestDispatcher dispatcher;
 		dispatcher = request.getRequestDispatcher("/RoomSelection.jsp");// /jsp/RoomSelection.jsp
 		dispatcher.forward(request,response);
