@@ -81,7 +81,7 @@
         変更する
       </button>
   <% } %>
-	<input type="hidden" name="from" value="ScheduleEntry.jsp">
+	<input type="hidden" name="from" value="SchedulEntry.jsp">
 </div>
 </form>
 </body>

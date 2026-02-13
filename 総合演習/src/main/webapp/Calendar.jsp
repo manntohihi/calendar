@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.CalendarEvent,java.util.List,model.Room" %>
+<%@ page import="model.CalendarEvent,model.barEvent,java.util.List,model.Room" %>
 <!DOCTYPE html>
 <%
-List<CalendarEvent> CalendarEventList =
-    (List<CalendarEvent>)request.getAttribute("CalendarEventList");
+List<barEvent> CalendarEventList =
+    (List<barEvent>)request.getAttribute("CalendarEventList");
 %>
 <%
     Room room = (Room)session.getAttribute("room");
@@ -50,7 +50,7 @@ const events = [
 <%
 if (CalendarEventList != null) {
   for (int i = 0; i < CalendarEventList.size(); i++) {
-    CalendarEvent e = CalendarEventList.get(i);
+	  barEvent e = CalendarEventList.get(i);
 %>
   {
     start: new Date(<%= e.getStart_datetime().getYear() %>,

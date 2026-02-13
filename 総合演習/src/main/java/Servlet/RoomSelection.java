@@ -74,7 +74,8 @@ public class RoomSelection extends HttpServlet {
 				System.out.println("rs.java create");//削除
 				rdao.createRoom(room,userid);//ROOMtableに保存
 				session.setAttribute("room", room);
-				Room_membersDAO rmdao = new Room_membersDAO();//Room_memberに登録 String id,int roomid,int userid
+				Room_membersDAO rmdao = new Room_membersDAO();
+				rmdao.setUserGroup(userid, ID);//Room_memberに登録 String id,int roomid,int userid
 				List<Room_members> roomids = rmdao.searchByUseridForGroup(userid);
 				ServletContext application = this.getServletContext();
 				application.setAttribute("roomids", roomids);//アプリケーションスコープroomids

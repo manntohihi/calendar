@@ -7,7 +7,7 @@
 	int userid = 0;
 	userid = user.getUserId();
 	List<Room> roomList = 
-			(List<Room>) application.getAttribute("roomList");
+			(List<Room>) session.getAttribute("roomList");
 	int rmuserid = 0;
 	String roomname = null;
 	int roomid = 0;
