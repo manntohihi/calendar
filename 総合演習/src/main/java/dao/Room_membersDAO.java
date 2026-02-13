@@ -181,16 +181,28 @@ public class Room_membersDAO {
  	}
 	
 	public boolean setColor(int groupID,int userID,String color) {
+		//
+		System.out.println("Room_membersDAO Start");
+		//
  		InitialContext initCtx;
  		DataSource ds = null;
  		try {
+ 			//
+ 			System.out.println("Room_membersDAO try1");
+ 			//
  			initCtx = new InitialContext();
  			ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/calendar");//DBの場所へ変更
  		}catch(NamingException e) {
+ 			//
+ 			System.out.println("Room_membersDAO catch1");
+ 			//
  			e.printStackTrace();
  		}
  		//データベース接続
  		try (Connection conn = ds.getConnection()){
+ 			//
+ 			System.out.println("Room_membersDAO try2");
+ 			//
  			//INSERT文の準備
  			String sql = "UPDATE room_members SET color = ? WHERE groupID = ? AND userID = ?;";//変更
  			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -203,13 +215,21 @@ public class Room_membersDAO {
  			//INSERT文を実行
  			int result = pStmt.executeUpdate();
  			if (result != 1) {
+ 				//
+ 	 			System.out.println("Room_membersDAO if1");
+ 	 			//
  				return false;
  			}
  		}catch(SQLException e) {
+ 			//
+ 			System.out.println("Room_membersDAO catch2");
+ 			//
 			e.printStackTrace();
 			return false;
- 		
  		}
+ 		//
+			System.out.println("Room_membersDAO END");
+			//
  		return true;
  	}
 }
