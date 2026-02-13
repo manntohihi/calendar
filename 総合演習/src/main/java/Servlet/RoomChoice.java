@@ -85,9 +85,7 @@ public class RoomChoice extends HttpServlet {
 				if(rmemDao.searchUserInGroup(user.getUserId(), room.getId()) == null) {
 					rmemDao.setUserGroup(user.getUserId(), room.getId());
 				}
-				
-				
-				
+				//
 				
 				CalendarDAO cDao = new CalendarDAO();
 				List<CalendarEvent> UserCalendarEventList;
