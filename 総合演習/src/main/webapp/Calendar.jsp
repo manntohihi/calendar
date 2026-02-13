@@ -21,6 +21,7 @@ List<barEvent> CalendarEventList =
 </head>
 
 <body>
+<div class="grid_test">
 
 <div class="calendar-container">
 
@@ -149,7 +150,7 @@ document.getElementById('nextBtn').onclick = () => {
   renderCalendar(currentDate);
 };
 </script>
-<div class="grid_test">
+<!-- <div class="grid_test"> -->
 	<div class="grid_test-child"> 
 	<!-- <p>Home</p> -->
 		<a href="RoomSelection">
@@ -159,7 +160,7 @@ document.getElementById('nextBtn').onclick = () => {
 	<div class="grid_test-child"> 
 	<!-- <p>Calendar</p> -->
 		<a href="CalendarServlet">
-			<img src="img/Chalendar.png" alt="Calendar" width="100">
+			<img src="img/Calendar.png" alt="Calendar" width="100">
 		</a>
 	</div>
 	<div class="grid_test-child">
