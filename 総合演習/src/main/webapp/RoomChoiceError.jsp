@@ -1,13 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@
-	page import= "model.Room"
+	page import= "java.util.List,model.Room"
 %>
 <% 
 	Room room = new Room();
 	room = (Room) session.getAttribute("room");
 	String roomName;
 	roomName = room.getRoomname();
+	//
+	List<String> colorList = null;
+	colorList = (List<String>) session.getAttribute("colorList");
+	if (colorList == null){
+		RequestDispatcher dispatcher;
+		dispatcher = request.getRequestDispatcher("/RoomSelectionError.jsp");// /jsp/RoomSelectionError.jsp
+		dispatcher.forward(request,response);//RoomSelectionError.jsp遷移
+	}
 %>
 <!doctype html>
 <html lang="ja">

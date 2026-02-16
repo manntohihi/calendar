@@ -23,49 +23,50 @@
     <meta charset="utf-8" />
     <title>部屋ログイン画面</title>
     <link rel="stylesheet" href="roomChoice.css" />
-    <%			if(colorList != null ){
-					for(int n = 0; n < colorList.size(); n++){
-						String color = colorList.get(n);
-						if(color.equals("red")){//変更
-							%><style>
-								red{display: none;}
-							</style><%
-						}else if(color.equals("blue")){
-							%><style>
-								blue{display: none;}
-							</style><%
-						}else if(color.equals("yellow")){
-							%><style>
-								yellow{display: none;}
-							</style><%
-						}else if(color.equals("green")){
-							%><style>
-								green{display: none;}
-							</style><%
-						}else if(color.equals("lightblue")){
-							%><style>
-								lightblue{display: none;}
-							</style><%
-						}else if(color.equals("pink")){
-							%><style>
-								pink{display: none;}
-							</style><%
-						}else if(color.equals("orange")){
-							%><style>
-								orange{display: none;}
-							</style><%
-						}else if(color.equals("purple")){
-							%><style>
-								purple{display: none;}
-							</style><%
-						}else if(color.equals("yellowgreen")){
-							%><style>
-								yellowgreen{display: none;}
-							</style><%
-						}
-					}
-    			}
-				%>
+    <%if(colorList != null ){
+		for(int n = 0; n < colorList.size(); n++){
+			String color = colorList.get(n);
+			if(color.equals("red")){//変更
+				System.out.println("red");
+				%><style>
+					red{display: none;}
+				</style><%
+			}else if(color.equals("blue")){
+				%><style>
+					blue{display: none;}
+				</style><%
+			}else if(color.equals("yellow")){
+				%><style>
+					yellow{display: none;}
+				</style><%
+			}else if(color.equals("green")){
+				%><style>
+					green{display: none;}
+				</style><%
+			}else if(color.equals("lightblue")){
+				%><style>
+					lightblue{display: none;}
+				</style><%
+			}else if(color.equals("pink")){
+				%><style>
+					pink{display: none;}
+				</style><%
+			}else if(color.equals("orange")){
+				%><style>
+					orange{display: none;}
+				</style><%
+			}else if(color.equals("purple")){
+				%><style>
+					purple{display: none;}
+				</style><%
+			}else if(color.equals("yellowgreen")){
+				%><style>
+					yellowgreen{display: none;}
+				</style><%
+			}
+		}
+ 			}
+	%>
     
   </head>
   <body>
