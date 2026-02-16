@@ -54,9 +54,12 @@ public class RoomChoice extends HttpServlet {
 		Room room = roomList.get(0);
 		session.setAttribute("room", room);
 		System.out.println("room名前"+ room.getRoomname());
-		
+		User loginUser = new User();
+		loginUser = (User) session.getAttribute("loginUser");
+		int userid = 0;
+		userid = loginUser.getUserId();
 		CalendarDAO cdao = new CalendarDAO();
-		List<String> colorList = cdao.findColor(roomid);
+		List<String> colorList = cdao.findColor(roomid,userid);
 		session.setAttribute("colorList", colorList);
 		RequestDispatcher dispatcher;
 		dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp

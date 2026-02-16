@@ -349,7 +349,7 @@ public class CalendarDAO {
 	    }
 	}
 	
-		public List<String> findColor(int ID){
+		public List<String> findColor(int ID,int userid){
 		    List<String> colorList = new ArrayList<>();
 		    
 		    InitialContext ic;
@@ -366,10 +366,11 @@ public class CalendarDAO {
 			}
 		    try(Connection conn = ds.getConnection()){
 		        String sql ="SELECT color FROM room_members "
-		                  + "WHERE groupID = ? AND color IS NOT NULL";
+		                  + "WHERE groupID = ? AND color IS NOT NULL AND NOT userID = ?";
 
 		        PreparedStatement ps = conn.prepareStatement(sql);
 		        ps.setLong(1, ID);
+		        ps.setLong(2, userid);
 
 		        ResultSet rs = ps.executeQuery();
 
