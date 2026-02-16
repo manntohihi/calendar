@@ -42,17 +42,15 @@ public class CalendarDAO {
 		//データベース接続、connに詰め替え
 	    try(Connection conn = ds.getConnection()){
 
-	        String sql = "SELECT e.*, rm.color "
-	                   + "FROM calendar_events e "
-	                   + "JOIN room_members rm ON e.groupID = rm.groupID "
-	                   + "WHERE rm.userID = ? "
-	                   + "AND e.groupID = ? "
-	                   + "AND e.created_by = ?";
+	    	String sql = "SELECT e.*, rm.color "
+	    	           + "FROM calendar_events e "
+	    	           + "JOIN room_members rm "
+	    	           + "ON e.groupID = rm.groupID "
+	    	           + "AND e.created_by = rm.userID "
+	    	           + "WHERE e.groupID = ?";
 
 	        PreparedStatement ps = conn.prepareStatement(sql);
-	        ps.setLong(1, loginUserId);
-	        ps.setLong(2, GroupId);
-	        ps.setLong(3, loginUserId);
+	        ps.setLong(1, GroupId);
 
 	        ResultSet rs = ps.executeQuery();
 
