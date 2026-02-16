@@ -31,7 +31,7 @@
 	            <ul class="nav_list">
 	              <li class="nav_item"><a href="CalendarServlet">カレンダー画面</a></li>
 	              <li class="nav_item"><a href="EntryServlet">予定入力画面</a></li>
-	              <li class="nav_item"><a href="">メニュー3</a></li>
+	              <!-- <li class="nav_item"><a href="">メニュー3</a></li> -->
 	            </ul>
 	          </nav>
 	        </div>

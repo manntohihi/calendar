@@ -31,6 +31,7 @@
 	grid-row:1/4;       /* 配置指定 */
 	text-align: center;
 }
+/*
 .grid_test-child:nth-child(1) {
         background-color:  #7b9ad0;     
     }
@@ -49,7 +50,7 @@
     .grid_test-child:nth-child(6) {
         background-color:  #56c7ec;    
     }
-
+*/
 body {
   display:flex;
   align-items: center;
