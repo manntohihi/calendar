@@ -299,6 +299,55 @@ public class CalendarDAO {
 		
 		
 	}
+		
+		public void updateCalendarDate(int group_id,String title,String description, LocalDateTime start,LocalDateTime end,int created_by, String name){
+			CalendraEventList PostPrductLogic = null;
+			List<CalendarEvent> CalendarEventList = new ArrayList();
+			
+			
+			
+			InitialContext ic;
+			DataSource ds = null;
+			 // JBDCドライバの読み込みorエラー表示
+			// JBDCドライバの読み込みorエラー表示
+			try {
+				ic = new InitialContext();
+				
+				//DBの場所
+				ds = (DataSource) ic.lookup("java:comp/env/jdbc/calendar");
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+			//データベース接続、connに詰め替え
+			try (Connection conn = ds.getConnection()) {
+
+	            String sql =
+	                "UPDATE calendar_events " +
+	                "SET title = ?, " +
+	                "    description = ?, " +
+	                "    start_datetime = ?, " +
+	                "    end_datetime = ?, " +
+	                "    name = ? " +
+	                "WHERE id = ?";
+
+	            PreparedStatement ps =
+	                conn.prepareStatement(sql);
+
+	            ps.setString(1, title);
+	            ps.setString(2, description);
+	            ps.setTimestamp(3, Timestamp.valueOf(start));
+	            ps.setTimestamp(4, Timestamp.valueOf(end));
+	            ps.setString(5, name);
+	            ps.setLong(6, group_id);
+
+	            System.out.println(ps);
+	            ps.executeUpdate();
+	        
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
 	
 		public List<String> findColor(int ID){
 		    List<String> colorList = new ArrayList<>();

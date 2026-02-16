@@ -1,6 +1,7 @@
 package Servlet;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpSession;
 
 import dao.CalendarDAO;
 import model.CalendarEvent;
+import model.Room;
 import model.User;
 
 /**
@@ -51,14 +53,80 @@ public class EntryServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("EntryServlet;dopost");
-		CalendarDAO cDao = new CalendarDAO();
-		String Id = request.getParameter("id");
-		int id = Integer.parseInt(Id);
-		cDao.deleteCalendarDate(id);
-		response.sendRedirect("CalendarServlet");
-	}
+	 protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	            throws ServletException, IOException {
 
-}
+	        HttpSession session = request.getSession();
+	        User user = (User) session.getAttribute("loginUser");
+	        Room room = (Room) session.getAttribute("room");
+
+	        if (room == null) {
+	            response.sendRedirect("Mypage");
+	            return;
+	        }
+
+	        String action = request.getParameter("action");
+	        CalendarDAO cDao = new CalendarDAO();
+
+	        try {
+
+	            if ("add".equals(action)) {
+
+	                String title = request.getParameter("title");
+	                String memo  = request.getParameter("memo");
+	                String staff = request.getParameter("staffName");
+
+	                LocalDateTime start =
+	                        LocalDateTime.parse(request.getParameter("startDate"));
+	                LocalDateTime end =
+	                        LocalDateTime.parse(request.getParameter("endDate"));
+
+	                cDao.setCalendarDate(
+	                        room.getId(),
+	                        title,
+	                        memo,
+	                        start,
+	                        end,
+	                        user.getUserId(),
+	                        staff
+	                );
+
+	            } else if ("update".equals(action)) {
+
+	                int id = Integer.parseInt(request.getParameter("id"));
+
+	                String title = request.getParameter("title");
+	                String memo  = request.getParameter("memo");
+	                String staff = request.getParameter("staffName");
+
+	                LocalDateTime start =
+	                        LocalDateTime.parse(request.getParameter("startDate"));
+	                LocalDateTime end =
+	                        LocalDateTime.parse(request.getParameter("endDate"));
+
+	                cDao.updateCalendarDate(
+	                        id,
+	                        title,
+	                        memo,
+	                        start,
+	                        end,
+	                        user.getUserId(),
+	                        staff
+	                );
+
+	            } else if ("delete".equals(action)) {
+
+	                int id = Integer.parseInt(request.getParameter("id"));
+	                cDao.deleteCalendarDate(id);
+	            }
+
+	            response.sendRedirect("CalendarServlet");
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            RequestDispatcher dispatcher =
+	                    request.getRequestDispatcher("error.jsp");
+	            dispatcher.forward(request, response);
+	        }
+	    }
+	}

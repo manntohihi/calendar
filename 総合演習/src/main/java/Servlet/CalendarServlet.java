@@ -1,7 +1,6 @@
 package Servlet;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
@@ -35,32 +34,29 @@ public class CalendarServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute("loginUser");
-		Room room = (Room) request.getSession().getAttribute("room");
-		System.out.println("room:"+room);
-		if(room == null){
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		    response.sendRedirect("Mypage");
-		    System.out.println("Mypage");
-		    return;
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("loginUser");
+        Room room = (Room) session.getAttribute("room");
 
-		}else {
-		 
-			System.out.println("CalendarServlet;doget");
-			List<barEvent> CalendarEventList;
-			CalendarDAO cDao = new CalendarDAO();
-			CalendarEventList = cDao.findCalendarDate(user.getUserId(),room.getId());
-			request.setAttribute("CalendarEventList", CalendarEventList);
-			System.out.println(2);
-			RequestDispatcher dispatcher = 
-					request.getRequestDispatcher("Calendar.jsp");
-			dispatcher.forward(request, response);
-		}
+        if (room == null) {
+            response.sendRedirect("Mypage");
+            return;
+        }
 
-	}
+        CalendarDAO cDao = new CalendarDAO();
+        List<barEvent> list =
+                cDao.findCalendarDate(user.getUserId(), room.getId());
+
+        request.setAttribute("CalendarEventList", list);
+
+        RequestDispatcher dispatcher =
+                request.getRequestDispatcher("Calendar.jsp");
+        dispatcher.forward(request, response);
+    }
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -80,33 +76,8 @@ public class CalendarServlet extends HttpServlet {
 
 		    return;
 
-		}else if("SchedulEntry.jsp".equals(from)) {
-			try {
-				System.out.println("サーブレットに移動");
 
-
-				
-				String title      = request.getParameter("title");
-				String memo      = request.getParameter("memo");
-				String staffName = request.getParameter("staffName");
-				String s = request.getParameter("startDate");
-				LocalDateTime sqlStartDate = LocalDateTime.parse(s);
-				String e = request.getParameter("endDate");
-				LocalDateTime sqlEndDate = LocalDateTime.parse(e);
-	        
-				
-				CalendarDAO cDao = new CalendarDAO();
-
-				cDao.setCalendarDate(room.getId(), title, memo, sqlStartDate, sqlEndDate, user.getUserId(),staffName);
-
-	   
-				response.sendRedirect("CalendarServlet");
-			}catch (Exception e) {
-				RequestDispatcher dispatcher = 
-			    		request.getRequestDispatcher("error.jsp");
-			    	dispatcher.forward(request, response);
-			}
-		}else if("Calendar.jsp".equals(from)) {
+		}else {
 	    	RequestDispatcher dispatcher = 
 	    		request.getRequestDispatcher("SchedulEntry.jsp");
 	    	dispatcher.forward(request, response);
