@@ -159,7 +159,7 @@ document.getElementById('nextBtn').onclick = () => {
 	</div>
 	<div class="grid_test-child"> 
 	<!-- <p>Calendar</p> -->
-		<a href="CalendarServlet">
+		<a href="Room">
 			<img src="img/Calendar.png" alt="Calendar" width="100">
 		</a>
 	</div>

@@ -46,8 +46,7 @@ public class Room extends HttpServlet {
 		
 		User user = new User();
 		user = (User)session.getAttribute("loginUser");
-		Room room = new Room();
-		room = (Room) session.getAttribute("room");
+		model.Room room = (model.Room) session.getAttribute("room");
 		
 		List<barEvent> UserCalendarEventList;
 		CalendarDAO cDao = new CalendarDAO();
