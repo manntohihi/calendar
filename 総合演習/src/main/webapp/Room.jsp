@@ -29,11 +29,9 @@
 	        <h1><%= room.getRoomname() %>  <%= room.getId() %></h1>
 	      </div>
 	      <div class="grid_test-child">
-	        <p>一時予定</p>
 	        <p>利用者</p> z
 	      </div>
 	      <div class="grid_test-child">
-	        <p>残日数</p>
 			<% for(UserEvent event : userEvList){ %>
 				<div class="box">
   					<p><td><%= event.getTitle() %>      のこり<%= event.getRemainingDays() %>日</td></p>
