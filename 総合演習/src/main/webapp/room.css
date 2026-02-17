@@ -1,100 +1,120 @@
- .grid_test {
-     display: grid;  /* グリッドコンテナを作る */
-     grid-template-columns:1fr 1fr 1fr;      /* 縦向きのグリッドラインを決める */
-     grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr 1fr;         /* 横向きのグリッドラインを決める */
-	border: 3px solid #4caf50;
- }
- .grid_test-child:nth-child(1) {
-     grid-column:1/4;    /* 配置指定 */
-     grid-row:1;       /* 配置指定 */
-	 margin: 10px;
-	 border: 3px solid #4caf50;
- }
- .grid_test-child:nth-child(2) {
-     grid-column:1/4;    /* 配置指定 */
-     grid-row:2/5;       /* 配置指定 */
-	 border-top: 2px solid skyblue;
-	 border-bottom: 2px solid skyblue; /* 下線だけ */
- }
- .grid_test-child:nth-child(3) {
-     grid-column:1/4;    /* 配置指定 */
-     grid-row:5/7;       /* 配置指定 */
-	 border-bottom: 2px solid skyblue; /* 下線だけ */
- }
-.grid_test-child:nth-child(4) {
-	 grid-column:1;/* 配置指定 */ 
-	 grid-row:7;
-	 text-align: center;
-	 border-right:2px solid skyblue;
-	 
-	 display: flex;
-	     justify-content: center;   
-	     align-items: center;       
-	     width: 100%;
-	     padding: 10px 0;
- }
- .grid_test-child:nth-child(5) {
-     grid-column:2;    /* 配置指定 */
-     grid-row:7;       /* 配置指定 */
- 	text-align: center;
-	border-right:2px solid skyblue;
-	
-	display: flex;
-	    justify-content: center;  
-	    align-items: center;      
-	    width: 100%;
-	    padding: 10px 0;
- }
- .grid_test-child:nth-child(6) {
-	grid-column:3;
-	grid-row:7;       /* 配置指定 */
-	text-align: center;
-	
-	display: flex;
-	    justify-content: center;   
-	    align-items: center;       
-	    width: 100%;
-	    padding: 10px 0;
+@charset "UTF-8";
 
- }
- 
- .box {
-	margin: 10px;
-	border: 3px solid #4caf50;
- } 
- 
+/* 1. 全体のベースデザイン */
+body {
+    background-color: #f0f2f5;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    color: #333;
+}
 
- .title {
-   font-size: 25px;   /* タイトル大きく */
-   font-weight: bold;
- }
+form {
+    width: 100%;
+    max-width: 500px;
+    min-height: 100vh;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
 
- .days {
-   font-size: 30px;   /* 日数小さく */
-   color: red;
- }
+/* 2. グリッドコンテナ（行の高さを拡大） */
+.grid_test {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 1行目(部屋名): 120px, 2行目(予定・利用者): 140px, 3行目: 自動, 4行目: 80px */
+    grid-template-rows: 120px 140px 1fr 80px; 
+    min-height: 100vh;
+}
 
- 
- 
+/* 3. 各パーツの個別デザイン（大きく見せる修正） */
 
-
-/*
+/* 【1】部屋名・IDヘッダー：高さを出し、文字を巨大化 */
 .grid_test-child:nth-child(1) {
-        background-color:  #7b9ad0;     
-    }
-    .grid_test-child:nth-child(2) {
-        background-color:  #c8d627;     
-    }
-    .grid_test-child:nth-child(3) {
-        background-color:  #d5848b;     
-    }
-    .grid_test-child:nth-child(4) {
-        background-color:  #51a1a2;    
-    }
-    .grid_test-child:nth-child(5) {
-        background-color:  #66b7ec;    
-    }
-    .grid_test-child:nth-child(6) {
-        background-color:  #56c7ec;    
-    }
-*/
+    grid-column: 1 / 4;
+    grid-row: 1;
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    color: white;
+    display: flex;
+    flex-direction: column; /* 上下に並べる */
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.grid_test-child:nth-child(1) h1 {
+    font-size: 2.2rem; /* かなり大きく */
+    margin: 0;
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* 【2】一時予定・利用者ラベル：フォントと余白を拡大 */
+.grid_test-child:nth-child(2) {
+    grid-column: 1 / 4;
+    grid-row: 2;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; /* 均等に配置 */
+    padding: 20px 30px;
+    border-bottom: 2px solid #edf2f7;
+}
+.grid_test-child:nth-child(2) p {
+    margin: 0;
+    font-size: 1.2rem; /* 文字を大きく */
+    color: #475569;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+/* 先頭に少しアクセントを付ける場合 */
+.grid_test-child:nth-child(2) p::before {
+    content: "●";
+    color: #4a90e2;
+    margin-right: 10px;
+    font-size: 0.8rem;
+}
+
+/* 【3】イベントリスト（前回のスタイルを維持） */
+.grid_test-child:nth-child(3) {
+    grid-column: 1 / 4;
+    grid-row: 3;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #f8fafd; /* リスト背景を少し変えてメリハリを出す */
+}
+
+/* 【4〜6】下部ナビゲーション（前回のスタイルを維持） */
+.grid_test-child:nth-child(4),
+.grid_test-child:nth-child(5),
+.grid_test-child:nth-child(6) {
+    grid-row: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-top: 1px solid #e2e8f0;
+}
+.grid_test-child:nth-child(4) { grid-column: 1; }
+.grid_test-child:nth-child(5) { grid-column: 2; border-left: 1px solid #f1f5f9; border-right: 1px solid #f1f5f9; }
+.grid_test-child:nth-child(6) { grid-column: 3; }
+
+.grid_test-child img {
+    width: 32px;
+    height: auto;
+}
+
+/* カードのデザイン */
+.box {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.title { font-size: 1.1rem; font-weight: bold; }
+.days { font-size: 1.6rem; font-weight: bold; color: #ef4444; }

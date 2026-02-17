@@ -1,4 +1,6 @@
-/* 全体のベースデザイン */
+@charset "UTF-8";
+
+/* 1. 全体のベースデザイン */
 body {
     background-color: #f4f7f8;
     font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
@@ -12,100 +14,91 @@ form {
     margin: 0 auto;
 }
 
-/* グリッドコンテナ */
+/* 2. グリッドコンテナ（4列設定） */
 .grid_test {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 80px auto auto 1fr; /* 1行目を固定、他はコンテンツ合わせ */
+    grid-template-rows: 80px auto auto 1fr;
     gap: 15px;
-    position: relative; /* エラーメッセージの基準点 */
 }
 
-/* 各パーツの共通スタイル */
+/* 3. 各パーツの共通スタイル */
 .grid_test-child {
     background: #ffffff;
     border-radius: 12px;
     padding: 15px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
 }
 
-/* 背景を透明にする特定の要素（アイコン等） */
-.grid_test-child:nth-child(1),
-.grid_test-child:nth-child(2),
+/* ★重要：1番目の空白ブロックを完全に消す設定 */
+.grid_test-child:nth-child(1) {
+    display: none; /* これで左上の空白が物理的に消滅します */
+}
+
+/* 4. 各パーツの配置指定 */
+
+/* 2番目：マイページアイコン（右端へ） */
 .grid_test-child:nth-child(2) {
-    grid-column:4;    /* 配置指定 */
-    grid-row:1;       /* 配置指定 */
-}
-.grid_test-child:nth-child(3) {
-    grid-column:2/4;    /* 配置指定 */
-    grid-row:2;       /* 配置指定 */
-    place-items: center;
-}
-.grid_test-child:nth-child(4) {
-    grid-column:2/4;    /* 配置指定 */
-    grid-row:3;       /* 配置指定 */
-}
-.grid_test-child:nth-child(5) {
-    grid-column:4;    /* 配置指定 */
-    grid-row:3;       /* 配置指定 */
-}
-.grid_test-child:nth-child(6) {
-    grid-column:1/4;    /* 配置指定 */
-    grid-row:4/5;       /* 配置指定 */
-	
-
-}
-
-.grid_test-child:nth-child(7) {
+    grid-column: 4;
+    grid-row: 1;
     background: transparent;
     box-shadow: none;
-    padding: 0;
-}
-
-/* 配置指定（元の構成を維持） */
-.grid_test-child:nth-child(1) { grid-column: 1; grid-row: 1; }
-.grid_test-child:nth-child(2) { 
-    grid-column: 4; 
-    grid-row: 1; 
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 .grid_test-child:nth-child(2) img {
     border-radius: 50%;
-    transition: transform 0.2s;
 }
-.grid_test-child:nth-child(2) img:hover { transform: scale(1.1); }
 
-/* 新規作成 (details) */
+/* 3番目：新規部屋作成 */
 .grid_test-child:nth-child(3) {
-    grid-column: 2 / 4;
+    grid-column: 1 / 5; /* 1〜5にすることで1行丸ごと使い、空白を埋めます */
     grid-row: 2;
 }
-details summary {
-    font-weight: bold;
-    cursor: pointer;
-    color: #4a90e2;
-    outline: none;
+
+/* 4番目：検索入力エリア */
+.grid_test-child:nth-child(4) {
+    grid-column: 1 / 4; /* 左から3列分使う */
+    grid-row: 3;
 }
 
-/* 検索エリア */
-.grid_test-child:nth-child(4) { grid-column: 2 / 4; grid-row: 3; }
-.grid_test-child:nth-child(5) { 
-    grid-column: 4; 
-    grid-row: 3; 
+/* 5番目：検索ボタン */
+.grid_test-child:nth-child(5) {
+    grid-column: 4;
+    grid-row: 3;
     display: flex;
     align-items: center;
 }
 
-/* 部屋リスト */
+/* 6番目：部屋リスト */
 .grid_test-child:nth-child(6) {
     grid-column: 1 / 5;
     grid-row: 4;
     min-height: 200px;
-    background: #fff;
 }
+
+/* 5. フォーム部品の装飾 */
+.text {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+input[type="submit"], .new {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+}
+
 .grid_test-child:nth-child(6) a {
     display: block;
     text-decoration: none;
@@ -115,59 +108,4 @@ details summary {
     margin-bottom: 10px;
     border-radius: 8px;
     border-left: 4px solid #4a90e2;
-    transition: 0.2s;
-}
-.grid_test-child:nth-child(6) a:hover {
-    background: #edf4ff;
-    transform: translateX(5px);
-}
-
-/* エラーメッセージ（7番目の子要素） */
-.grid_test-child:nth-child(7) {
-    grid-column: 2 / 4;
-    grid-row: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none; /* 下の要素の操作を邪魔しない */
-}
-.error {
-    color: #e74c3c;
-    font-weight: bold;
-    background: #fdeaea;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.9em;
-    border: 1px solid #fabeb3;
-    margin: 0;
-}
-
-/* 入力フォーム・ボタンの装飾 */
-.text {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    box-sizing: border-box;
-}
-.text:focus {
-    border-color: #4a90e2;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(74,144,226,0.2);
-}
-
-input[type="submit"], input[type="button"] {
-    background: #4a90e2;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    width: 100%;
-    transition: background 0.2s;
-}
-input[type="submit"]:hover, input[type="button"]:hover {
-    background: #357abd;
 }
