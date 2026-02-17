@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpSession;
 
 import dao.CalendarDAO;
 import dao.Room_membersDAO;
+import model.Room;
 import model.User;
 import model.UserEvent;
 import model.barEvent;
@@ -25,13 +26,13 @@ import model.barEvent;
  * Servlet implementation class Room
  */
 @WebServlet("/Room")
-public class Room extends HttpServlet {
+public class RoomFront extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Room() {
+    public RoomFront() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,7 +47,8 @@ public class Room extends HttpServlet {
 		
 		User user = new User();
 		user = (User)session.getAttribute("loginUser");
-		model.Room room = (model.Room) session.getAttribute("room");
+		Room room = new Room();
+		room = (Room) session.getAttribute("room");
 		
 		List<barEvent> UserCalendarEventList;
 		CalendarDAO cDao = new CalendarDAO();

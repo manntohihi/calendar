@@ -45,6 +45,18 @@
 	border: 3px solid #4caf50;
  } 
  
+
+ .title {
+   font-size: 25px;   /* タイトル大きく */
+   font-weight: bold;
+ }
+
+ .days {
+   font-size: 30px;   /* 日数小さく */
+   color: red;
+ }
+
+ 
  
 
 

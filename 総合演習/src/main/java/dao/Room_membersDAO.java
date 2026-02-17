@@ -103,7 +103,6 @@ public class Room_membersDAO {
 			pStmt.setInt(2,groupid);
 			//SELECT文を実行し、結果票を取得
 			ResultSet rs = pStmt.executeQuery();
-			
 			//SELECT文の結果をArrayListに格納
 			while (rs.next()) {
 				int userId = rs.getInt("userID");
@@ -116,6 +115,41 @@ public class Room_membersDAO {
 		}
 		return room_members;
 	}
+	
+	//部屋数
+	public List<Integer> countByGroupid(int groupid){//useridから検索
+		 List<Integer> nr = null;
+		 
+		InitialContext initCtx;
+		DataSource ds =null;
+		try {
+			initCtx = new InitialContext();
+			ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/calendar");//DBの場所へ変更
+		}catch(NamingException e) {
+			e.printStackTrace();
+		}
+		
+		try (Connection conn = ds.getConnection()){
+			//SELECT文を準備
+			String sql = "SELECT USERID FROM ROOM_MEMBERS WHERE GROUPID = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			//INSERT文の「?」に使用する値を設定してSQL文を完成
+			pStmt.setInt(1,groupid);
+			//SELECT文を実行し、結果票を取得
+			ResultSet rs = pStmt.executeQuery();
+			
+			//SELECT文の結果をArrayListに格納
+			while (rs.next()) {
+				int roomid = rs.getInt("USERID");
+				nr.add(roomid);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return nr;
+	}
+	//
 	
 	public void setUserGroup(int userid , int groupid){//useridから検索
 		 List<Room_members> roomids = new ArrayList<Room_members>();

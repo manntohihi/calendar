@@ -13,7 +13,7 @@
 	roomID = room.getId();
 	String roomName;
 	roomName = room.getRoomname();
-	
+	session.setAttribute("room", room);
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="room.css" />
   </head>
   <body>
-  	<form action="Room" method="post">
+  	<form action="RoomFront" method="post">
 	    <div class="grid_test">
 	      <div class="grid_test-child">
 	        <h1><%= room.getRoomname() %>  <%= room.getId() %></h1>
@@ -36,7 +36,11 @@
 	        <p>残日数</p>
 			<% for(UserEvent event : userEvList){ %>
 				<div class="box">
-  					<p><td><%= event.getTitle() %>      のこり<%= event.getRemainingDays() %>日</td></p>
+  				<td>
+  					<span class="title"><%= event.getTitle() %></span>
+  					のこり
+  					<span class="days"><%= event.getRemainingDays() %></span>日
+				</td>
   				</div>
   			<% } %>
 	      </div>

@@ -13,11 +13,14 @@ img {
 }
 
 /* 全体設定 */
-body {
-    font-family: sans-serif;
-    background: #fff;
-    color: #333;
-    padding-bottom: 80px; /* bottom-navのスペース確保 */
+.container {
+    background: #ffffffcc;
+    backdrop-filter: blur(6px);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    width: 340px;
+    margin: 80px auto;
 }
 
 /* コンテナ */
@@ -54,26 +57,38 @@ body {
 }
 
 .namecgbtn, .logoutbtn {
-    padding: 10px 20px;
-    background: #515151;
+    padding: 12px 24px;
+    background: #4f7cff;
     color: #fff;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.namecgbtn:hover, .logoutbtn:hover {
+    background: #3c63d6;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
 }
 
 /* ナビゲーションバー */
 .bottom-nav {
     position: fixed;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 60px;
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	background: #fafafa;
-	border-top: 1px solid #000;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.5);
 }
 
 /* ナビアイテム */
@@ -87,7 +102,8 @@ body {
 
 /* ホバー */
 .nav-item:hover {
-    background: #aca4ff;
+    background: rgba(79, 124, 255, 0.12);
+    border-radius: 12px;
 }
 
 /* アイコン */
