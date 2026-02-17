@@ -30,7 +30,7 @@
     <!-- 上部プロフィール -->
     <div class="container">
         <div class="profile-icon">
-            <img src="default.png" alt="アイコン">
+            <img src="img/Mypage.png" alt="アイコン">
         </div>
 
         <div class="info">
