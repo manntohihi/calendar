@@ -96,7 +96,6 @@
         </div>
         <div class="grid_test-child">
             <div class="grid_test2">
-            	<input type="radio" name="color" id="color-reset" value="" checked style="display:none;">
 				<div class="grid_test-child2">
 			    	<input type="radio" id="red" name="color" value="red" class="red"/>
 					<label for="red" class="red">red</label>
@@ -140,13 +139,5 @@
         </div>
     </div>
     </form>
-    <script>
-        document.querySelector('.grid_test').addEventListener('click', function(e) {
-            // クリックされたのが label や input でない（余白である）場合にリセット
-            if (e.target.classList.contains('grid_test-child') || e.target.classList.contains('grid_test')) {
-                document.getElementById('color-reset').checked = true;
-            }
-        });
-    </script>
   </body>
 </html>

@@ -43,6 +43,11 @@ h1 { color: #2563eb; font-size: 26px; margin: 0; }
     place-items: center;
 }
 
+/* ★追加：ラジオボタン本体を完全に隠す（これで変なポチが消えます） */
+.grid_test2 input[type="radio"] {
+    display: none !important;
+}
+
 .grid_test2 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -50,12 +55,9 @@ h1 { color: #2563eb; font-size: 26px; margin: 0; }
     width: 100%;
 }
 
-/* ラジオボタン本体とリセットボタンを隠す */
-input[type="radio"], #color-reset { display: none !important; }
-
 .grid_test2 label {
     display: block;
-    padding: 8px 4px 8px 12px;
+    padding: 10px 4px; /* 上下を少し増やしてログインボタンの高さに合わせる */
     text-align: center;
     font-size: 11px;
     font-weight: bold;
@@ -68,6 +70,7 @@ input[type="radio"], #color-reset { display: none !important; }
     overflow: hidden;
     transition: all 0.3s ease;
     z-index: 1;
+    box-sizing: border-box; /* 高計算を正確に */
 }
 
 /* 左端のアクセントライン */
@@ -80,7 +83,7 @@ input[type="radio"], #color-reset { display: none !important; }
     z-index: -1;
 }
 
-/* 各カラーの指定 */
+/* 各カラーの指定（省略せずそのまま維持） */
 .red::before { background-color: #ef4444; }
 .blue::before { background-color: #3b82f6; }
 .yellow::before { background-color: #eab308; }
@@ -103,28 +106,29 @@ input[type="radio"]:checked + label {
 }
 input[type="radio"]:checked + label::before { width: 100%; opacity: 1; }
 
-/* 5. ログインボタン */
+/* 5. ログインボタン（右端・5行目） */
 .grid_test-child:nth-child(5) {
-    grid-column: 3;
-    grid-row: 5;
+    grid-column: 3;    
+    grid-row: 5;       
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding-bottom: 5px;
+    justify-content: flex-end; 
+    align-items: center;      /* 中央揃え */
 }
 
 input[type="submit"] {
-    background-color: #2563eb;
+    background-color: #2563eb; 
     color: white;
     border: none;
-    padding: 12px 20px;
+    padding: 0 20px;          /* 上下パディングを0にしてheightで制御 */
+    height: 38px;             /* カラー選択の高さに合わせる */
+    line-height: 38px;        /* 文字を中央に */
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s;
     white-space: nowrap;
+    box-sizing: border-box;   
 }
-input[type="submit"]:hover { background-color: #1e4fd8; }
 
 /* 6. エラーメッセージ */
 .grid_test-child:last-child {
