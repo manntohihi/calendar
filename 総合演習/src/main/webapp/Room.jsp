@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="room.css" />
   </head>
   <body>
-  	<form action="Room" method="post">
+  	<form action="RoomFront" method="post">
 	    <div class="grid_test">
 	      <div class="grid_test-child">
 	        <h1><%= room.getRoomname() %>  <%= room.getId() %></h1>
