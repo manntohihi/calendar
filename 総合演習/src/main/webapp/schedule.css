@@ -1,101 +1,179 @@
 @charset "UTF-8";
 
+/* すべてのリセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html, body {
   width: 100%;
   height: 100%;
-  margin: 0;
+  background-color: #f9fbf9;
+  font-family: sans-serif;
 }
 
 body {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-
 }
-
- .schedule-input {
-  width: 400px;
-  height: 40px;
-  font-size: 16px;
-  padding: 8px 12px;
-  box-sizing: border-box; /* ← 超重要 */
-}
-
-
-
 
 .container {
   width: 100%;
-  max-width: 620px;   /* ← ここが肝（スマホ縦幅） */
+  max-width: 500px;
   min-height: 100vh;
-
-  margin: 0 auto;     /* 中央寄せ */
-  padding: 16px;
-
-  border: 2px solid #4caf50;
-  box-sizing: border-box;
-
+  padding: 24px;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
+  align-items: stretch; /* 子要素の幅を揃えて左端ラインを統一 */
 }
+
+/* --- ヘッダー：戻る(左)と削除(右)を配置 --- */
 .header {
   display: flex;
+  justify-content: space-between; /* 左右に振り分け */
   align-items: center;
   width: 100%;
+  margin-bottom: 25px;
 }
+
+/* 戻るボタンのデザイン強化 */
 .back {
   text-decoration: none;
   color: #4caf50;
   font-size: 14px;
-}
-
-
-.delete {
-  margin-left: auto;
-  text-decoration: none;
-  color: #f44336;
   font-weight: bold;
+  padding: 8px 16px;
+  border: 1px solid #4caf50;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  background-color: transparent;
 }
 
+.back:hover {
+  background-color: #4caf50;
+  color: white;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+}
+
+/* 削除ボタンを右に移動 & デザイン強化 */
+.delete {
+  background-color: transparent;
+  border: 1px solid #ff5252;
+  border-radius: 20px;
+  color: #ff5252;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: auto; /* 確実に右端へ寄せる */
+}
+
+.delete:hover {
+  background-color: #ff5252;
+  color: white;
+  box-shadow: 0 2px 8px rgba(255, 82, 82, 0.2);
+}
+
+/* --- 1行目：タイトル（ズレ対策） --- */
 h1 {
-  border: 2px solid #4caf50;
-  padding: 10px;
-  margin-top: 10px;
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex; /* JSPの改行空白を無視させる */
 }
 
+h1 input {
+  flex-grow: 1;
+  border: none;
+  border-bottom: 2px solid #e0e0e0;
+  padding: 8px 0;
+  font-size: 24px;
+  font-weight: bold;
+  outline: none;
+  text-align: left;
+}
+
+/* --- 2行目：期間（ズレ対策） --- */
 .period {
-  border: 2px solid #4caf50;
-  padding: 10px;
-  margin-top: 10px;
-}
-
-.staff {
-  border: 2px solid #4caf50;
-  padding: 10px;
+  width: 100%;
+  background-color: #f5f7f5;
+  border-radius: 8px;
+  padding: 15px;
   margin-top: 10px;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
-  gap: 20px;
+  gap: 8px;
+  font-size: 14px;
 }
 
-.add-staff {
-  margin-top: 10px;
+.period input {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-family: inherit;
 }
 
+/* --- 3行目：担当者 --- */
+.staff {
+  width: 100%;
+  background-color: #f5f7f5;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.staff label {
+  font-size: 13px;
+  color: #4caf50;
+  font-weight: bold;
+  margin-right: 15px;
+  white-space: nowrap;
+}
+
+.staff .name {
+  border: none;
+  background: transparent;
+  flex-grow: 1;
+  font-size: 16px;
+  outline: none;
+}
+
+/* --- メモ --- */
 textarea {
   width: 100%;
-  flex-grow: 1;
+  min-height: 180px;
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.6;
   resize: none;
+  outline: none;
+  text-align: left;
 }
 
-.submit {
-  margin-top: 20px;
+/* --- メインボタン（追加・更新） --- */
+button[type="submit"]:not(.delete) {
   width: 100%;
-  padding: 10px;
+  margin-top: 25px;
+  padding: 14px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
   font-size: 18px;
-}
-.ym button {
-  font-size: 18px;
-  padding: 4px 10px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background 0.2s;
+}
+
+button[type="submit"]:not(.delete):hover {
+  background-color: #43a047;
 }

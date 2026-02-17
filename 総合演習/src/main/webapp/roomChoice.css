@@ -4,14 +4,14 @@
 body {
     margin: 0;
     font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-    background-color: #f0f2f5; /* 他の画面と統一したグレー */
+    background-color: #f0f2f5;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
-/* 2. メインカード（form） */
+/* 2. メインカード */
 form {
     background-color: #ffffff;
     padding: 40px;
@@ -21,49 +21,22 @@ form {
     max-width: 550px;
 }
 
-/* グリッドコンテナ（元の構成を完全維持） */
 .grid_test {
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;      /* 3列構成 */
-    grid-template-rows: repeat(6, auto);    /* エラー行を含めた行構成 */
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: repeat(6, auto);
     gap: 15px;
 }
 
-/* 3. 各エリアの配置指定 */
-
-/* 部屋名（タイトル） */
-.grid_test-child:nth-child(1) {
-    grid-column: 1/4;
-    grid-row: 1;
-    text-align: center;
-    margin-bottom: 10px;
-}
+/* 3. 各エリア配置 */
+.grid_test-child:nth-child(1) { grid-column: 1/4; grid-row: 1; text-align: center; margin-bottom: 10px; }
 h1 { color: #2563eb; font-size: 26px; margin: 0; }
 
-/* 部屋ID入力 */
-.grid_test-child:nth-child(2) {
-    grid-column: 2/3;
-    grid-row: 3;
-    display: flex;
-    justify-content: center;
-}
+.grid_test-child:nth-child(2) { grid-column: 2/3; grid-row: 3; display: flex; justify-content: center; }
+.grid_test-child:nth-child(3) { grid-column: 2/3; grid-row: 4; display: flex; justify-content: center; }
+.grid_test-child:nth-child(6) { grid-column: 2; grid-row: 2; place-items: center; }
 
-/* パスワード入力 */
-.grid_test-child:nth-child(3) {
-    grid-column: 2/3;
-    grid-row: 4;
-    display: flex;
-    justify-content: center;
-}
-
-/* 予備エリア（2行目） */
-.grid_test-child:nth-child(6) {
-    grid-column: 2;
-    grid-row: 2;
-    place-items: center;
-}
-
-/* 4. カラー選択（真ん中・5行目） */
+/* 4. カラー選択（端っこアクセント & アニメーション） */
 .grid_test-child:nth-child(4) {
     grid-column: 2;
     grid-row: 5;
@@ -72,46 +45,71 @@ h1 { color: #2563eb; font-size: 26px; margin: 0; }
 
 .grid_test2 {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* 3列で色を並べる */
+    grid-template-columns: repeat(3, 1fr);
     gap: 8px;
     width: 100%;
 }
 
-/* ラジオボタンとラベルの装飾 */
-input[type="radio"] { display: none; }
+/* ラジオボタン本体とリセットボタンを隠す */
+input[type="radio"], #color-reset { display: none !important; }
+
 .grid_test2 label {
     display: block;
-    padding: 8px 4px;
+    padding: 8px 4px 8px 12px;
     text-align: center;
     font-size: 11px;
     font-weight: bold;
     border-radius: 6px;
-    background: #f8fafc;
-    border: 2px solid transparent;
+    background: #ffffff;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
     cursor: pointer;
-    transition: 0.2s;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
 }
 
-/* 各色の文字色設定 */
-.red { color: #ef4444; } .blue { color: #3b82f6; } .yellow { color: #eab308; }
-.green { color: #22c55e; } .lightblue { color: #06b6d4; } .pink { color: #ec4899; }
-.orange { color: #f97316; } .purple { color: #a855f7; } .yellowgreen { color: #84cc16; }
+/* 左端のアクセントライン */
+.grid_test2 label::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
 
-/* 選択時のエフェクト */
+/* 各カラーの指定 */
+.red::before { background-color: #ef4444; }
+.blue::before { background-color: #3b82f6; }
+.yellow::before { background-color: #eab308; }
+.green::before { background-color: #22c55e; }
+.lightblue::before { background-color: #06b6d4; }
+.pink::before { background-color: #ec4899; }
+.orange::before { background-color: #f97316; }
+.purple::before { background-color: #a855f7; }
+.yellowgreen::before { background-color: #84cc16; }
+
+/* ホバー & 選択時の塗りつぶし */
+.grid_test2 label:hover::before { width: 100%; opacity: 0.7; }
+.grid_test2 label:hover { color: white; }
+
 input[type="radio"]:checked + label {
-    border-color: currentColor;
-    background: white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    color: white !important;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     transform: translateY(-2px);
 }
+input[type="radio"]:checked + label::before { width: 100%; opacity: 1; }
 
-/* 5. ログインボタン（右端・5行目） */
+/* 5. ログインボタン */
 .grid_test-child:nth-child(5) {
-    grid-column: 3;    /* 右端の列 */
-    grid-row: 5;       /* カラー選択と同じ行 */
+    grid-column: 3;
+    grid-row: 5;
     display: flex;
-    justify-content: flex-end; /* 右寄せ */
-    align-items: flex-end;    /* 下寄せ */
+    justify-content: flex-end;
+    align-items: flex-end;
     padding-bottom: 5px;
 }
 
@@ -128,7 +126,7 @@ input[type="submit"] {
 }
 input[type="submit"]:hover { background-color: #1e4fd8; }
 
-/* 6. エラーメッセージ（最下部） */
+/* 6. エラーメッセージ */
 .grid_test-child:last-child {
     grid-column: 1/4;
     grid-row: 6;
@@ -144,7 +142,7 @@ input[type="submit"]:hover { background-color: #1e4fd8; }
     margin-top: 10px;
 }
 
-/* 7. 共通パーツの微調整 */
+/* 7. 入力パーツ微調整 */
 .line { width: 100%; border-collapse: collapse; }
 .line th { font-size: 12px; color: #64748b; text-align: left; padding-bottom: 4px; }
 .text, .password {

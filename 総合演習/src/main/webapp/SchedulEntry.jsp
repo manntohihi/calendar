@@ -31,62 +31,27 @@
 
 <div class="header">
     <a href="CalendarServlet" class="back">← 戻る</a>
-
     <% if (BarEvent != null) { %>
-		<button type="submit"
-        	formaction="EntryServlet"
-        	formmethod="post"
-        	name="action"
-        	value="delete"
-        	class="delete">
-  			削除
-		</button>
+        <button type="submit" formaction="EntryServlet" formmethod="post" name="action" value="delete" class="delete">削除</button>
     <% } %>
-  </div>
-  <!-- タイトル -->
-  <h1><input type="text" name="title" placeholder="予定を入力"
-         value="<%= BarEvent != null ? BarEvent.getTitle() : "" %>"></h1>
-  
-  
+</div>
 
-  <!-- 期間 -->
-  <div class="period">
-    <input type="datetime-local" name="startDate"  id="startDate" value="<%= start %>"> ～ 
-    <input type="datetime-local" name="endDate"    id="endDate"   value="<%= end   %>">
-  </div>
+<h1><input type="text" name="title" placeholder="予定を入力" value="<%= BarEvent != null ? BarEvent.getTitle() : "" %>"></h1>
 
-   <!-- 担当者 -->
-  <div class="staff">
+<div class="period"><input type="datetime-local" name="startDate" id="startDate" value="<%= start %>"> ～ <input type="datetime-local" name="endDate" id="endDate" value="<%= end %>"></div>
+
+<div class="staff">
     <label>担当者名</label>
-   <input type="text" name="staffName" class="name" id="staffName" placeholder="担当者名を入力"
-     value="<%= BarEvent != null ? BarEvent.getUserName() : "" %>">
+    <input type="text" name="staffName" class="name" id="staffName" placeholder="担当者名を入力" value="<%= BarEvent != null ? BarEvent.getUserName() : "" %>">
+</div>
 
-  </div>
+<textarea name="memo" id="memo" placeholder="メモを入力"><%= BarEvent != null ? BarEvent.getTexdescription() : "" %></textarea>
 
-
-  <!-- メモ -->
-  <textarea name="memo" id="memo" placeholder="メモを入力">
-  	<%= 
-  		BarEvent != null ? BarEvent.getTexdescription() : "" 
-	%>
-  </textarea>	
 <% if (BarEvent == null) { %>
-    <button type="submit"
-    	formaction="EntryServlet"
-        formmethod="post" 
-        name="action"
-		value="add">
-        追加する
-    </button>
-  <% } else { %>
-      <button type="submit"
-        formaction="EntryServlet"
-        formmethod="post"
-        name="action"
-        value="update">
-  		変更する
-	</button>
-  <% } %>
+    <button type="submit" formaction="EntryServlet" formmethod="post" name="action" value="add">追加する</button>
+<% } else { %>
+    <button type="submit" formaction="EntryServlet" formmethod="post" name="action" value="update">変更する</button>
+<% } %>
 	<input type="hidden" name="id"
        value="<%= BarEvent != null ? BarEvent.getId() : "" %>">
 </div>
