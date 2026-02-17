@@ -258,7 +258,7 @@ public class CalendarDAO {
 
 		}
 	}
-		public void deleteCalendarDate(int id){
+		public void deleteCalendarDate(int id,int created_by){
 			CalendraEventList PostPrductLogic = null;
 			List<CalendarEvent> CalendarEventList = new ArrayList();
 			
@@ -281,11 +281,12 @@ public class CalendarDAO {
 			
 			//SELCT文を準備
 					String sql = 
-					"DELETE FROM calendar_events where id = ?;";
+					"DELETE FROM calendar_events where id = ? AND created_by = ?;";
 					
 					PreparedStatement ps = conn.prepareStatement(sql);
 					
 					ps.setLong(1, id);
+					ps.setLong(1, created_by);
 					ps.executeUpdate();
 			
 			}catch(SQLException e){

@@ -117,7 +117,7 @@ public class EntryServlet extends HttpServlet {
 	            } else if ("delete".equals(action)) {
 
 	                int id = Integer.parseInt(request.getParameter("id"));
-	                cDao.deleteCalendarDate(id);
+	                cDao.deleteCalendarDate(id,user.getUserId());
 	            }
 
 	            response.sendRedirect("CalendarServlet");
