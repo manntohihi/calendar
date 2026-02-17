@@ -50,7 +50,6 @@ public class Login extends HttpServlet {
 	 */
 	 protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Login.java");
 		String testID = request.getParameter("ID");
 		String password = null;
 		password = request.getParameter("password");
@@ -67,7 +66,6 @@ public class Login extends HttpServlet {
 		UserDao ud = new UserDao();
 		User loginUser = new User();
 		String name = null;
-		System.out.println("Login.java f2");
 		loginUser = ud.login(user);
 		name = loginUser.getUserName();
 		if (Objects.isNull(name)) {
@@ -94,7 +92,6 @@ public class Login extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("/RoomSelection.jsp");// /jsp/RoomSelection.jsp
 			dispatcher.forward(request, response);
 		}
-		System.out.println("login.java end");
 		/*
 		dispatcher = request.getRequestDispatcher("/LoginError.jsp");
 		System.out.println("login.java eroor");
