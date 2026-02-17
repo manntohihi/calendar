@@ -1,155 +1,141 @@
-@charset "UTF-8";
-
-/* 1. 画面全体の土台 */
-body {
-    margin: 0;
-    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-    background-color: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-/* 2. メインカード */
-form {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    width: 90%;
-    max-width: 550px;
-}
-
 .grid_test {
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    grid-template-rows: repeat(6, auto);
-    gap: 15px;
+    display: grid;  /* グリッドコンテナを作る */
+    grid-template-columns:1fr 3fr 1fr ;      /* 縦向きのグリッドラインを決める */
+    grid-template-rows:1fr 1fr 1fr 1fr 1fr;         /* 横向きのグリッドラインを決める */
+}
+.grid_test-child:nth-child(1) {
+    grid-column:1/4;    /* 配置指定 */
+    grid-row:1;       /* 配置指定 */
+    place-items: center; 
 }
 
-/* 3. 各エリア配置 */
-.grid_test-child:nth-child(1) { grid-column: 1/4; grid-row: 1; text-align: center; margin-bottom: 10px; }
-h1 { color: #2563eb; font-size: 26px; margin: 0; }
-
-.grid_test-child:nth-child(2) { grid-column: 2/3; grid-row: 3; display: flex; justify-content: center; }
-.grid_test-child:nth-child(3) { grid-column: 2/3; grid-row: 4; display: flex; justify-content: center; }
-.grid_test-child:nth-child(6) { grid-column: 2; grid-row: 2; place-items: center; }
-
-/* 4. カラー選択（端っこアクセント & アニメーション） */
+.grid_test-child:nth-child(2) {
+    grid-column:2/3;    /* 配置指定 */
+    grid-row:3;       /* 配置指定 */
+    place-items: center;
+}
+.grid_test-child:nth-child(3) {
+    grid-column:2/3;    /* 配置指定 */
+    grid-row:4;       /* 配置指定 */
+    place-items: center;
+}
 .grid_test-child:nth-child(4) {
-    grid-column: 2;
-    grid-row: 5;
+    grid-column:2;    /* 配置指定 */
+    grid-row:5;       /* 配置指定 */
+    place-items: center;
+}
+.grid_test-child:nth-child(5) {
+    grid-column:3;    /* 配置指定 */
+    grid-row:5;       /* 配置指定 */
+}
+.grid_test-child:nth-child(6) {
+    grid-column:2;    /* 配置指定 */
+    grid-row:2;       /* 配置指定 */
     place-items: center;
 }
 
+
+
 .grid_test2 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    width: 100%;
+    display: grid;  /* グリッドコンテナを作る */
+    grid-template-columns:1fr 1fr 1fr;      /* 縦向きのグリッドラインを決める */
+    grid-template-rows:1fr 1fr 1fr;         /* 横向きのグリッドラインを決める */
+}
+.grid_test-child2:nth-child(1) {
+    grid-column:1;    /* 配置指定 */
+    grid-row:1;       /* 配置指定 */
 }
 
-/* ラジオボタン本体とリセットボタンを隠す */
-input[type="radio"], #color-reset { display: none !important; }
-
-.grid_test2 label {
-    display: block;
-    padding: 8px 4px 8px 12px;
-    text-align: center;
-    font-size: 11px;
-    font-weight: bold;
-    border-radius: 6px;
-    background: #ffffff;
-    color: #64748b;
-    border: 1px solid #e2e8f0;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    z-index: 1;
+.grid_test-child2:nth-child(2) {
+    grid-column:2;    /* 配置指定 */
+    grid-row:1;       /* 配置指定 */
+}
+.grid_test-child2:nth-child(3) {
+    grid-column:3;    /* 配置指定 */
+    grid-row:1;       /* 配置指定 */
+}
+.grid_test-child2:nth-child(4) {
+    grid-column:1;    /* 配置指定 */
+    grid-row:2;       /* 配置指定 */
+}
+.grid_test-child2:nth-child(5) {
+    grid-column:2;    /* 配置指定 */
+    grid-row:2;       /* 配置指定 */
+}
+.grid_test-child2:nth-child(6) {
+    grid-column:3;    /* 配置指定 */
+    grid-row:2;       /* 配置指定 */
+}
+.grid_test-child2:nth-child(7) {
+    grid-column:1;    /* 配置指定 */
+    grid-row:3;       /* 配置指定 */
+}
+.grid_test-child2:nth-child(8) {
+    grid-column:2;    /* 配置指定 */
+    grid-row:3;       /* 配置指定 */
+}
+.grid_test-child2:nth-child(9) {
+    grid-column:3;    /* 配置指定 */
+    grid-row:3;       /* 配置指定 */
 }
 
-/* 左端のアクセントライン */
-.grid_test2 label::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 6px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: -1;
+
+.red{
+    color: red;
+}
+.blue{
+    color: blue;
+}
+.yellow{
+    color: yellow;
+}
+.green{
+    color: green;
+}
+.lightblue{
+    color: lightblue;
+}
+.pink{
+    color: pink;
+}
+.orange{
+    color: orange;
+}
+.purple{
+    color: purple;
+}
+.yellowgreen{
+    color: yellowgreen;
+}
+.error{
+    color: red;
 }
 
-/* 各カラーの指定 */
-.red::before { background-color: #ef4444; }
-.blue::before { background-color: #3b82f6; }
-.yellow::before { background-color: #eab308; }
-.green::before { background-color: #22c55e; }
-.lightblue::before { background-color: #06b6d4; }
-.pink::before { background-color: #ec4899; }
-.orange::before { background-color: #f97316; }
-.purple::before { background-color: #a855f7; }
-.yellowgreen::before { background-color: #84cc16; }
-
-/* ホバー & 選択時の塗りつぶし */
-.grid_test2 label:hover::before { width: 100%; opacity: 0.7; }
-.grid_test2 label:hover { color: white; }
-
-input[type="radio"]:checked + label {
-    color: white !important;
-    border-color: transparent;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transform: translateY(-2px);
+.text{
+    width: 200px;
+  resize: none; /* ユーザーによるサイズ変更を禁止 */
 }
-input[type="radio"]:checked + label::before { width: 100%; opacity: 1; }
-
-/* 5. ログインボタン */
-.grid_test-child:nth-child(5) {
-    grid-column: 3;
-    grid-row: 5;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding-bottom: 5px;
+.password{
+    width: 300px;
+  resize: none; /* ユーザーによるサイズ変更を禁止 */
 }
-
-input[type="submit"] {
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-    white-space: nowrap;
-}
-input[type="submit"]:hover { background-color: #1e4fd8; }
-
-/* 6. エラーメッセージ */
-.grid_test-child:last-child {
-    grid-column: 1/4;
-    grid-row: 6;
-    text-align: center;
-}
-.error {
-    color: #ef4444;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: #fef2f2;
-    padding: 8px;
-    border-radius: 6px;
-    margin-top: 10px;
-}
-
-/* 7. 入力パーツ微調整 */
-.line { width: 100%; border-collapse: collapse; }
-.line th { font-size: 12px; color: #64748b; text-align: left; padding-bottom: 4px; }
-.text, .password {
-    width: 100% !important;
-    padding: 10px;
-    font-size: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fafafa;
-}
+/*
+    .grid_test-child:nth-child(1) {
+        background-color:  #7b9ad0;     
+    }
+    .grid_test-child:nth-child(2) {
+        background-color:  #c8d627;     
+    }
+    .grid_test-child:nth-child(3) {
+        background-color:  #d5848b;     
+    }
+    .grid_test-child:nth-child(4) {
+        background-color:  #51a1a2;    
+    }
+    .grid_test-child:nth-child(5) {
+        background-color:  #66b7ec;    
+    }
+    .grid_test-child:nth-child(6) {
+        background-color:  #56c7ec;    
+    }
+*/
