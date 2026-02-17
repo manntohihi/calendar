@@ -140,13 +140,5 @@
         </div>
     </div>
     </form>
-    <script>
-        document.querySelector('.grid_test').addEventListener('click', function(e) {
-            // クリックされたのが label や input でない（余白である）場合にリセット
-            if (e.target.classList.contains('grid_test-child') || e.target.classList.contains('grid_test')) {
-                document.getElementById('color-reset').checked = true;
-            }
-        });
-    </script>
   </body>
 </html>
