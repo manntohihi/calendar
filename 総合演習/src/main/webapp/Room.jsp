@@ -29,12 +29,8 @@
 	        <h1><%= room.getRoomname() %>  <%= room.getId() %></h1>
 	      </div>
 	      <div class="grid_test-child">
-<<<<<<< HEAD
 	        <p>一時予定</p>
 	        <p>利用者</p> 
-=======
-	        <p>利用者</p> z
->>>>>>> branch 'master' of https://github.com/manntohihi/calendar.git
 	      </div>
 	      <div class="grid_test-child">
 			<% for(UserEvent event : userEvList){ %>
