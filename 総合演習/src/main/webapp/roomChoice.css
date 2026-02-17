@@ -34,7 +34,10 @@
     place-items: center;
 }
 
-
+/* ★追加：ラジオボタン本体を完全に隠す（これで変なポチが消えます） */
+.grid_test2 input[type="radio"] {
+    display: none !important;
+}
 
 .grid_test2 {
     display: grid;  /* グリッドコンテナを作る */
@@ -46,6 +49,23 @@
     grid-row:1;       /* 配置指定 */
 }
 
+.grid_test2 label {
+    display: block;
+    padding: 10px 4px; /* 上下を少し増やしてログインボタンの高さに合わせる */
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+    box-sizing: border-box; /* 高計算を正確に */
+	
 .grid_test-child2:nth-child(2) {
     grid-column:2;    /* 配置指定 */
     grid-row:1;       /* 配置指定 */
@@ -111,13 +131,90 @@
     color: red;
 }
 
+/* 各カラーの指定（省略せずそのまま維持） */
+.red::before { background-color: #ef4444; }
+.blue::before { background-color: #3b82f6; }
+.yellow::before { background-color: #eab308; }
+.green::before { background-color: #22c55e; }
+.lightblue::before { background-color: #06b6d4; }
+.pink::before { background-color: #ec4899; }
+.orange::before { background-color: #f97316; }
+.purple::before { background-color: #a855f7; }
+.yellowgreen::before { background-color: #84cc16; }
+
+/* ホバー & 選択時の塗りつぶし */
+.grid_test2 label:hover::before { width: 100%; opacity: 0.7; }
+.grid_test2 label:hover { color: white; }
+
+input[type="radio"]:checked + label {
+    color: white !important;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+	
 .text{
     width: 200px;
   resize: none; /* ユーザーによるサイズ変更を禁止 */
 }
+
+input[type="radio"]:checked + label::before { width: 100%; opacity: 1; }
+
+/* 5. ログインボタン（右端・5行目） */
+.grid_test-child:nth-child(5) {
+    grid-column: 3;    
+    grid-row: 5;       
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;      /* 中央揃え */
+	
 .password{
     width: 300px;
   resize: none; /* ユーザーによるサイズ変更を禁止 */
+  
+}
+
+
+input[type="submit"] {
+    background-color: #2563eb; 
+    color: white;
+    border: none;
+    padding: 0 20px;          /* 上下パディングを0にしてheightで制御 */
+    height: 38px;             /* カラー選択の高さに合わせる */
+    line-height: 38px;        /* 文字を中央に */
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+    box-sizing: border-box;   
+}
+
+/* 6. エラーメッセージ */
+.grid_test-child:last-child {
+    grid-column: 1/4;
+    grid-row: 6;
+    text-align: center;
+}
+.error {
+    color: #ef4444;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #fef2f2;
+    padding: 8px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+/* 7. 入力パーツ微調整 */
+.line { width: 100%; border-collapse: collapse; }
+.line th { font-size: 12px; color: #64748b; text-align: left; padding-bottom: 4px; }
+.text, .password {
+    width: 100% !important;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
 }
 /*
     .grid_test-child:nth-child(1) {

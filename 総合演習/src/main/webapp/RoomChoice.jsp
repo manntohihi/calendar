@@ -96,7 +96,6 @@
         </div>
         <div class="grid_test-child">
             <div class="grid_test2">
-            	<input type="radio" name="color" id="color-reset" value="" checked style="display:none;">
 				<div class="grid_test-child2">
 			    	<input type="radio" id="red" name="color" value="red" class="red"/>
 					<label for="red" class="red">red</label>
