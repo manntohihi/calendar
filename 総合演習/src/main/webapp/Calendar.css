@@ -110,9 +110,17 @@ td:hover {
 }
 
 .event {
-    height: 8px; /* 少し細くしてスタイリッシュに */
-    border-radius: 2px;
-    transition: transform 0.1s;
+    min-height: 18px;           /* 高さを少し持たせる */
+    padding: 2px 6px;           /* 左右に余白 */
+    border-radius: 4px;
+    font-size: 12px;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;    /* 長いタイトルは…に */
 }
 
 .event:hover {

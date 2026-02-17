@@ -62,6 +62,7 @@ if (CalendarEventList != null) {
                     <%= e.getEnd_datetime().getDayOfMonth() %>),
     color: "<%= e.getColler() %>",
     id: "<%= e.getId() %>",
+    tiltle:"<%= e.getTitle()%>",
     description: "<%= 
         e.getTexdescription() == null ? "" :
         e.getTexdescription()
@@ -111,11 +112,20 @@ function renderCalendar(date) {
 
     let eventHtml = '<div class="events">';
     dayEvents.forEach(e => {
-      eventHtml +=
-        '<a href="EntryServlet?id=' + encodeURIComponent(e.id) + '">' +
-          '<div class="event ' + e.color + '"></div>' +
-        '</a>';
-    });
+
+    	  // 今日がイベントの開始日かどうか判定
+    	  const isStartDay =
+    	    current.getFullYear() === e.start.getFullYear() &&
+    	    current.getMonth() === e.start.getMonth() &&
+    	    current.getDate() === e.start.getDate();
+
+    	  eventHtml +=
+    	    '<a href="EntryServlet?id=' + encodeURIComponent(e.id) + '">' +
+    	      '<div class="event ' + e.color + '">' +
+    	        (isStartDay ? e.tiltle : '') +
+    	      '</div>' +
+    	    '</a>';
+    	});
     eventHtml += '</div>';
  
     const isToday =
