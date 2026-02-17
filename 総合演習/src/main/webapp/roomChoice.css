@@ -1,45 +1,36 @@
-@charset "UTF-8";
-
-/* 1. 画面全体の土台 */
-body {
-    margin: 0;
-    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-    background-color: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-/* 2. メインカード */
-form {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    width: 90%;
-    max-width: 550px;
-}
-
 .grid_test {
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    grid-template-rows: repeat(6, auto);
-    gap: 15px;
+    display: grid;  /* グリッドコンテナを作る */
+    grid-template-columns:1fr 3fr 1fr ;      /* 縦向きのグリッドラインを決める */
+    grid-template-rows:1fr 1fr 1fr 1fr 1fr;         /* 横向きのグリッドラインを決める */
+}
+.grid_test-child:nth-child(1) {
+    grid-column:1/4;    /* 配置指定 */
+    grid-row:1;       /* 配置指定 */
+    place-items: center; 
 }
 
-/* 3. 各エリア配置 */
-.grid_test-child:nth-child(1) { grid-column: 1/4; grid-row: 1; text-align: center; margin-bottom: 10px; }
-h1 { color: #2563eb; font-size: 26px; margin: 0; }
-
-.grid_test-child:nth-child(2) { grid-column: 2/3; grid-row: 3; display: flex; justify-content: center; }
-.grid_test-child:nth-child(3) { grid-column: 2/3; grid-row: 4; display: flex; justify-content: center; }
-.grid_test-child:nth-child(6) { grid-column: 2; grid-row: 2; place-items: center; }
-
-/* 4. カラー選択（端っこアクセント & アニメーション） */
+.grid_test-child:nth-child(2) {
+    grid-column:2/3;    /* 配置指定 */
+    grid-row:3;       /* 配置指定 */
+    place-items: center;
+}
+.grid_test-child:nth-child(3) {
+    grid-column:2/3;    /* 配置指定 */
+    grid-row:4;       /* 配置指定 */
+    place-items: center;
+}
 .grid_test-child:nth-child(4) {
-    grid-column: 2;
-    grid-row: 5;
+    grid-column:2;    /* 配置指定 */
+    grid-row:5;       /* 配置指定 */
+    place-items: center;
+}
+.grid_test-child:nth-child(5) {
+    grid-column:3;    /* 配置指定 */
+    grid-row:5;       /* 配置指定 */
+}
+.grid_test-child:nth-child(6) {
+    grid-column:2;    /* 配置指定 */
+    grid-row:2;       /* 配置指定 */
     place-items: center;
 }
 
@@ -49,10 +40,13 @@ h1 { color: #2563eb; font-size: 26px; margin: 0; }
 }
 
 .grid_test2 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    width: 100%;
+    display: grid;  /* グリッドコンテナを作る */
+    grid-template-columns:1fr 1fr 1fr;      /* 縦向きのグリッドラインを決める */
+    grid-template-rows:1fr 1fr 1fr;         /* 横向きのグリッドラインを決める */
+}
+.grid_test-child2:nth-child(1) {
+    grid-column:1;    /* 配置指定 */
+    grid-row:1;       /* 配置指定 */
 }
 
 .grid_test2 label {
@@ -71,16 +65,70 @@ h1 { color: #2563eb; font-size: 26px; margin: 0; }
     transition: all 0.3s ease;
     z-index: 1;
     box-sizing: border-box; /* 高計算を正確に */
+	
+.grid_test-child2:nth-child(2) {
+    grid-column:2;    /* 配置指定 */
+    grid-row:1;       /* 配置指定 */
+}
+.grid_test-child2:nth-child(3) {
+    grid-column:3;    /* 配置指定 */
+    grid-row:1;       /* 配置指定 */
+}
+.grid_test-child2:nth-child(4) {
+    grid-column:1;    /* 配置指定 */
+    grid-row:2;       /* 配置指定 */
+}
+.grid_test-child2:nth-child(5) {
+    grid-column:2;    /* 配置指定 */
+    grid-row:2;       /* 配置指定 */
+}
+.grid_test-child2:nth-child(6) {
+    grid-column:3;    /* 配置指定 */
+    grid-row:2;       /* 配置指定 */
+}
+.grid_test-child2:nth-child(7) {
+    grid-column:1;    /* 配置指定 */
+    grid-row:3;       /* 配置指定 */
+}
+.grid_test-child2:nth-child(8) {
+    grid-column:2;    /* 配置指定 */
+    grid-row:3;       /* 配置指定 */
+}
+.grid_test-child2:nth-child(9) {
+    grid-column:3;    /* 配置指定 */
+    grid-row:3;       /* 配置指定 */
 }
 
-/* 左端のアクセントライン */
-.grid_test2 label::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 6px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: -1;
+
+.red{
+    color: red;
+}
+.blue{
+    color: blue;
+}
+.yellow{
+    color: yellow;
+}
+.green{
+    color: green;
+}
+.lightblue{
+    color: lightblue;
+}
+.pink{
+    color: pink;
+}
+.orange{
+    color: orange;
+}
+.purple{
+    color: purple;
+}
+.yellowgreen{
+    color: yellowgreen;
+}
+.error{
+    color: red;
 }
 
 /* 各カラーの指定（省略せずそのまま維持） */
@@ -103,7 +151,12 @@ input[type="radio"]:checked + label {
     border-color: transparent;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     transform: translateY(-2px);
+	
+.text{
+    width: 200px;
+  resize: none; /* ユーザーによるサイズ変更を禁止 */
 }
+
 input[type="radio"]:checked + label::before { width: 100%; opacity: 1; }
 
 /* 5. ログインボタン（右端・5行目） */
@@ -113,7 +166,13 @@ input[type="radio"]:checked + label::before { width: 100%; opacity: 1; }
     display: flex;
     justify-content: flex-end; 
     align-items: center;      /* 中央揃え */
+	
+.password{
+    width: 300px;
+  resize: none; /* ユーザーによるサイズ変更を禁止 */
+  
 }
+
 
 input[type="submit"] {
     background-color: #2563eb; 
@@ -157,3 +216,23 @@ input[type="submit"] {
     border-radius: 8px;
     background-color: #fafafa;
 }
+/*
+    .grid_test-child:nth-child(1) {
+        background-color:  #7b9ad0;     
+    }
+    .grid_test-child:nth-child(2) {
+        background-color:  #c8d627;     
+    }
+    .grid_test-child:nth-child(3) {
+        background-color:  #d5848b;     
+    }
+    .grid_test-child:nth-child(4) {
+        background-color:  #51a1a2;    
+    }
+    .grid_test-child:nth-child(5) {
+        background-color:  #66b7ec;    
+    }
+    .grid_test-child:nth-child(6) {
+        background-color:  #56c7ec;    
+    }
+*/
