@@ -286,7 +286,7 @@ public class CalendarDAO {
 					PreparedStatement ps = conn.prepareStatement(sql);
 					
 					ps.setLong(1, id);
-					ps.setLong(1, created_by);
+					ps.setLong(2, created_by);
 					ps.executeUpdate();
 			
 			}catch(SQLException e){
