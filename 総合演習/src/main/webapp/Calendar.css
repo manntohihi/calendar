@@ -4,27 +4,34 @@
 .grid_test {
     display: grid;  /* グリッドコンテナを作る */
     grid-template-columns:1fr 1fr 1fr;      /* 縦向きのグリッドラインを決める */
-    grid-template-rows:1fr ;         /* 横向きのグリッドラインを決める */
-	background-color:  #51a1a2;    
+    grid-template-rows:1fr 1fr 1fr 1fr;         /* 横向きのグリッドラインを決める */  
+	border: 3px solid #4caf50;
 }
 .grid_test-child:nth-child(1) {
-	 grid-column:1;/* 配置指定 */ 
-	 grid-row:1;
-	 /*text-align: center;
-	 border-right:2px solid skyblue;*/
+	 grid-column:2;/* 配置指定 */ 
+	 grid-row:4;
+	 text-align: center;
+	 /*border-right:2px solid skyblue;*/
  }
  .grid_test-child:nth-child(2) {
-     grid-column:2;    /* 配置指定 */
-     grid-row:1;       /* 配置指定 */
- 	/*text-align: center;
-	border-right:2px solid skyblue;*/
+     grid-column:3;    /* 配置指定 */
+     grid-row:4;       /* 配置指定 */
+ 	text-align: center;
+	/*border-right:2px solid skyblue;*/
  }
  .grid_test-child:nth-child(3) {
-	grid-column:3;
-	grid-row:1;       /* 配置指定 */
-	/*text-align: center;
-    grid-column:3;     配置指定 */
+	grid-column:1;
+	grid-row:4;       /* 配置指定 */
+	text-align: center;
+    /*grid-column:3;    配置指定 */
 }
+
+.calendar-container{
+	grid-column:1/4;
+	grid-row:1/4;       /* 配置指定 */
+	text-align: center;
+}
+/*
 .grid_test-child:nth-child(1) {
         background-color:  #7b9ad0;     
     }
@@ -43,9 +50,7 @@
     .grid_test-child:nth-child(6) {
         background-color:  #56c7ec;    
     }
-
-
-
+*/
 body {
   display:flex;
   align-items: center;

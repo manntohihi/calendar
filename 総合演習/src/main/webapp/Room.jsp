@@ -47,7 +47,7 @@
 	      </div>
 	      <div class="grid_test-child">
 	        <a href="CalendarServlet">
-	        	<img src="img/Chalendar.png" alt="Calendar" width="100">
+	        	<img src="img/Calendar.png" alt="Calendar" width="100">
 	        </a>
 	      </div>
 	      <div class="grid_test-child">

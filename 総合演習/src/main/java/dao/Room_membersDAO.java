@@ -96,7 +96,7 @@ public class Room_membersDAO {
 		
 		try (Connection conn = ds.getConnection()){
 			//SELECT文を準備
-			String sql = "SELECT GROUPID FROM ROOM_MEMBERS WHERE USERID = ? AND groupID = ?;";
+			String sql = "SELECT USERID,GROUPID FROM ROOM_MEMBERS WHERE USERID = ? AND groupID = ?;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			//INSERT文の「?」に使用する値を設定してSQL文を完成
 			pStmt.setInt(1,userid);
@@ -148,7 +148,7 @@ public class Room_membersDAO {
 	
 	
 	//insert文
-	public boolean createMember(Room_members Room_members) {
+	/*public boolean createMember(Room_members Room_members) {
  		InitialContext initCtx;
  		DataSource ds = null;
  		try {
@@ -177,6 +177,91 @@ public class Room_membersDAO {
 			return false;
  		
  		}
+ 		return true;
+ 	}*/
+	public boolean createMember(int groupID,int userID) {
+ 		InitialContext initCtx;
+ 		DataSource ds = null;
+ 		try {
+ 			initCtx = new InitialContext();
+ 			ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/calendar");//DBの場所へ変更
+ 		}catch(NamingException e) {
+ 			e.printStackTrace();
+ 		}
+ 		//データベース接続
+ 		try (Connection conn = ds.getConnection()){
+ 			//INSERT文の準備
+ 			String sql = "INSERT INTO ROOM_MEMBERS(ID,GROUPID,USERID) VALUES(null,?,?)";//変更
+ 			PreparedStatement pStmt = conn.prepareStatement(sql);
+ 			//INSERT文の「?」に使用する値を設定してSQL文を完成
+ 			//pStmt.setString(1,Room_members.getID());
+ 			pStmt.setInt(1,groupID);
+ 			pStmt.setInt(2,userID);
+ 			
+ 			//INSERT文を実行
+ 			int result = pStmt.executeUpdate();
+ 			if (result != 1) {
+ 				return false;
+ 			}
+ 		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+ 		
+ 		}
+ 		return true;
+ 	}
+	
+	
+	public boolean setColor(int groupID,int userID,String color) {
+		//
+		System.out.println("Room_membersDAO Start");
+		//
+ 		InitialContext initCtx;
+ 		DataSource ds = null;
+ 		try {
+ 			//
+ 			System.out.println("Room_membersDAO try1");
+ 			//
+ 			initCtx = new InitialContext();
+ 			ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/calendar");//DBの場所へ変更
+ 		}catch(NamingException e) {
+ 			//
+ 			System.out.println("Room_membersDAO catch1");
+ 			//
+ 			e.printStackTrace();
+ 		}
+ 		//データベース接続
+ 		try (Connection conn = ds.getConnection()){
+ 			//
+ 			System.out.println("Room_membersDAO try2");
+ 			//
+ 			//INSERT文の準備
+ 			String sql = "UPDATE room_members SET color = ? WHERE groupID = ? AND userID = ?;";//変更
+ 			PreparedStatement pStmt = conn.prepareStatement(sql);
+ 			//INSERT文の「?」に使用する値を設定してSQL文を完成
+ 			//pStmt.setString(1,Room_members.getID());
+ 			pStmt.setString(1,color);
+ 			pStmt.setInt(2,groupID);
+ 			pStmt.setInt(3,userID);
+ 			System.out.println("成功");
+ 			//INSERT文を実行
+ 			int result = pStmt.executeUpdate();
+ 			if (result != 1) {
+ 				//
+ 	 			System.out.println("Room_membersDAO if1");
+ 	 			//
+ 				return false;
+ 			}
+ 		}catch(SQLException e) {
+ 			//
+ 			System.out.println("Room_membersDAO catch2");
+ 			//
+			e.printStackTrace();
+			return false;
+ 		}
+ 		//
+			System.out.println("Room_membersDAO END");
+			//
  		return true;
  	}
 }

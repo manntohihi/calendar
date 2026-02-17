@@ -7,7 +7,7 @@
     <h2>名前を変更しました</h2>
 
     <p>新しい名前：<strong>${newName}</strong></p>
-
+    
     <a href="myPage.jsp">マイページへ戻る</a>
 </body>
 </html>

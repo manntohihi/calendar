@@ -39,11 +39,20 @@ public class RoomSelection extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("RoomSelection.java Get");//削除
-		RequestDispatcher dispatcher;
-		dispatcher = request.getRequestDispatcher("/RoomSelection.jsp");// /jsp/RoomSelection.jsp
-		dispatcher.forward(request,response);
-		
+
+	    HttpSession session = request.getSession();
+	    User loginUser = (User) session.getAttribute("loginUser");
+
+	    if(loginUser == null) {
+	        response.sendRedirect("Login.jsp");
+	        return;
+	    }
+
+	    session.removeAttribute("room");
+
+	    RequestDispatcher dispatcher =
+	            request.getRequestDispatcher("/RoomSelection.jsp");
+	    dispatcher.forward(request,response);
 	}
 
 	/**
@@ -70,17 +79,24 @@ public class RoomSelection extends HttpServlet {
 			String roomPasswd = request.getParameter("roompassword");
 			Room room = new Room(ID,roomName,roomPasswd); //のちに出てくるroomとは別物
 			roomList = rdao.findFromID(ID);
-			if(roomList.size()!= 1) {//同一のroomIDがないか検索 結果＝なし
+			System.out.println("roomList"+roomList.size());
+			if(roomList.size() < 1) {//検索結果＝なし
+				System.out.println("rs.java新規部屋作成検索結果＝なし");
+			    Room_membersDAO rmdao = new Room_membersDAO();
+			    List<Room> updatedRoomList = new ArrayList<>();
+			    updatedRoomList.add(room);
+			    session.setAttribute("roomList", updatedRoomList);
+			    session.setAttribute("room", room);
 				System.out.println("rs.java create");//削除
-				rdao.createRoom(room,userid);//ROOMtableに保存
+				rdao.createRoom(room,userid);
 				session.setAttribute("room", room);
-				Room_membersDAO rmdao = new Room_membersDAO();//Room_memberに登録 String id,int roomid,int userid
+				rmdao.setUserGroup(userid, ID);//Room_memberに登録 String id,int roomid,int userid
 				List<Room_members> roomids = rmdao.searchByUseridForGroup(userid);
 				ServletContext application = this.getServletContext();
 				application.setAttribute("roomids", roomids);//アプリケーションスコープroomids
-				
-				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp
-				dispatcher.forward(request,response);//RoomChoice.jsp遷移
+				System.out.println("RoomChoice.jsp");
+				response.sendRedirect("RoomChoice?roomID=" + ID);
+				return;
 			}else {//検索結果＝あり
 				System.out.println("rs.java not create");//削除
 				dispatcher = request.getRequestDispatcher("/RoomSelectionCreateError.jsp");// /jsp/RoomSelectionCreateError.jsp
@@ -112,12 +128,12 @@ public class RoomSelection extends HttpServlet {
 				//
 				CalendarDAO  cdao = new CalendarDAO();
 				List<String> colorList = null;
-				colorList = cdao.findColor(ID);
+				colorList = cdao.findColor(ID,userid);
 				System.out.println("おっぱっぴー"+colorList.size());
 				session.setAttribute("colorList",colorList);
 				//
-				dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp
-				dispatcher.forward(request,response);//RoomChoice.jsp遷移
+				response.sendRedirect("RoomChoice?roomID=" + ID);
+				return;
 			}
 		}else {
 			System.out.println("rs.java エラー");

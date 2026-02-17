@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -72,23 +71,26 @@ public class Login extends HttpServlet {
 		loginUser = ud.login(user);
 		name = loginUser.getUserName();
 		if (Objects.isNull(name)) {
+			System.out.println("/LoginError.jsp");
 			dispatcher = request.getRequestDispatcher("/LoginError.jsp");// /jsp/LoginError.jsp
 			dispatcher.forward(request, response);
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
-			
 			RoomDao rdao = new RoomDao();
 			Room_membersDAO rmdao = new Room_membersDAO();//Room_memberに登録 String id,int roomid,int userid
 			List<Room_members> roomids = rmdao.searchByUseridForGroup(ID);
 			List<Room> roomList = new ArrayList<Room>();
-			for(Room_members rm: roomids) {
-				System.out.println(rm.getroomID());
-				 List<Room> rooms = rdao.findFromID(rm.getroomID());
-				 roomList.addAll(rooms);
+			if(roomids != null) {
+				for(Room_members rm: roomids) {
+					System.out.println(rm.getroomID());
+					List<Room> rooms = rdao.findFromID(rm.getroomID());
+					System.out.println(rooms.get(0));
+					roomList.addAll(rooms);
+				}
 			}
-			ServletContext application = this.getServletContext();
-			application.setAttribute("roomList", roomList);//アプリケーションスコープroomids
+			
+			session.setAttribute("roomList", roomList);//アプリケーションスコープroomids
 			dispatcher = request.getRequestDispatcher("/RoomSelection.jsp");// /jsp/RoomSelection.jsp
 			dispatcher.forward(request, response);
 		}

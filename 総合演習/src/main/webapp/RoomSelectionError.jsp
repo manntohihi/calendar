@@ -23,17 +23,16 @@
 	<form action="RoomSelection" method="post">
 	    <div class="grid_test">
 	      <div class="grid_test-child">
-	        <div class="nav">
+	        <!-- <div class="nav">
 	          <input id="drawer_input" class="drawer_hidden" type="checkbox">
 	          <label for="drawer_input" class="drawer_open"><span></span></label>
 	          <nav class="nav_content">
 	            <ul class="nav_list">
-	              <li class="nav_item"><a href="">カレンダー画面</a></li>
-	              <li class="nav_item"><a href="">予定入力画面</a></li>
-	              <li class="nav_item"><a href="">メニュー3</a></li>
+	              <li class="nav_item"><a href="CalendarServlet">カレンダー画面</a></li>
+	              <li class="nav_item"><a href="EntryServlet">予定入力画面</a></li>
 	            </ul>
 	          </nav>
-	        </div>
+	        </div> -->
 	      </div>
 	      <div class="grid_test-child">
 	        <a href="#">
@@ -56,9 +55,15 @@
 	        <input type="submit" name="botton" value="検索">
 	      </div>
 	      <div class="grid_test-child">
-	        <p>グループアイコン</p>
+	        <!-- <p>グループアイコン</p> -->
+	        <%for(Room rm : roomList){
+		        	if(rm.getRoomname() != null){
+		        			%><a href="RoomChoice?roomID=<%= rm.getId() %>">
+		        				<p><%= rm.getRoomname()%></p>
+		        			</a> <%
+		        			}
+	        	}%>
 	      </div>
-	      
 		  <div class="grid_test-child">
 		    <p class="error">該当する部屋がございません</p>
 		  </div>

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.CalendarEvent,java.util.List,model.Room" %>
+<%@ page import="model.CalendarEvent,model.barEvent,java.util.List,model.Room" %>
 <!DOCTYPE html>
 <%
-List<CalendarEvent> CalendarEventList =
-    (List<CalendarEvent>)request.getAttribute("CalendarEventList");
+List<barEvent> CalendarEventList =
+    (List<barEvent>)request.getAttribute("CalendarEventList");
 %>
 <%
     Room room = (Room)session.getAttribute("room");
@@ -21,6 +21,7 @@ List<CalendarEvent> CalendarEventList =
 </head>
 
 <body>
+<div class="grid_test">
 
 <div class="calendar-container">
 
@@ -50,7 +51,7 @@ const events = [
 <%
 if (CalendarEventList != null) {
   for (int i = 0; i < CalendarEventList.size(); i++) {
-    CalendarEvent e = CalendarEventList.get(i);
+	  barEvent e = CalendarEventList.get(i);
 %>
   {
     start: new Date(<%= e.getStart_datetime().getYear() %>,
@@ -61,7 +62,14 @@ if (CalendarEventList != null) {
                     <%= e.getEnd_datetime().getDayOfMonth() %>),
     color: "<%= e.getColler() %>",
     id: "<%= e.getId() %>",
-    description: "<%= e.getTexdescription() %>"
+    description: "<%= 
+        e.getTexdescription() == null ? "" :
+        e.getTexdescription()
+            .replace("\\", "\\\\")
+            .replace("\"", "\\\"")
+            .replace("\r", "")
+            .replace("\n", "\\n")
+    %>"
   }<%= (i < CalendarEventList.size() - 1) ? "," : "" %>
 <%
   }
@@ -142,27 +150,24 @@ document.getElementById('nextBtn').onclick = () => {
   renderCalendar(currentDate);
 };
 </script>
-<div class="grid_test">
+<!-- <div class="grid_test"> -->
 	<div class="grid_test-child"> 
-	<p>Home</p>
-	<!-- 
+	<!-- <p>Home</p> -->
 		<a href="RoomSelection">
 			<img src="img/Home.png" alt="Home" width="100">
-		</a>-->
+		</a>
 	</div>
 	<div class="grid_test-child"> 
-	<p>Calendar</p>
-	<!-- 
+	<!-- <p>Calendar</p> -->
 		<a href="CalendarServlet">
-			<img src="img/Chalendar.png" alt="Calendar" width="100">
-		</a>-->
+			<img src="img/Calendar.png" alt="Calendar" width="100">
+		</a>
 	</div>
 	<div class="grid_test-child">
-	<p>Move</p>
-	  <!--
+	<!--<p>Move</p>-->
 		<a href="Mypage">
 			<img src="img/Mypage.png" alt="Move" width="100">
-		</a>-->
+		</a>
 	</div>
 </div>
 </body>

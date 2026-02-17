@@ -23,49 +23,50 @@
     <meta charset="utf-8" />
     <title>部屋ログイン画面</title>
     <link rel="stylesheet" href="roomChoice.css" />
-    <%
-					for(int n = 0; n < colorList.size(); n++){
-						String color = colorList.get(n);
-						if(color.equals("red")){//変更
-							%><style>
-								red{display: none;}
-							</style><%
-						}else if(color.equals("blue")){
-							%><style>
-								blue{display: none;}
-							</style><%
-						}else if(color.equals("yellow")){
-							%><style>
-								yellow{display: none;}
-							</style><%
-						}else if(color.equals("green")){
-							%><style>
-								green{display: none;}
-							</style><%
-						}else if(color.equals("lightblue")){
-							%><style>
-								lightblue{display: none;}
-							</style><%
-						}else if(color.equals("pink")){
-							%><style>
-								pink{display: none;}
-							</style><%
-						}else if(color.equals("orange")){
-							%><style>
-								orange{display: none;}
-							</style><%
-						}else if(color.equals("purple")){
-							%><style>
-								purple{display: none;}
-							</style><%
-						}else if(color.equals("yellowgreen")){
-							%><style>
-								yellowgreen{display: none;}
-							</style><%
-						}
-					}
-				%>
-    
+    <%if(colorList != null ){
+		for(int n = 0; n < colorList.size(); n++){
+			String color = colorList.get(n);
+			if(color.equals("red")){//変更
+				System.out.println("red");
+				%><style>
+					.red{display: none;}
+				</style><%
+			}else if(color.equals("blue")){
+				%><style>
+					.blue{display: none;}
+				</style><%
+			}else if(color.equals("yellow")){
+				%><style>
+					.yellow{display: none;}
+				</style><%
+			}else if(color.equals("green")){
+				%><style>
+					.green{display: none;}
+				</style><%
+			}else if(color.equals("lightblue")){
+				%><style>
+					.lightblue{display: none;}
+				</style><%
+			}else if(color.equals("pink")){
+				%><style>
+					.pink{display: none;}
+				</style><%
+			}else if(color.equals("orange")){
+				%><style>
+					.orange{display: none;}
+				</style><%
+			}else if(color.equals("purple")){
+				%><style>
+					.purple{display: none;}
+				</style><%
+			}else if(color.equals("yellowgreen")){
+				%><style>
+					.yellowgreen{display: none;}
+				</style><%
+			}
+		}
+ 			}
+	%>
   </head>
   <body>
   	<form action="RoomChoice" method="post">
@@ -96,43 +97,41 @@
         <div class="grid_test-child">
             <div class="grid_test2">
 				<div class="grid_test-child2">
-			    	<input type="radio" id="red" name="color" value="red" />
+			    	<input type="radio" id="red" name="color" value="red" class="red"/>
 					<label for="red" class="red">red</label>
 			    </div>
 			    <div class="grid_test-child2">
-			    	<input type="radio" id="blue" name="color" value="blue" />
+			    	<input type="radio" id="blue" name="color" value="blue" class="blue"/>
 			    	<label for="blue" class="blue">blue</label>
 			    </div>
 			    <div class="grid_test-child2">
-					<input type="radio" id="yellow" name="color" value="yellow" />
+					<input type="radio" id="yellow" name="color" value="yellow" class="yellow"/>
 			    	<label for="yellow" class="yellow">yellow</label>
 			    </div>
 			    <div class="grid_test-child2">
-					<input type="radio" id="green" name="color" value="green" />
+					<input type="radio" id="green" name="color" value="green" class="green"/>
 			    	<label for="green" class="green">green</label>
 			    </div>
 			    <div class="grid_test-child2">
-					<input type="radio" id="lightblue" name="color" value="lightblue" />
+					<input type="radio" id="lightblue" name="color" value="lightblue" class="lightblue"/>
 			    	<label for="lightblue" class="lightblue">lightblue</label>
 			    </div>
 			    <div class="grid_test-child2">
-					<input type="radio" id="pink" name="color" value="pink" />
+					<input type="radio" id="pink" name="color" value="pink" class="pink"/>
 			    	<label for="pink" class="pink">pink</label>
 			    </div>
 			    <div class="grid_test-child2">
-					<input type="radio" id="orange" name="color" value="orange" />
+					<input type="radio" id="orange" name="color" value="orange" class="orange"/>
 			    	<label for="orange" class="orange">orange</label>
 			    </div>
 			    <div class="grid_test-child2">
-					<input type="radio" id="purple" name="color" value="purple" />
+					<input type="radio" id="purple" name="color" value="purple" class="purple"/>
 			    	<label for="purple" class="purple">purple</label>
 			    </div>
 			    <div class="grid_test-child2">
-					<input type="radio" id="yellowgreen" name="color" value="yellowgreen" />
+					<input type="radio" id="yellowgreen" name="color" value="yellowgreen" class="yellowgreen"/>
 			    	<label for="yellowgreen" class="yellowgreen">yellowgreen</label>
 				</div>
-			    
-			    
             </div>
         </div>
         <div class="grid_test-child">

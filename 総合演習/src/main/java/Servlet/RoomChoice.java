@@ -18,10 +18,10 @@ import jakarta.servlet.http.HttpSession;
 import dao.CalendarDAO;
 import dao.RoomDao;
 import dao.Room_membersDAO;
-import model.CalendarEvent;
 import model.Room;
 import model.User;
 import model.UserEvent;
+import model.barEvent;
 
 
 /**
@@ -53,9 +53,13 @@ public class RoomChoice extends HttpServlet {
 		roomList = rdao.findFromID(roomid);
 		Room room = roomList.get(0);
 		session.setAttribute("room", room);
-		
+		System.out.println("room名前"+ room.getRoomname());
+		User loginUser = new User();
+		loginUser = (User) session.getAttribute("loginUser");
+		int userid = 0;
+		userid = loginUser.getUserId();
 		CalendarDAO cdao = new CalendarDAO();
-		List<String> colorList = cdao.findColor(roomid);
+		List<String> colorList = cdao.findColor(roomid,userid);
 		session.setAttribute("colorList", colorList);
 		RequestDispatcher dispatcher;
 		dispatcher = request.getRequestDispatcher("/RoomChoice.jsp");// /jsp/RoomChoice.jsp
@@ -72,33 +76,35 @@ public class RoomChoice extends HttpServlet {
 		System.out.println("RCdP");//削除
 		RequestDispatcher dispatcher;
 		HttpSession session = request.getSession();
+		Room_membersDAO rmemDao = new Room_membersDAO();
 		int ID = Integer.parseInt( request.getParameter("roomID"));
 		String password = request.getParameter("password");
 		String color = request.getParameter("color");
 		System.out.println(color);
-		session.setAttribute("color",color);
 		
 		User user = new User();
 		user = (User)session.getAttribute("loginUser");
 		Room room = new Room();
 		room = (Room) session.getAttribute("room");
+		if(rmemDao.searchUserInGroup(room.getId(), user.getUserId()) == null) {//判定（仮）
+			rmemDao.createMember(room.getId(), user.getUserId());
+		}
+		rmemDao.setColor(room.getId(), user.getUserId(), color);
 		if(ID == room.getId()) {
 			System.out.println("if1");//削除
 			if(password.equals(room.getRoompassword())) {
 				System.out.println("if2");//削除
-				Room_membersDAO rmemDao = new Room_membersDAO();//room_memberに追加
+				//
 				if(rmemDao.searchUserInGroup(user.getUserId(), room.getId()) == null) {
 					rmemDao.setUserGroup(user.getUserId(), room.getId());
 				}
-				
-				
-				
-				
+				//
+				List<barEvent> UserCalendarEventList;
 				CalendarDAO cDao = new CalendarDAO();
-				List<CalendarEvent> UserCalendarEventList;
 				List<UserEvent> userEvList = new ArrayList<>();
+				System.out.println("aaaaa"+user.getUserId() + room.getId());
 				UserCalendarEventList = cDao.findUserCalendarDate(user.getUserId(), room.getId());
-				for(CalendarEvent event: UserCalendarEventList){ 
+				for(barEvent event: UserCalendarEventList){ 
 					LocalDateTime endDate = event.getEnd_datetime();
 					LocalDate today = LocalDate.now();
 					LocalDate end = endDate.toLocalDate();
@@ -106,7 +112,6 @@ public class RoomChoice extends HttpServlet {
 					UserEvent userEv = new UserEvent(event.getTitle(), remainingDays);
 					userEvList.add(userEv);
 				}
-				
 				session.setAttribute("userEvList", userEvList);
 				session.setAttribute("room", room);
 				dispatcher = request.getRequestDispatcher("/Room.jsp");// /jsp/Room.jsp

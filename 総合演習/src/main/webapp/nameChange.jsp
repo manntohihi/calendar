@@ -24,7 +24,7 @@
         	<button type="submit">変更する</button>
         	<button type="button" onclick="history.back()">キャンセル</button>
 
-     	   <p style="color:red;">${error }</p>
+     	   <p style="color:red;">${error}</p>
     	</form>
 	</div>
 </body>

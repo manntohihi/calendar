@@ -33,14 +33,14 @@
     <a href="CalendarServlet" class="back">← 戻る</a>
 
     <% if (BarEvent != null) { %>
-      <button type="submit"
-              formaction="EntryServlet"
-              formmethod="post"
-              name="id"
-              value="<%= BarEvent.getId() %>"
-              class="delete">
-        削除
-      </button>
+		<button type="submit"
+        	formaction="EntryServlet"
+        	formmethod="post"
+        	name="action"
+        	value="delete"
+        	class="delete">
+  			削除
+		</button>
     <% } %>
   </div>
   <!-- タイトル -->
@@ -69,19 +69,26 @@
   	<%= 
   		BarEvent != null ? BarEvent.getTexdescription() : "" 
 	%>
-  </textarea>
- <% if (BarEvent == null){ %>
-      <button type="submit">追加する</button>
+  </textarea>	
+<% if (BarEvent == null) { %>
+    <button type="submit"
+    	formaction="EntryServlet"
+        formmethod="post" 
+        name="action"
+		value="add">
+        追加する
+    </button>
   <% } else { %>
       <button type="submit"
-              formaction="EntryServlet"
-              formmethod="post"
-              name="id"
-              value="<%= BarEvent.getId() %>">
-        変更する
-      </button>
+        formaction="EntryServlet"
+        formmethod="post"
+        name="action"
+        value="update">
+  		変更する
+	</button>
   <% } %>
-	<input type="hidden" name="from" value="ScheduleEntry.jsp">
+	<input type="hidden" name="id"
+       value="<%= BarEvent != null ? BarEvent.getId() : "" %>">
 </div>
 </form>
 </body>
