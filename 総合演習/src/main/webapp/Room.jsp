@@ -33,7 +33,6 @@
 	        <p>利用者</p> 
 	      </div>
 	      <div class="grid_test-child">
-	        <p>残日数</p>
 			<% for(UserEvent event : userEvList){ %>
 				<div class="box">
   				<td>
