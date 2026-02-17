@@ -160,7 +160,7 @@ document.getElementById('nextBtn').onclick = () => {
 	<div class="grid_test-child"> 
 	<!-- <p>Calendar</p> -->
 		<a href="Room">
-			<img src="img/Calendar.png" alt="Calendar" width="100">
+			<img src="img/sheet.png" alt="Calendar" width="100">
 		</a>
 	</div>
 	<div class="grid_test-child">
