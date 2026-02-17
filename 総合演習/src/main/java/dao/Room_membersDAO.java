@@ -298,4 +298,50 @@ public class Room_membersDAO {
 			//
  		return true;
  	}
+	public String getColor(int groupID,int userID) {
+		//
+		System.out.println("Room_membersDAO Start");
+		//
+ 		InitialContext initCtx;
+ 		DataSource ds = null;
+ 		String color = "";
+ 		try {
+ 			//
+ 			System.out.println("Room_membersDAO try1");
+ 			//
+ 			initCtx = new InitialContext();
+ 			ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/calendar");//DBの場所へ変更
+ 		}catch(NamingException e) {
+ 			//
+ 			System.out.println("Room_membersDAO catch1");
+ 			//
+ 			e.printStackTrace();
+ 		}
+ 		//データベース接続
+ 		try (Connection conn = ds.getConnection()){
+ 			//
+ 			System.out.println("Room_membersDAO try2");
+ 			//
+ 			//INSERT文の準備
+ 			String sql = "select color from room_members WHERE groupID = ? AND userID = ?;";//変更
+ 			PreparedStatement pStmt = conn.prepareStatement(sql);
+ 			//INSERT文の「?」に使用する値を設定してSQL文を完成
+ 			//pStmt.setString(1,Room_members.getID());;
+ 			pStmt.setInt(1,groupID);
+ 			pStmt.setInt(2,userID);
+ 			System.out.println("成功");
+ 			//SELECT文を実行し、結果票を取得
+			ResultSet rs = pStmt.executeQuery();
+			//SELECT文の結果をArrayListに格納
+			while (rs.next()) {
+				color = rs.getString("color");
+
+
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return color;
+	}
 }

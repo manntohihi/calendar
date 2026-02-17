@@ -86,10 +86,18 @@ public class RoomChoice extends HttpServlet {
 		user = (User)session.getAttribute("loginUser");
 		Room room = new Room();
 		room = (Room) session.getAttribute("room");
+		
 		if(rmemDao.searchUserInGroup(room.getId(), user.getUserId()) == null) {//判定（仮）
 			rmemDao.createMember(room.getId(), user.getUserId());
 		}
-		rmemDao.setColor(room.getId(), user.getUserId(), color);
+		//colorを選択していなくてDBにすでにcolor情報がある場合はその情報を扱う
+		if(color == null && rmemDao.getColor(room.getId(),user.getUserId()) != null) {
+			
+		}else {
+			rmemDao.setColor(room.getId(), user.getUserId(), color);
+		}
+		
+		
 		if(ID == room.getId()) {
 			System.out.println("if1");//削除
 			if(password.equals(room.getRoompassword())) {
