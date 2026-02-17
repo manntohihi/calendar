@@ -54,9 +54,7 @@ form {
     grid-column:1/4;    /* 配置指定 */
     grid-row:4/5;       /* 配置指定 */
 	
-	display: flex;
-	flex-direction: column;
-	align-items: center;   /* ← 横中央 */
+
 }
 
 .grid_test-child:nth-child(7) {
