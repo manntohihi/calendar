@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import model.User;
+
 /**
  * Servlet implementation class LogoutServlet
  */
@@ -30,13 +32,14 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//セッションを取得
 		HttpSession session = request.getSession(false);
-		if(session != null) {
-			//セッションを破棄
-			session.invalidate();
+
+		if (session == null || session.getAttribute("user") == null) {
+		    response.sendRedirect("Login.jsp");
+		    return;
 		}
-		
-		//ログイン画面へリダイレクト
-		response.sendRedirect("logout.jsp");
+
+		User user = (User) session.getAttribute("user");
+		int userId = user.getUserId();
 	}
 
 	/**
